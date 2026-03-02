@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${service.title} | Massimo Artigiano`,
+    title: `${service.title} | L'Artigiano`,
     description: service.shortDescription,
   };
 }

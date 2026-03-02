@@ -33,7 +33,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 p-4 max-w-4xl">
           <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl tracking-tight text-shadow-lg">
-            Massimo Artigiano: Passione e Maestria, dal Legno al Mare.
+            Artigiano: Passione e Maestria, dal Legno al Mare.
           </h1>
           <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
             Soluzioni su misura per la tua casa e la tua imbarcazione, con la garanzia di un lavoro artigianale fatto a regola d'arte.
@@ -91,7 +91,7 @@ export default function Home() {
             <div>
               <h2 className="font-headline text-3xl md:text-4xl text-primary">Il Valore dell'Artigianato</h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Mi chiamo Massimo e sono un artigiano, non un commerciante. La mia filosofia si basa sulla dedizione al dettaglio, sulla scelta dei materiali migliori e su un rapporto diretto e di fiducia con il cliente.
+                Sono un artigiano, non un commerciante. La mia filosofia si basa sulla dedizione al dettaglio, sulla scelta dei materiali migliori e su un rapporto diretto e di fiducia con il cliente.
               </p>
               <p className="mt-4 text-lg text-muted-foreground">
                 Ogni progetto è un pezzo unico, realizzato con tecniche tradizionali e un'attenzione moderna alla funzionalità e al design. Dal restauro di un mobile antico alla creazione di un arredo nautico su misura, metto la mia esperienza al vostro servizio.

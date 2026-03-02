@@ -29,10 +29,10 @@ export default function Footer() {
           <div>
             <h3 className="font-headline text-lg text-primary">Contatti</h3>
             <div className="mt-4 space-y-2 text-muted-foreground">
-              <p>Massimo Artigiano</p>
+              <p>L'Artigiano</p>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:info@massimoartigiano.it" className="hover:text-foreground transition-colors">info@massimoartigiano.it</a>
+                <a href="mailto:info@artigiano.it" className="hover:text-foreground transition-colors">info@artigiano.it</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-4 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Massimo Artigiano. Tutti i diritti riservati.</p>
+          <p>&copy; {new Date().getFullYear()} L'Artigiano. Tutti i diritti riservati.</p>
         </div>
       </div>
     </footer>

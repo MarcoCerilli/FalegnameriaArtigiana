@@ -6,7 +6,7 @@ import Footer from '@/components/layout/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
 
 export const metadata: Metadata = {
-  title: 'Massimo Artigiano',
+  title: 'L\'Artigiano',
   description: 'Falegnameria, tappezzeria nautica, infissi, e altro. La maestria artigiana per la tua casa e la tua barca.',
   keywords: "falegnameria, tappezzeria nautica, infissi, zanzariere, portoni blindati, artigiano, su misura",
 };
