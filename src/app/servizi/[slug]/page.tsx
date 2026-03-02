@@ -22,20 +22,36 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   return (
     <>
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-headline text-4xl md:text-5xl text-primary">{service.title}</h1>
-            <p className="mt-4 text-xl text-muted-foreground">
-              {service.shortDescription}
-            </p>
-          </div>
+      <section className="relative h-[50vh] flex items-center justify-center text-center">
+        {serviceImage && (
+          <Image
+            src={serviceImage.imageUrl}
+            alt={serviceImage.description}
+            fill
+            className="object-cover"
+            priority
+            data-ai-hint={serviceImage.imageHint}
+          />
+        )}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 p-4 max-w-3xl mx-auto">
+          <h1 className="font-headline text-4xl md:text-5xl text-white">{service.title}</h1>
+          <p className="mt-4 text-xl text-white/90">
+            {service.shortDescription}
+          </p>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="prose prose-lg max-w-none text-foreground">
+              <h2 className="font-headline text-3xl text-primary">Dettagli del Servizio</h2>
+              <p>{service.longDescription}</p>
+              <Button asChild className="mt-8 not-prose">
+                <Link href="/contatti">Richiedi un preventivo</Link>
+              </Button>
+            </div>
             <div className="relative w-full h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg">
               {serviceImage && (
                 <Image
@@ -46,12 +62,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   data-ai-hint={serviceImage.imageHint}
                 />
               )}
-            </div>
-            <div className="prose prose-lg max-w-none text-foreground">
-              <p>{service.longDescription}</p>
-              <Button asChild className="mt-8 not-prose">
-                <Link href="/contatti">Richiedi un preventivo</Link>
-              </Button>
             </div>
           </div>
         </div>

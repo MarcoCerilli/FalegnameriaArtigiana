@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { services, type Service } from '@/lib/services';
 import Link from 'next/link';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
@@ -26,16 +28,26 @@ function ServiceCard({ service }: { service: Service }) {
 
 
 export default function ServiziPage() {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-servizi');
   return (
     <>
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-headline text-4xl md:text-5xl text-primary">I Miei Servizi</h1>
-            <p className="mt-4 text-xl text-muted-foreground">
+      <section className="relative h-[50vh] flex items-center justify-center text-center">
+        {heroImage && (
+            <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                className="object-cover"
+                priority
+                data-ai-hint={heroImage.imageHint}
+            />
+        )}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 p-4 max-w-3xl mx-auto">
+            <h1 className="font-headline text-4xl md:text-5xl text-white">I Miei Servizi</h1>
+            <p className="mt-4 text-xl text-white/90">
               Dalla precisione della falegnameria alla robustezza dei portoni blindati, offro soluzioni complete e su misura per ogni esigenza, garantendo sempre la massima qualità e professionalità.
             </p>
-          </div>
         </div>
       </section>
 

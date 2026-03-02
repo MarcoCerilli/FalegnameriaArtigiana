@@ -2,45 +2,45 @@
   "placeholderImages": [
     {
       "id": "hero-main",
-      "description": "Un laboratorio di falegnameria artigianale con luce naturale.",
-      "imageUrl": "https://images.unsplash.com/photo-1683115100702-af818681184d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXJwZW50cnklMjB3b3Jrc2hvcHxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "carpentry workshop"
+      "description": "Un artigiano che lavora il legno nel suo laboratorio.",
+      "imageUrl": "https://images.unsplash.com/photo-1595019579073-82e1b95f0857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcnRpc2FuJTIwY2FycGVudHJ5fGVufDB8fHx8MTc3MjU4MzkxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan carpentry"
     },
     {
       "id": "about-massimo",
-      "description": "Ritratto di un artigiano al lavoro.",
-      "imageUrl": "https://images.unsplash.com/photo-1720381297951-591944869f00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjcmFmdHNtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "craftsman portrait"
+      "description": "Ritratto di un artigiano che lavora il legno.",
+      "imageUrl": "https://images.unsplash.com/photo-1579933257353-6a4e3b7b2c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmFmdHNtYW4lMjB3b29kfGVufDB8fHx8MTc3MjU4NDAxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "craftsman wood"
     },
     {
       "id": "service-falegnameria",
-      "description": "Dettaglio di un pezzo di legno intagliato a mano.",
-      "imageUrl": "https://images.unsplash.com/photo-1511267567645-7802b3b79f3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b29kJTIwY2FydmluZ3xlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "wood carving"
+      "description": "Un falegname al lavoro nel suo laboratorio.",
+      "imageUrl": "https://images.unsplash.com/photo-1494949649109-ecfc3b8c35df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXJwZW50ZXIlMjBhdCUyMHdvcmt8ZW58MHx8fHwxNzcyNTg0MDkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "carpenter at work"
     },
     {
       "id": "service-tappezzeria",
-      "description": "Tessuti e strumenti per la tappezzeria nautica.",
-      "imageUrl": "https://images.unsplash.com/photo-1771074153019-dd96c0d0ff88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx1cGhvbHN0ZXJ5JTIwZmFicmljfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "upholstery fabric"
+      "description": "Dettaglio di cuscineria per barca.",
+      "imageUrl": "https://images.unsplash.com/photo-1629532424915-d913d8009908?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxuYXV0aWNhbCUyMHVwaG9sc3Rlcnl8ZW58MHx8fHwxNzcyNTg0MTMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nautical upholstery"
     },
     {
       "id": "service-infissi",
-      "description": "Una finestra in legno appena installata con vista sul mare.",
-      "imageUrl": "https://images.unsplash.com/photo-1541628951107-a9af5346a3e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kb3clMjB2aWV3fGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "window view"
+      "description": "Interni di una stanza moderna con grandi finestre in legno.",
+      "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3b29kJTIwd2luZG93fGVufDB8fHx8MTc3MjU4NDI3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern wood window"
     },
     {
       "id": "service-zanzariere",
-      "description": "Dettaglio di una zanzariera su una porta finestra.",
-      "imageUrl": "https://images.unsplash.com/photo-1687305143533-71baedd9a85b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY3JlZW4lMjBkb29yfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "screen door"
+      "description": "Dettaglio di una zanzariera su una finestra aperta.",
+      "imageUrl": "https://images.unsplash.com/photo-1599139535822-2144d715a442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kb3clMjBzY3JlZW4lMjBkZXRhaWx8ZW58MHx8fHwxNzcyNTg0MzMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "window screen detail"
     },
     {
       "id": "service-portoni",
-      "description": "Un elegante e robusto portone blindato in legno.",
-      "imageUrl": "https://images.unsplash.com/photo-1668353195261-5ca0bd1c8686?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcm1vcmVkJTIwZG9vcnxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "armored door"
+      "description": "Un'elegante porta di sicurezza in legno scuro.",
+      "imageUrl": "https://images.unsplash.com/photo-1560223797-291b5c924403?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwc2VjdXJpdHklMjBkb29yfGVufDB8fHx8MTc3MjU4NDM3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elegant security door"
     },
     {
       "id": "gallery-1",
@@ -89,6 +89,24 @@
       "description": "Zanzariera plissettata su un balcone.",
       "imageUrl": "https://images.unsplash.com/photo-1644476292556-b9297a5f97d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwbGVhdGVkJTIwc2NyZWVufGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "pleated screen"
+    },
+    {
+      "id": "hero-chi-siamo",
+      "description": "Un laboratorio artigianale luminoso e ordinato.",
+      "imageUrl": "https://images.unsplash.com/photo-1555956441-285d814243d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhcnRpc2FuJTIwd29ya3Nob3AlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc3MjU4NDY2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan workshop"
+    },
+    {
+      "id": "hero-galleria",
+      "description": "Parete di una galleria con esposti vari lavori artigianali in legno.",
+      "imageUrl": "https://images.unsplash.com/photo-1524222717473-730000096953?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpc2FuJTIwd29yayUyMGdhbGxlcnl8ZW58MHx8fHwxNzcyNTg0NTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan work gallery"
+    },
+    {
+      "id": "hero-servizi",
+      "description": "Vari attrezzi da artigiano ordinatamente appesi a una parete.",
+      "imageUrl": "https://images.unsplash.com/photo-1508921219358-1d2158c89ac1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjcmFmdHNtYW4lMjB0b29sc3xlbnwwfHx8fDE3NzI1ODQ1NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "craftsman tools"
     }
   ]
 }

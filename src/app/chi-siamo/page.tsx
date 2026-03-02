@@ -4,18 +4,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const aboutImage = PlaceHolderImages.find(p => p.id === 'about-massimo');
+const heroImage = PlaceHolderImages.find(p => p.id === 'hero-chi-siamo');
 
 export default function ChiSiamoPage() {
   return (
     <>
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-headline text-4xl md:text-5xl text-primary">Massimo, l'Artigiano</h1>
-            <p className="mt-4 text-xl text-muted-foreground">
-              "Il mio lavoro è la mia passione. Sono un artigiano, non un commerciante."
-            </p>
-          </div>
+      <section className="relative h-[50vh] flex items-center justify-center text-center">
+        {heroImage && (
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover"
+            priority
+            data-ai-hint={heroImage.imageHint}
+          />
+        )}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 p-4 max-w-3xl mx-auto">
+          <h1 className="font-headline text-4xl md:text-5xl text-white">Massimo, l'Artigiano</h1>
+          <p className="mt-4 text-xl text-white/90">
+            "Il mio lavoro è la mia passione. Sono un artigiano, non un commerciante."
+          </p>
         </div>
       </section>
 
