@@ -1,3 +1,94 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-main",
+      "description": "Un laboratorio di falegnameria artigianale con luce naturale.",
+      "imageUrl": "https://images.unsplash.com/photo-1683115100702-af818681184d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYXJwZW50cnklMjB3b3Jrc2hvcHxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "carpentry workshop"
+    },
+    {
+      "id": "about-massimo",
+      "description": "Ritratto di un artigiano al lavoro.",
+      "imageUrl": "https://images.unsplash.com/photo-1720381297951-591944869f00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjcmFmdHNtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "craftsman portrait"
+    },
+    {
+      "id": "service-falegnameria",
+      "description": "Dettaglio di un pezzo di legno intagliato a mano.",
+      "imageUrl": "https://images.unsplash.com/photo-1511267567645-7802b3b79f3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b29kJTIwY2FydmluZ3xlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wood carving"
+    },
+    {
+      "id": "service-tappezzeria",
+      "description": "Tessuti e strumenti per la tappezzeria nautica.",
+      "imageUrl": "https://images.unsplash.com/photo-1771074153019-dd96c0d0ff88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx1cGhvbHN0ZXJ5JTIwZmFicmljfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "upholstery fabric"
+    },
+    {
+      "id": "service-infissi",
+      "description": "Una finestra in legno appena installata con vista sul mare.",
+      "imageUrl": "https://images.unsplash.com/photo-1541628951107-a9af5346a3e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aW5kb3clMjB2aWV3fGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "window view"
+    },
+    {
+      "id": "service-zanzariere",
+      "description": "Dettaglio di una zanzariera su una porta finestra.",
+      "imageUrl": "https://images.unsplash.com/photo-1687305143533-71baedd9a85b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY3JlZW4lMjBkb29yfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "screen door"
+    },
+    {
+      "id": "service-portoni",
+      "description": "Un elegante e robusto portone blindato in legno.",
+      "imageUrl": "https://images.unsplash.com/photo-1668353195261-5ca0bd1c8686?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcm1vcmVkJTIwZG9vcnxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "armored door"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Interni di una barca a vela con finiture in legno personalizzate.",
+      "imageUrl": "https://images.unsplash.com/photo-1671500602105-5a2ddb4fe406?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzYWlsYm9hdCUyMGludGVyaW9yfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sailboat interior"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Una cucina su misura in legno massello.",
+      "imageUrl": "https://images.unsplash.com/photo-1546551613-09c2f83e1ede?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjdXN0b20lMjBraXRjaGVufGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom kitchen"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Installazione di infissi in un attico moderno.",
+      "imageUrl": "https://images.unsplash.com/photo-1653749576883-c6cea642124f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjB3aW5kb3dzfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern windows"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Dettaglio di cuscineria esterna per una barca.",
+      "imageUrl": "https://images.unsplash.com/photo-1765886672950-b6eb744084bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxib2F0JTIwY3VzaGlvbnN8ZW58MHx8fHwxNzcyNDUwMTM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "boat cushions"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Libreria a muro artigianale.",
+      "imageUrl": "https://images.unsplash.com/photo-1762791111002-6e5f5544df0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y3VzdG9tJTIwYm9va3NoZWxmfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom bookshelf"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Portone blindato con pannello personalizzato.",
+      "imageUrl": "https://images.unsplash.com/photo-1772116398419-3f92bd5403ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjdXN0b20lMjBkb29yfGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom door"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Tavolo da pranzo in legno di rovere.",
+      "imageUrl": "https://images.unsplash.com/photo-1758486713137-97713deb1e3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvYWslMjB0YWJsZXxlbnwwfHx8fDE3NzI0NTAxMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oak table"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Zanzariera plissettata su un balcone.",
+      "imageUrl": "https://images.unsplash.com/photo-1644476292556-b9297a5f97d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwbGVhdGVkJTIwc2NyZWVufGVufDB8fHx8MTc3MjQ1MDEzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pleated screen"
+    }
+  ]
 }
