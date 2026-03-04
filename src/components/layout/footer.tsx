@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="space-y-4 max-w-md">
             <Logo />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              La maestria artigiana per la tua casa e la tua barca. 
+              La maestria per la tua casa e la tua barca. 
               Dal legno al mare, eccellenza nel su misura.
             </p>
           </div>
@@ -36,23 +36,33 @@ export default function Footer() {
         </div>
 
         {/* Parte Centrale: Contatti e Social in linea */}
-        <div className="flex flex-col md:flex-row justify-between items-center py-10 gap-8">
-          <div className="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2 group">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span>Via Giorgione SNC, 04019 Terracina (LT)</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center py-10 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm text-muted-foreground w-full">
+            <div className="space-y-2">
+                <h3 className="font-semibold text-foreground flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Indirizzo</h3>
+                <p>Via Giorgione SNC, 04019 Terracina (LT)</p>
             </div>
-            <a href="mailto:info@artigiano.it" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail className="h-4 w-4 text-primary" />
-              <span>info@artigiano.it</span>
-            </a>
-            <a href="tel:+391234567890" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Phone className="h-4 w-4 text-primary" />
-              <span>+39 123 456 7890</span>
-            </a>
+            <div className="space-y-2">
+                <h3 className="font-semibold text-foreground flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> Telefoni</h3>
+                <a href="tel:+393479417554" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span>347 9417554 (Massimo)</span>
+                </a>
+                <a href="tel:+393471809003" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span>347 1809003 (Luana)</span>
+                </a>
+            </div>
+            <div className="space-y-2">
+                <h3 className="font-semibold text-foreground flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> Email</h3>
+                <a href="mailto:massimosimonelli@hotmail.it" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span>massimosimonelli@hotmail.it</span>
+                </a>
+                <a href="mailto:fonziluana@hotmail.it" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <span>fonziluana@hotmail.it</span>
+                </a>
+            </div>
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 self-center md:self-end">
             <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
               <Instagram className="h-5 w-5" />
             </Link>

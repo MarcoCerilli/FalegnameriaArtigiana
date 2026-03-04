@@ -16,8 +16,8 @@ const WhatsAppIcon = () => (
 );
 
 export default function WhatsAppButton() {
-  const phoneNumber = "+391234567890";
-  const message = "Ciao, ti contatto dal tuo sito web.";
+  const phoneNumber = "+393479417554";
+  const message = "Ciao, ti contatto dal sito Mave per una richiesta.";
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 
   return (
