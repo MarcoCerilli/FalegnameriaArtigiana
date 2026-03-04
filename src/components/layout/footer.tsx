@@ -40,7 +40,7 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2 group">
               <MapPin className="h-4 w-4 text-primary" />
-              <span>Via dell'Artigianato, 12, Terracina (LT)</span>
+              <span>Via Giorgione SNC, 04019 Terracina (LT)</span>
             </div>
             <a href="mailto:info@artigiano.it" className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail className="h-4 w-4 text-primary" />
@@ -64,11 +64,11 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright e Note Legali */}
         <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] text-muted-foreground/70 uppercase tracking-wider">
-          <p>&copy; {new Date().getFullYear()} L'Artigiano. Tutti i diritti riservati.</p>
+          <p>&copy; {new Date().getFullYear()} Mave di Simonelli Massimo. Tutti i diritti riservati.</p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
-            <span className="font-mono">P.IVA 12345678901</span>
+            <span className="font-mono">P.IVA 03215480595</span>
           </div>
         </div>
       </div>

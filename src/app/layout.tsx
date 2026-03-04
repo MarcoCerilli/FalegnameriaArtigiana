@@ -6,9 +6,9 @@ import Footer from '@/components/layout/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
 
 export const metadata: Metadata = {
-  title: 'L\'Artigiano',
+  title: 'Mave di Simonelli Massimo',
   description: 'Falegnameria, tappezzeria nautica, infissi, e altro. La maestria artigiana per la tua casa e la tua barca.',
-  keywords: "falegnameria, tappezzeria nautica, infissi, zanzariere, portoni blindati, artigiano, su misura",
+  keywords: "falegnameria, tappezzeria nautica, infissi, zanzariere, portoni blindati, artigiano, su misura, Mave, Simonelli Massimo",
 };
 
 export default function RootLayout({

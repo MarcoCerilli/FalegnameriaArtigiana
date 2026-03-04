@@ -22,7 +22,7 @@ export default function ChiSiamoPage() {
         )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 p-4 max-w-3xl mx-auto">
-          <h1 className="font-headline text-4xl md:text-5xl text-white">L'Artigiano</h1>
+          <h1 className="font-headline text-4xl md:text-5xl text-white">La Mia Storia</h1>
           <p className="mt-4 text-xl text-white/90">
             Il mio lavoro è la mia passione. Sono un artigiano, non un commerciante.
           </p>
