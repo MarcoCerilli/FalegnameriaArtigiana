@@ -2,13 +2,13 @@
   {
     "id": "hero-main",
     "description": "Un artigiano che lavora il legno nel suo laboratorio.",
-    "imageUrl": "https://images.unsplash.com/photo-1595019579073-82e1b95f0857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcnRpc2FuJTIwY2FycGVudHJ5fGVufDB8fHx8MTc3MjU4MzkxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "imageUrl": "/images/wood.jpeg",
     "imageHint": "artisan carpentry"
   },
   {
     "id": "about-massimo",
     "description": "Ritratto di un artigiano che lavora il legno.",
-    "imageUrl": "https://images.unsplash.com/photo-1579933257353-6a4e3b7b2c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmFmdHNtYW4lMjB3b29kfGVufDB8fHx8MTc3MjU4NDAxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "imageUrl": "/images/lampada.jpeg",
     "imageHint": "craftsman wood"
   },
   {

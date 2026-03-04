@@ -1,19 +1,40 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Hammer, Sailboat, ShieldCheck, DoorOpen, Wind, HardHat } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
+import {
+  Hammer,
+  Sailboat,
+  ShieldCheck,
+  DoorOpen,
+  Wind,
+  HardHat,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-const heroImage = PlaceHolderImages.find(p => p.id === 'hero-main');
-const aboutImage = PlaceHolderImages.find(p => p.id === 'about-massimo');
+const heroImage = PlaceHolderImages.find((p) => p.id === "hero-main");
+const aboutImage = PlaceHolderImages.find((p) => p.id === "about-massimo");
 
 const services = [
-  { name: 'Falegnameria', icon: Hammer, href: '/servizi/falegnameria' },
-  { name: 'Tappezzeria Nautica', icon: Sailboat, href: '/servizi/tappezzeria-nautica' },
-  { name: 'Infissi', icon: DoorOpen, href: '/servizi/infissi' },
-  { name: 'Zanzariere', icon: Wind, href: '/servizi/zanzariere' },
-  { name: 'Portoni Blindati', icon: ShieldCheck, href: '/servizi/portoni-blindati' },
+  { name: "Falegnameria", icon: Hammer, href: "/servizi/falegnameria" },
+  {
+    name: "Tappezzeria Nautica",
+    icon: Sailboat,
+    href: "/servizi/tappezzeria-nautica",
+  },
+  { name: "Infissi", icon: DoorOpen, href: "/servizi/infissi" },
+  { name: "Zanzariere", icon: Wind, href: "/servizi/zanzariere" },
+  {
+    name: "Portoni Blindati",
+    icon: ShieldCheck,
+    href: "/servizi/portoni-blindati",
+  },
 ];
 
 export default function Home() {
@@ -25,8 +46,10 @@ export default function Home() {
             src={heroImage.imageUrl}
             alt={heroImage.description}
             fill
-            className="object-cover"
+            // Usiamo object-[50%_70%] per scendere un po' (70%) senza arrivare a terra (100%)
+            className="object-cover object-[50%_70%] scale-80 transform"
             priority
+            unoptimized
             data-ai-hint={heroImage.imageHint}
           />
         )}
@@ -36,9 +59,14 @@ export default function Home() {
             Mave: Passione e Maestria, dal Legno al Mare.
           </h1>
           <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-            Soluzioni su misura per la tua casa e la tua imbarcazione, con la garanzia di un lavoro artigianale fatto a regola d'arte.
+            Soluzioni su misura per la tua casa e la tua imbarcazione, con la
+            garanzia di un lavoro artigianale fatto a regola d'arte.
           </p>
-          <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button
+            asChild
+            size="lg"
+            className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90"
+          >
             <Link href="/contatti">Richiedi un Preventivo</Link>
           </Button>
         </div>
@@ -47,9 +75,13 @@ export default function Home() {
       <section id="servizi" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="font-headline text-3xl md:text-4xl text-primary">I Nostri Servizi</h2>
+            <h2 className="font-headline text-3xl md:text-4xl text-primary">
+              I Nostri Servizi
+            </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Offriamo una gamma completa di servizi artigianali per soddisfare ogni tua esigenza, con la massima cura per i dettagli e la qualità dei materiali.
+              Offriamo una gamma completa di servizi artigianali per soddisfare
+              ogni tua esigenza, con la massima cura per i dettagli e la qualità
+              dei materiali.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
@@ -60,7 +92,9 @@ export default function Home() {
                     <div className="flex justify-center mb-4">
                       <service.icon className="w-12 h-12 text-primary group-hover:text-accent-foreground" />
                     </div>
-                    <CardTitle className="font-headline text-2xl">{service.name}</CardTitle>
+                    <CardTitle className="font-headline text-2xl">
+                      {service.name}
+                    </CardTitle>
                   </CardHeader>
                 </Card>
               </Link>
@@ -68,7 +102,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-12">
             <Button asChild variant="outline">
-                <Link href="/servizi">Scopri tutti i servizi</Link>
+              <Link href="/servizi">Scopri tutti i servizi</Link>
             </Button>
           </div>
         </div>
@@ -77,24 +111,37 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative w-full h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg">
+            <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-xl bg-[#f2f2f2] border border-gray-100">
               {aboutImage && (
                 <Image
                   src={aboutImage.imageUrl}
                   alt={aboutImage.description}
                   fill
-                  className="object-cover"
+                  // 1. object-contain: per vedere paralume e base insieme senza tagli
+                  // 2. p-8: per allontanare i bordi e dare respiro al paralume
+                  // 3. bg-[#f2f2f2]: questo colore neutro nasconde lo stacco della foto
+                  className="object-contain p-8 bg-[#f2f2f2]"
+                  unoptimized
+                  priority
                   data-ai-hint={aboutImage.imageHint}
                 />
               )}
             </div>
             <div>
-              <h2 className="font-headline text-3xl md:text-4xl text-primary">Il Valore dell'Artigianalità</h2>
+              <h2 className="font-headline text-3xl md:text-4xl text-primary">
+                Il Valore dell'Artigianalità
+              </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Sono un artigiano, non un commerciante. La mia filosofia si basa sulla dedizione al dettaglio, sulla scelta dei materiali migliori e su un rapporto diretto e di fiducia con il cliente.
+                Sono un artigiano, non un commerciante. La mia filosofia si basa
+                sulla dedizione al dettaglio, sulla scelta dei materiali
+                migliori e su un rapporto diretto e di fiducia con il cliente.
               </p>
               <p className="mt-4 text-lg text-muted-foreground">
-                Ogni progetto è un pezzo unico, realizzato con tecniche tradizionali e un'attenzione moderna alla funzionalità e al design. Dal restauro di un mobile antico alla creazione di un arredo nautico su misura, metto la mia esperienza al vostro servizio.
+                Ogni progetto è un pezzo unico, realizzato con tecniche
+                tradizionali e un'attenzione moderna alla funzionalità e al
+                design. Dal restauro di un mobile antico alla creazione di un
+                arredo nautico su misura, metto la mia esperienza al vostro
+                servizio.
               </p>
               <Button asChild className="mt-8">
                 <Link href="/chi-siamo">La mia storia</Link>
@@ -104,13 +151,20 @@ export default function Home() {
         </div>
       </section>
 
-       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-headline text-3xl md:text-4xl">Pronto a dare forma al tuo progetto?</h2>
+          <h2 className="font-headline text-3xl md:text-4xl">
+            Pronto a dare forma al tuo progetto?
+          </h2>
           <p className="mt-4 text-lg max-w-2xl mx-auto">
-            Contattami per discutere delle tue idee. Sarò felice di offrirti una consulenza personalizzata e un preventivo gratuito.
+            Contattami per discutere delle tue idee. Sarò felice di offrirti una
+            consulenza personalizzata e un preventivo gratuito.
           </p>
-          <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button
+            asChild
+            size="lg"
+            className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90"
+          >
             <Link href="/contatti">Parliamone</Link>
           </Button>
         </div>
