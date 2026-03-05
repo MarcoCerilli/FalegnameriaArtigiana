@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -40,17 +42,19 @@ const services = [
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center justify-center text-center text-white">
+      <section className="relative h-[70vh] flex items-center justify-center text-center text-white">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
             alt={heroImage.description}
             fill
-            // Usiamo object-[50%_70%] per scendere un po' (70%) senza arrivare a terra (100%)
-            className="object-cover object-[50%_70%] scale-80 transform"
             priority
-            unoptimized
-            data-ai-hint={heroImage.imageHint}
+            quality={100}
+            // Usiamo object-bottom o una percentuale per mostrare più pavimento/tavolo
+            className="object-cover object-center antialiased transition-opacity duration-700 opacity-0"
+            onLoad={(img) => {
+              img.currentTarget.classList.remove("opacity-0");
+            }}
           />
         )}
         <div className="absolute inset-0 bg-black/50" />
@@ -117,10 +121,10 @@ export default function Home() {
                   src={aboutImage.imageUrl}
                   alt={aboutImage.description}
                   fill
-                  // 1. object-contain: per vedere paralume e base insieme senza tagli
-                  // 2. p-8: per allontanare i bordi e dare respiro al paralume
-                  // 3. bg-[#f2f2f2]: questo colore neutro nasconde lo stacco della foto
-                  className="object-contain p-8 bg-[#f2f2f2]"
+                  // Rimosso p-8: ora l'immagine tocca i bordi senza spazi extra
+                  // Manteniamo object-contain per vedere tutta la lampada
+                  // Manteniamo bg-[#f2f2f2] per uniformare lo sfondo della foto
+                  className="object-contain bg-[#f2f2f2]"
                   unoptimized
                   priority
                   data-ai-hint={aboutImage.imageHint}

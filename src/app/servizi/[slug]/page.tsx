@@ -30,6 +30,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             fill
             className="object-cover"
             priority
+            unoptimized
             data-ai-hint={serviceImage.imageHint}
           />
         )}

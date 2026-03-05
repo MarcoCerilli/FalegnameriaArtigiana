@@ -1,8 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { services, type Service } from '@/lib/services';
-import Link from 'next/link';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { services, type Service } from "@/lib/services";
+import Link from "next/link";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
@@ -13,41 +19,51 @@ function ServiceCard({ service }: { service: Service }) {
           <div className="mb-4">
             <Icon className="h-12 w-12 text-primary group-hover:text-accent-foreground" />
           </div>
-          <CardTitle className="font-headline text-2xl">{service.title}</CardTitle>
-          <CardDescription className="pt-2">{service.shortDescription}</CardDescription>
+          <CardTitle className="font-headline text-2xl">
+            {service.title}
+          </CardTitle>
+          <CardDescription className="pt-2">
+            {service.shortDescription}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-            <p className="text-sm font-semibold text-primary group-hover:text-accent-foreground">
-                Scopri di più &rarr;
-            </p>
+          <p className="text-sm font-semibold text-primary group-hover:text-accent-foreground">
+            Scopri di più &rarr;
+          </p>
         </CardContent>
       </Card>
     </Link>
   );
 }
 
-
 export default function ServiziPage() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-servizi');
+  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-servizi");
   return (
     <>
       <section className="relative h-[50vh] flex items-center justify-center text-center">
         {heroImage && (
-            <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                fill
-                className="object-cover"
-                priority
-                data-ai-hint={heroImage.imageHint}
-            />
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            // Usiamo scale-90 o scale-95 per allontanare l'inquadratura
+            // Aggiungiamo object-center per mantenere l'equilibrio
+            className="object-cover object-center scale-100 transform"
+            priority
+            unoptimized
+            data-ai-hint={heroImage.imageHint}
+          />
         )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 p-4 max-w-3xl mx-auto">
-            <h1 className="font-headline text-4xl md:text-5xl text-white">I Miei Servizi</h1>
-            <p className="mt-4 text-xl text-white/90">
-              Dalla precisione della falegnameria alla robustezza dei portoni blindati, offro soluzioni complete e su misura per ogni esigenza, garantendo sempre la massima qualità e professionalità.
-            </p>
+          <h1 className="font-headline text-4xl md:text-5xl text-white">
+            I Miei Servizi
+          </h1>
+          <p className="mt-4 text-xl text-white/90">
+            Dalla precisione della falegnameria alla robustezza dei portoni
+            blindati, offro soluzioni complete e su misura per ogni esigenza,
+            garantendo sempre la massima qualità e professionalità.
+          </p>
         </div>
       </section>
 
