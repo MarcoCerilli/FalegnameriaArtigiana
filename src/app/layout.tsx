@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
+import { CraftPopup } from '@/components/craft-popup';
 
 export const metadata: Metadata = {
   title: 'Mave di Simonelli Massimo',
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppButton />
         <Toaster />
+        <CraftPopup />
       </body>
     </html>
   );

@@ -18,31 +18,35 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     notFound();
   }
 
+  // 1. Immagine specifica del servizio (quella che va nel riquadro dei dettagli)
   const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+
+  // 2. Immagine per la HERO (cerchiamo 'hero-servizi' o una specifica per la pagina)
+  // Puoi anche decidere di usare 'hero-main' se vuoi cambiare aria
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-servizi') || serviceImage;
 
   return (
     <>
-      <section className="relative h-[50vh] flex items-center justify-center text-center">
-        {serviceImage && (
+      {/* --- SEZIONE HERO (Testata) --- */}
+      <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
+        {heroImage && (
           <Image
-            src={serviceImage.imageUrl}
-            alt={serviceImage.description}
+            src={heroImage.imageUrl} // <-- Ora usa heroImage
+            alt={heroImage.description}
             fill
             className="object-cover"
             priority
             unoptimized
-            data-ai-hint={serviceImage.imageHint}
           />
         )}
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 p-4 max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl md:text-5xl text-white">{service.title}</h1>
-          <p className="mt-4 text-xl text-white/90">
-            {service.shortDescription}
-          </p>
+          <p className="mt-4 text-xl text-white/90">{service.shortDescription}</p>
         </div>
       </section>
 
+      {/* --- SEZIONE DETTAGLI --- */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -53,30 +57,20 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <Link href="/contatti">Richiedi un preventivo</Link>
               </Button>
             </div>
-            <div className="relative w-full h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg">
+            
+            {/* Qui l'immagine resta quella specifica del servizio (es: il Portone) */}
+            <div className="relative w-full h-80 md:h-[500px] rounded-xl overflow-hidden shadow-2xl bg-stone-100">
               {serviceImage && (
                 <Image
-                  src={serviceImage.imageUrl}
+                  src={serviceImage.imageUrl} // <-- Resta serviceImage
                   alt={serviceImage.description}
                   fill
-                  className="object-cover"
-                  data-ai-hint={serviceImage.imageHint}
+                  unoptimized
+                  className="object-cover object-center"
                 />
               )}
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-headline text-3xl md:text-4xl">Hai un progetto in mente?</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto">
-            Ogni progetto è unico. Contattami per discutere le tue specifiche esigenze e trovare la soluzione perfetta.
-          </p>
-          <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/contatti">Parliamone</Link>
-          </Button>
         </div>
       </section>
     </>
