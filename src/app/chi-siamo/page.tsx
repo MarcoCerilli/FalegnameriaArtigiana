@@ -67,7 +67,7 @@ export default function ChiSiamoPage() {
                     fill
                     unoptimized
                     priority
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover scale-100 object-bottom transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
               </div>

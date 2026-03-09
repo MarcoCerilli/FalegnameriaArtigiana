@@ -14,8 +14,14 @@
   {
     "id": "hero-chi-siamo",
     "description": "Atmosfera del laboratorio artigiano.",
-    "imageUrl": "/images/wood.jpeg", 
+    "imageUrl": "/images/.jpeg", 
     "imageHint": "artisan workshop"
+  },
+  {
+    "id": "about-massimo", 
+    "description": "Massimo nel suo laboratorio a Terracina.",
+    "imageUrl": "/images/wood.jpeg",
+    "imageHint": "artigiano al lavoro"
   },
   {
     "id": "hero-galleria",
