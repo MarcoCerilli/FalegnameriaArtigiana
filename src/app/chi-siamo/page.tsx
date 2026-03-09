@@ -9,43 +9,47 @@ const heroImage = PlaceHolderImages.find((p) => p.id === "hero-chi-siamo");
 export default function ChiSiamoPage() {
   return (
     <>
-      <section className="relative h-[80vh] flex items-center justify-center text-center">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover scale-100 transition-transform duration-700"
-            priority
-            unoptimized
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        {/* Overlay leggermente più profondo per dare intensità alla storia */}
-        <div className="absolute inset-0 bg-black/50" />
+      <section className="relative w-full overflow-hidden bg-zinc-900">
+        {/* 1. Cambiamo l'altezza: usiamo un range di pixel invece di aspect-ratio troppo spinti 
+         per evitare che il browser "mangi" la foto per tappare i buchi laterali. */}
+        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px]">
+          {heroImage && (
+            <Image
+              src={heroImage.imageUrl}
+              alt={heroImage.description}
+              fill
+              className="object-cover object-center transition-transform duration-[10s] hover:scale-105"
+              priority
+              unoptimized
+            />
+          )}
 
-        <div className="relative z-10 p-4 max-w-4xl mx-auto">
-          {/* Titolo Bicolore: Storia in accento per renderla più intima */}
-          <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight">
-            La Mia{" "}
-            <span className="text-accent italic font-light tracking-tight">
-              Storia
-            </span>
-          </h1>
+          {/* 3. Overlay a "Vignetta": scurisce gli angoli per far risaltare la scala 
+           e il testo, allontanando visivamente il centro. */}
+          <div className="absolute inset-0 bg-black/40 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
 
-          {/* Linea decorativa centrata che richiama il laboratorio */}
-          <div className="h-1 w-24 bg-accent mx-auto mt-6 rounded-full shadow-lg shadow-accent/20" />
+          <div className="absolute inset-0 flex items-center justify-center text-center p-6">
+            <div className="relative z-10 max-w-5xl mx-auto">
+              <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
+                La Mia{" "}
+                <span className="text-accent italic font-light">Storia</span>
+              </h1>
 
-          <div className="mt-8 space-y-4">
-            <p className="text-xl md:text-2xl text-white font-medium tracking-wide">
-              "Il mio lavoro è la mia passione."
-            </p>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Sono un{" "}
-              <span className="text-accent font-semibold">artigiano</span>, non
-              un commerciante. Ogni mia creazione porta con sé il valore del
-              tempo e della cura manuale.
-            </p>
+              <div className="h-1.5 w-28 bg-accent mx-auto mt-6 rounded-full shadow-lg" />
+
+              <div className="mt-10 space-y-6">
+                <p className="text-2xl md:text-4xl text-white font-medium italic drop-shadow-md">
+                  "Il mio lavoro è la mia passione."
+                </p>
+                <p className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-light">
+                  Sono un{" "}
+                  <span className="text-accent font-semibold">artigiano</span>.
+                  Ogni creazione porta con sé il valore del tempo e della cura
+                  manuale.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -67,7 +71,7 @@ export default function ChiSiamoPage() {
                     fill
                     unoptimized
                     priority
-                    className="object-cover scale-100 object-bottom transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover scale-100 object-center transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
               </div>

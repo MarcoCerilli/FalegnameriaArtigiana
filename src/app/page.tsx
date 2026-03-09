@@ -20,14 +20,14 @@ const aboutImage = PlaceHolderImages.find((p) => p.id === "about-massimo");
 
 //Carosello
 const featuredProjects = [
-  { imageUrl: "/images/arredo_mave.1.jpg", description: "Arredi su Misura" },
+  { imageUrl: "/images/cucina.jpg", description: "Arredi su Misura" },
   { imageUrl: "/images/arredo_mave.5.jpg", description: "Dettagli in Rovere" },
   {
     imageUrl: "/images/cuscineria.jpg",
     description: "Rifiniture Nautiche",
   },
   {
-    imageUrl: "/images/arredo_mave.18.jpg",
+    imageUrl: "/images/tettoia.jpg",
     description: "Soluzioni per Esterni",
   },
   { imageUrl: "/images/lampada.jpeg", description: "Design Artigianale" },
@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* HERO SECTION */}
-      <section className="relative h-[80vh] flex items-center justify-center text-center text-white overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center text-center text-white overflow-hidden">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -61,7 +61,7 @@ export default function Home() {
             fill
             priority
             unoptimized
-            className="object-cover object-center scale-105 animate-slow-zoom transition-opacity duration-1000"
+            className="object-cover object-center animate-slow-zoom transition-opacity duration-1000"
           />
         )}
         <div className="absolute inset-0 bg-black/40" />
@@ -147,7 +147,7 @@ export default function Home() {
                     src={aboutImage.imageUrl}
                     alt={aboutImage.description}
                     fill
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-bottom transition-transform duration-700 group-hover:scale-105"
                     unoptimized
                     priority
                   />
