@@ -23,14 +23,14 @@ const featuredProjects = [
   { imageUrl: "/images/arredo_mave.1.jpg", description: "Arredi su Misura" },
   { imageUrl: "/images/arredo_mave.5.jpg", description: "Dettagli in Rovere" },
   {
-    imageUrl: "/images/arredo_mave.12.jpg",
+    imageUrl: "/images/cuscineria.jpg",
     description: "Rifiniture Nautiche",
   },
   {
     imageUrl: "/images/arredo_mave.18.jpg",
     description: "Soluzioni per Esterni",
   },
-  { imageUrl: "/images/arredo_mave.25.jpg", description: "Design Artigianale" },
+  { imageUrl: "/images/lampada.jpeg", description: "Design Artigianale" },
 ];
 
 const services = [
