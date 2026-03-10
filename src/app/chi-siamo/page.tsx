@@ -32,7 +32,7 @@ export default function ChiSiamoPage() {
           <div className="absolute inset-0 flex items-center justify-center text-center p-6">
             <div className="relative z-10 max-w-5xl mx-auto">
               <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
-                La Mia{" "}
+                La Mia
                 <span className="text-accent italic font-light">Storia</span>
               </h1>
 
@@ -43,7 +43,7 @@ export default function ChiSiamoPage() {
                   "Il mio lavoro è la mia passione."
                 </p>
                 <p className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-light">
-                  Sono un{" "}
+                  Sono un
                   <span className="text-accent font-semibold">artigiano</span>.
                   Ogni creazione porta con sé il valore del tempo e della cura
                   manuale.
@@ -106,7 +106,7 @@ export default function ChiSiamoPage() {
 
               <p className="text-muted-foreground leading-relaxed">
                 Nel corso degli anni, ho ampliato le mie competenze dalla
-                falegnameria tradizionale a quella{" "}
+                falegnameria tradizionale a quella
                 <span className="text-primary font-semibold italic">
                   nautica
                 </span>

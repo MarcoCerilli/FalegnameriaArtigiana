@@ -1,21 +1,44 @@
 import ContactForm from "@/components/contact-form";
 import { Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image"; // Importante
+import { PlaceHolderImages } from "@/lib/placeholder-images"; // Importante
 
 export default function ContattiPage() {
+  // RECUPERO DEL PLACEHOLDER
+  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-contatti");
+
   return (
     <div className="bg-background min-h-screen">
-      {/* HEADER DELLA PAGINA */}
-      <header className="bg-secondary/30 py-16 md:py-24 border-b border-border text-center">
-        <div className="container mx-auto px-4">
-          <h1 className="font-headline text-5xl md:text-7xl text-primary leading-tight italic">
-            Parliamo del tuo <span className="text-accent not-italic font-light tracking-tight">Progetto</span>
+      {/* SEZIONE HERO CON IMMAGINE */}
+      <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center text-center overflow-hidden">
+        {heroImage && (
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        )}
+        {/* Overlay scuro per rendere leggibile il testo bianco */}
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 p-4 max-w-4xl mx-auto">
+          {/* FIX SPAZIO TITOLO: aggiunto {" "} */}
+          <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight italic">
+            Parliamo del tuo{" "}
+            <span className="text-accent not-italic font-light tracking-tight">
+              Progetto
+            </span>
           </h1>
           <div className="h-1 w-24 bg-accent mx-auto mt-6 rounded-full shadow-lg" />
-          <p className="mt-8 text-xl text-muted-foreground italic max-w-2xl mx-auto">
+          
+          <p className="mt-8 text-xl md:text-2xl text-white/90 italic max-w-2xl mx-auto drop-shadow-md">
             Che si tratti di un arredo nautico o di un infisso su misura, ogni grande lavoro inizia con una chiacchierata.
           </p>
         </div>
-      </header>
+      </section>
 
       {/* SEZIONE CONTATTO */}
       <main className="container mx-auto px-4 py-16 md:py-24">

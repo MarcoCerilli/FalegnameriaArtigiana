@@ -6,19 +6,25 @@
     "imageHint": "artisan carpentry"
   },
   {
+    "id": "home-filosofia",
+    "description": "Dettaglio del laboratorio che rappresenta la filosofia artigiana.",
+    "imageUrl": "/images/wood.jpeg",
+    "imageHint": "dettaglio arredo artigianale"
+  },
+  {
     "id": "hero-servizi",
     "description": "Dettaglio di un lavoro finito di falegnameria.",
-    "imageUrl": "/images/arredo_mave.1.jpg", 
+    "imageUrl": "/images/soggiorno3.jpeg",
     "imageHint": "craftsmanship detail"
   },
   {
     "id": "hero-chi-siamo",
     "description": "Atmosfera del laboratorio artigiano.",
-    "imageUrl": "/images/scala.jpeg", 
+    "imageUrl": "/images/scala.jpeg",
     "imageHint": "artisan workshop"
   },
   {
-    "id": "about-massimo", 
+    "id": "about-massimo",
     "description": "Massimo nel suo laboratorio a Terracina.",
     "imageUrl": "/images/soggiorno2.jpg",
     "imageHint": "artigiano al lavoro"
@@ -30,15 +36,15 @@
     "imageHint": "artisan work gallery"
   },
   {
-  "id": "hero-contatti",
-  "description": "Parliamo del tuo progetto.",
-  "imageUrl": "/images/hero-contatti.jpg",
-  "imageHint": "dettaglio lavorazione legno artigianale" 
-},
+    "id": "hero-contatti",
+    "description": "Parliamo del tuo progetto.",
+    "imageUrl": "/images/hero-contatti.jpeg",
+    "imageHint": "dettaglio lavorazione legno artigianale"
+  },
   {
     "id": "service-falegnameria",
     "description": "Lavorazione del legno su misura.",
-    "imageUrl": "https://images.unsplash.com/photo-1494949649109-ecfc3b8c35df?q=80&w=1080",
+    "imageUrl": "/images/armadio2.jpeg",
     "imageHint": "carpenter at work"
   },
   {
