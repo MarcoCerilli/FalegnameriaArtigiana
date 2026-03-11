@@ -7,26 +7,26 @@ import Link from "next/link";
 const heroImage = PlaceHolderImages.find((p) => p.id === "hero-galleria");
 
 const galleryPhotos = [
-  { id: 1, src: "/images/arredo_mave.1.jpg", desc: "Cucina artigianale in massello" },
-  { id: 2, src: "/images/arredo_mave.2.jpg", desc: "Rivestimento pozzetto in Teak" },
-  { id: 3, src: "/images/arredo_mave.3.jpg", desc: "Armadio a muro su misura" },
-  { id: 4, src: "/images/arredo_mave.4.jpg", desc: "Dettaglio mobili per interni yacht" },
-  { id: 5, src: "/images/arredo_mave.5.jpg", desc: "Portone blindato con pannello in legno" },
-  { id: 6, src: "/images/arredo_mave.6.jpg", desc: "Infissi ad alto isolamento termico" },
-  { id: 7, src: "/images/arredo_mave.7.jpg", desc: "Tavolo da pranzo in rovere naturale" },
-  { id: 8, src: "/images/arredo_mave.8.jpg", desc: "Restauro mobili d'epoca" },
-  { id: 9, src: "/images/arredo_mave.9.jpg", desc: "Coperta in legno per imbarcazioni" },
-  { id: 10, src: "/images/arredo_mave.10.jpg", desc: "Zanzariere integrate su misura" },
-  { id: 11, src: "/images/arredo_mave.11.jpg", desc: "Scale interne in legno pregiato" },
-  { id: 12, src: "/images/arredo_mave.12.jpg", desc: "Arredo bagno personalizzato" },
-  { id: 13, src: "/images/arredo_mave.13.jpg", desc: "Lavorazione artigianale sottocoperta" },
-  { id: 14, src: "/images/arredo_mave.14.jpg", desc: "Porte interne di design" },
-  { id: 15, src: "/images/arredo_mave.15.jpg", desc: "Dettagli tecnici di falegnameria" },
-  { id: 16, src: "/images/arredo_mave.16.jpg", desc: "Complementi d'arredo per il mare" },
-  { id: 17, src: "/images/arredo_mave.17.jpg", desc: "Persiane e oscuranti in legno" },
-  { id: 18, src: "/images/arredo_mave.18.jpg", desc: "Finiture artigianali di pregio" },
-  { id: 19, src: "/images/arredo_mave.19.jpg", desc: "Strutture in legno per esterni" },
-  { id: 20, src: "/images/arredo_mave.20.jpg", desc: "Progetto completo arredo nautico" },
+  { id: 1, src: "/gallery/arredo_mave.1.jpg", desc: "Cucina artigianale in massello" },
+  { id: 2, src: "/gallery/arredo_mave.2.jpg", desc: "Rivestimento pozzetto in Teak" },
+  { id: 3, src: "/gallery/arredo_mave.3.jpg", desc: "Armadio a muro su misura" },
+  { id: 4, src: "/gallery/arredo_mave.4.jpg", desc: "Dettaglio mobili per interni yacht" },
+  { id: 5, src: "/gallery/arredo_mave.5.jpg", desc: "Portone blindato con pannello in legno" },
+  { id: 6, src: "/gallery/arredo_mave.6.jpg", desc: "Infissi ad alto isolamento termico" },
+  { id: 7, src: "/gallery/arredo_mave.7.jpg", desc: "Tavolo da pranzo in rovere naturale" },
+  { id: 8, src: "/gallery/arredo_mave.8.jpg", desc: "Restauro mobili d'epoca" },
+  { id: 9, src: "/gallery/arredo_mave.9.jpg", desc: "Separè per soggiorno " },
+  { id: 10, src: "/gallery/arredo_mave.10.jpg", desc: "Zanzariere integrate su misura" },
+  { id: 11, src: "/gallery/arredo_mave.11.jpg", desc: "Scale interne in legno pregiato" },
+  { id: 12, src: "/gallery/arredo_mave.12.jpg", desc: "Arredo bagno personalizzato" },
+  { id: 13, src: "/gallery/arredo_mave.13.jpg", desc: "Lavorazione artigianale sottocoperta" },
+  { id: 14, src: "/gallery/arredo_mave.14.jpg", desc: "Porte interne di design" },
+  { id: 15, src: "/gallery/arredo_mave.15.jpg", desc: "Dettagli tecnici di falegnameria" },
+  { id: 16, src: "/gallery/arredo_mave.16.jpg", desc: "Complementi d'arredo per il mare" },
+  { id: 17, src: "/gallery/arredo_mave.17.jpg", desc: "Lbreria su misura" },
+  { id: 18, src: "/gallery/arredo_mave.18.jpg", desc: "Finiture artigianali di pregio" },
+  { id: 19, src: "/gallery/arredo_mave.19.jpg", desc: "Strutture in legno per esterni" },
+  { id: 20, src: "/gallery/arredo_mave.20.jpg", desc: "Progetto completo arredo nautico" },
 ];
 
 export default function GalleriaPage() {
@@ -45,7 +45,7 @@ export default function GalleriaPage() {
           />
         )}
 
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
           {/* FIX SPAZIO TITOLO */}
