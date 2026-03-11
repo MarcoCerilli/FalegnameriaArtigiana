@@ -19,7 +19,7 @@ export default function ContattiPage() {
               fill
               priority
               // Usiamo object-top o un valore percentuale per non tagliare il centro
-              className="object-cover object-[center_30%]"
+              className="object-cover object-[center_50%]"
               unoptimized
             />
           )}
