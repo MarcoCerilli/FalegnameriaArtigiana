@@ -1,10 +1,9 @@
 import ContactForm from "@/components/contact-form";
 import { Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image"; // Importante
-import { PlaceHolderImages } from "@/lib/placeholder-images"; // Importante
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export default function ContattiPage() {
-  // RECUPERO DEL PLACEHOLDER
   const heroImage = PlaceHolderImages.find((p) => p.id === "hero-contatti");
 
   return (
@@ -21,11 +20,9 @@ export default function ContattiPage() {
             unoptimized
           />
         )}
-        {/* Overlay scuro per rendere leggibile il testo bianco */}
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
-          {/* FIX SPAZIO TITOLO: aggiunto {" "} */}
           <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight italic">
             Parliamo del tuo{" "}
             <span className="text-accent not-italic font-light tracking-tight">
@@ -50,22 +47,47 @@ export default function ContattiPage() {
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-all" />
               <h3 className="font-headline text-2xl text-primary mb-6 text-center lg:text-left">Informazioni</h3>
               
-              <div className="space-y-6">
-                {[
-                  { icon: Phone, label: "Telefono", val: "+39 3XX XXX XXXX" },
-                  { icon: Mail, label: "Email", val: "info@maveartigianato.it" },
-                  { icon: MapPin, label: "Laboratorio", val: "Terracina (LT), Italia", italic: true }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="bg-accent p-3 rounded-xl text-accent-foreground">
-                      <item.icon size={20} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-primary uppercase tracking-widest">{item.label}</p>
-                      <p className={`text-lg text-muted-foreground ${item.italic ? 'italic' : ''}`}>{item.val}</p>
+              <div className="space-y-8">
+                {/* SEDE */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-primary uppercase tracking-widest">Sede</p>
+                    <p className="text-lg text-muted-foreground italic leading-tight">
+                      Via Giorgione SNC,<br /> 04019 Terracina (LT)
+                    </p>
+                  </div>
+                </div>
+
+                {/* CONTATTI TELEFONICI */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-primary uppercase tracking-widest">Contatti</p>
+                    <div className="text-lg text-muted-foreground space-y-1">
+                      <p><span className="font-semibold text-primary/70">Massimo:</span> 347 9417554</p>
+                      <p><span className="font-semibold text-primary/70">Luana:</span> 347 1809003</p>
                     </div>
                   </div>
-                ))}
+                </div>
+
+                {/* SCRIVICI (EMAIL) */}
+                <div className="flex items-start gap-4">
+                  <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-primary uppercase tracking-widest">Scrivici</p>
+                    <div className="text-sm md:text-base text-muted-foreground break-all">
+                      <p>massimosimonelli@hotmail.it</p>
+                      <p>fonziluana@hotmail.it</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             
