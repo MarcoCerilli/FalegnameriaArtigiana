@@ -65,7 +65,7 @@ export default function ServiziPage() {
               // 1. Schiarito a 1.15
               // 2. scale-105: ridotto leggermente lo zoom rispetto a prima per "allontanare"
               // 3. object-cover: mantiene il riempimento ma con una scala più dolce
-              className="object-cover object-center brightness-[1.15] contrast-[1.05] scale-100 transition-transform duration-700"
+              className="object-cover object-center brightness-[1.5] contrast-[1.05] scale-100 transition-transform duration-700"
               priority
             />
 

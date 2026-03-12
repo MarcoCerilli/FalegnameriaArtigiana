@@ -31,7 +31,7 @@ export function CraftPopup() {
               <Hammer className="text-accent-foreground" size={20} />
             </div>
             <span className="text-xs font-bold uppercase tracking-widest text-primary">
-              Mave Artigianato
+              Mave Arredamenti
             </span>
           </div>
 

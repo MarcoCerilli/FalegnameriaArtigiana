@@ -1,86 +1,86 @@
 [
   {
-    "id": "hero-main",
-    "description": "Un artigiano che lavora il legno nel suo laboratorio.",
-    "imageUrl": "/images/arredo_mave.19.jpg",
-    "imageHint": "artisan carpentry"
+    "id": "hero-main-desktop",
+    "description": "Mave Artigianato - Vista Desktop",
+    "imageUrl": "/images/hero-main.jpg",
+    "imageHint": "artisan carpentry desktop"
   },
   {
-    "id": "home-filosofia",
-    "description": "Dettaglio del laboratorio che rappresenta la filosofia artigiana.",
-    "imageUrl": "/images/wood.jpeg",
-    "imageHint": "dettaglio arredo artigianale"
+    "id": "hero-main-mobile",
+    "description": "Mave Artigianato - Vista Mobile",
+    "imageUrl": "/images/hero-mobile.jpg",
+    "imageHint": "artisan carpentry mobile"
   },
   {
-    "id": "hero-servizi",
-    "description": "Dettaglio di un lavoro finito di falegnameria.",
-    "imageUrl": "/images/hero-servizi.jpeg",
-    "imageHint": "craftsmanship detail"
-  },
-  {
-    "id": "hero-servizi-desktop",
-    "description": "Vista panoramica delle lavorazioni artigianali per desktop.",
-    "imageUrl": "/images/hero-servizi.jpeg",
-    "imageHint": "craftsmanship desktop view"
-  },
-  {
-    "id": "hero-servizi-mobile",
-    "description": "Dettaglio verticale delle lavorazioni artigianali per mobile.",
-    "imageUrl": "/images/hero-servizi-mobile.jpeg",
-    "imageHint": "craftsmanship mobile view"
-  },
-  {
-    "id": "hero-chi-siamo",
-    "description": "Atmosfera del laboratorio artigiano.",
+    "id": "hero-chi-siamo-desktop",
+    "description": "Atmosfera del laboratorio artigiano",
     "imageUrl": "/images/scala.jpeg",
     "imageHint": "artisan workshop"
   },
   {
-    "id": "about-massimo",
-    "description": "Massimo nel suo laboratorio a Terracina.",
-    "imageUrl": "/images/soggiorno2.jpg",
-    "imageHint": "artigiano al lavoro"
+    "id": "hero-chi-siamo-mobile",
+    "description": "Dettaglio laboratorio per smartphone",
+    "imageUrl": "/images/hero-chi-siamo-mobile.jpg",
+    "imageHint": "artisan workshop mobile"
   },
   {
-    "id": "hero-galleria",
-    "description": "Panoramica dei lavori completati.",
-    "imageUrl": "/images/hero-progetti.jpg",
-    "imageHint": "artisan work gallery"
+    "id": "hero-falegnameria-desktop",
+    "description": "Lavorazione legno su misura",
+    "imageUrl": "/images/hero-falegnameria.jpg"
   },
   {
-    "id": "hero-contatti",
-    "description": "Parliamo del tuo progetto.",
-    "imageUrl": "/images/hero-contatti.jpeg",
-    "imageHint": "dettaglio lavorazione legno artigianale"
+    "id": "hero-falegnameria-mobile",
+    "description": "Dettaglio falegnameria mobile",
+    "imageUrl": "/images/hero-falegnameria-mobile.jpg"
+  },
+  {
+    "id": "hero-tappezzeria-nautica-desktop",
+    "description": "Cuscineria nautica premium",
+    "imageUrl": "/images/arredo_mave.36.jpg"
+  },
+  {
+    "id": "hero-tappezzeria-nautica-mobile",
+    "description": "Dettaglio tappezzeria mobile",
+    "imageUrl": "/images/arredo_mave.36-mobile.jpg"
+  },
+  {
+    "id": "hero-infissi-desktop",
+    "description": "Infissi moderni in legno",
+    "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080"
+  },
+  {
+    "id": "hero-zanzariere-desktop",
+    "description": "Protezione e design zanzariere",
+    "imageUrl": "https://images.unsplash.com/photo-1599139535822-2144d715a442?q=80&w=1080"
+  },
+  {
+    "id": "hero-portoni-desktop",
+    "description": "Portoni blindati artigianali",
+    "imageUrl": "/images/portone.jpg"
   },
   {
     "id": "service-falegnameria",
-    "description": "Lavorazione del legno su misura.",
-    "imageUrl": "/images/armadio2.jpeg",
-    "imageHint": "carpenter at work"
+    "description": "Armadio su misura",
+    "imageUrl": "/images/armadio2.jpeg"
   },
   {
     "id": "service-tappezzeria",
-    "description": "Cuscineria nautica artigianale.",
-    "imageUrl": "/images/arredo_mave.36.jpg",
-    "imageHint": "nautical upholstery"
+    "description": "Dettaglio cuciture nautiche",
+    "imageUrl": "/images/arredo_mave.36.jpg"
   },
   {
     "id": "service-infissi",
-    "description": "Infissi moderni installati.",
-    "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080",
-    "imageHint": "modern wood window"
+    "description": "Dettaglio telaio infisso",
+    "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080"
   },
   {
     "id": "service-zanzariere",
-    "description": "Dettaglio zanzariera installata.",
-    "imageUrl": "https://images.unsplash.com/photo-1599139535822-2144d715a442?q=80&w=1080",
-    "imageHint": "window screen detail"
+    "description": "Zanzariera a scomparsa",
+    "imageUrl": "https://images.unsplash.com/photo-1599139535822-2144d715a442?q=80&w=1080"
   },
   {
     "id": "service-portoni",
-    "description": "Portone blindato in legno scuro.",
-    "imageUrl": "/images/portone.jpg",
-    "imageHint": "elegant security door"
+    "description": "Legno massello per portoni",
+    "imageUrl": "/images/portone.jpg"
   }
 ]

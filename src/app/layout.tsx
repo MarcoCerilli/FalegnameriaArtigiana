@@ -8,7 +8,7 @@ import { CraftPopup } from "@/components/craft-popup";
 
 export const metadata: Metadata = {
   // Titolo ottimizzato per la ricerca (max 60 caratteri)
-  title: "Mave Artigianato | Falegnameria e Tappezzeria Nautica Terracina",
+  title: "Mave Arredamenti | Falegnameria e Tappezzeria Nautica Terracina",
 
   // Descrizione che spinge al click (max 160 caratteri)
   description:
@@ -20,11 +20,11 @@ export const metadata: Metadata = {
 
   // Open Graph per quando condividi il sito su WhatsApp o Social
   openGraph: {
-    title: "Mave Artigianato | Dal Legno al Mare",
+    title: "Mave Arredamenti | Dal Legno al Mare",
     description:
       "Soluzioni artigianali su misura per casa e nautica a Terracina.",
-    url: "https://www.maveartigianato.it", // Sostituisci con il tuo dominio reale
-    siteName: "Mave Artigianato",
+    url: "https://www.mavearredamenti.it", // Sostituisci con il tuo dominio reale
+    siteName: "Mave Arredamenti",
     locale: "it_IT",
     type: "website",
   },

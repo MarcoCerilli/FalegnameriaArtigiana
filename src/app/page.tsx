@@ -15,57 +15,85 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectCarousel } from "@/components/project-carousel";
 
-const heroImage = PlaceHolderImages.find((p) => p.id === "hero-main");
-const aboutHomeImage = PlaceHolderImages.find((p) => p.id === "home-filosofia");
-
-const featuredProjects = [
-  { imageUrl: "/images/cucina.jpg", description: "Arredi su Misura" },
-  { imageUrl: "/images/bagno.jpeg", description: "Dettagli in Rovere" },
-  { imageUrl: "/images/cuscineria.jpg", description: "Rifiniture Nautiche" },
-  { imageUrl: "/images/tettoia.jpg", description: "Soluzioni per Esterni" },
-  { imageUrl: "/images/lampada.jpeg", description: "Design Artigianale" },
-];
-
-const services = [
-  { name: "Falegnameria", icon: Hammer, href: "/servizi/falegnameria" },
-  { name: "Tappezzeria Nautica", icon: Sailboat, href: "/servizi/tappezzeria-nautica" },
-  { name: "Infissi", icon: DoorOpen, href: "/servizi/infissi" },
-  { name: "Zanzariere", icon: Wind, href: "/servizi/zanzariere" },
-  { name: "Portoni Blindati", icon: ShieldCheck, href: "/servizi/portoni-blindati" },
-];
-
 export default function Home() {
+  // Recupero immagini con fallback
+  const heroGeneral = PlaceHolderImages.find((p) => p.id === "hero-main");
+  const heroDesktop =
+    PlaceHolderImages.find((p) => p.id === "hero-main-desktop") || heroGeneral;
+  const heroMobile =
+    PlaceHolderImages.find((p) => p.id === "hero-main-mobile") || heroGeneral;
+
+  const aboutHomeImage = PlaceHolderImages.find(
+    (p) => p.id === "home-filosofia",
+  );
+
+  const featuredProjects = [
+    { imageUrl: "/images/cucina.jpg", description: "Arredi su Misura" },
+    { imageUrl: "/images/bagno.jpeg", description: "Dettagli in Rovere" },
+    { imageUrl: "/images/cuscineria.jpg", description: "Rifiniture Nautiche" },
+    { imageUrl: "/images/tettoia.jpg", description: "Soluzioni per Esterni" },
+    { imageUrl: "/images/lampada.jpeg", description: "Design Artigianale" },
+    { imageUrl: "/images/recenti.jpg", description: "Mobile Angolare Design" },
+  ];
+
+  const services = [
+    { name: "Falegnameria", icon: Hammer, href: "/servizi/falegnameria" },
+    {
+      name: "Tappezzeria Nautica",
+      icon: Sailboat,
+      href: "/servizi/tappezzeria-nautica",
+    },
+    { name: "Infissi", icon: DoorOpen, href: "/servizi/infissi" },
+    { name: "Zanzariere", icon: Wind, href: "/servizi/zanzariere" },
+    {
+      name: "Portoni Blindati",
+      icon: ShieldCheck,
+      href: "/servizi/portoni-blindati",
+    },
+  ];
   return (
     <div className="flex flex-col">
-      {/* HERO SECTION */}
+      {/* HERO SECTION OTTIMIZZATA */}
       <section className="relative w-full h-[85vh] md:h-[80vh] min-h-[550px] overflow-hidden bg-zinc-950">
-        <div className="block md:hidden absolute inset-0 w-full h-full">
-          <Image
-            src="/images/hero-mobile.jpg"
-            alt={heroImage?.description || "Mave Artigianato"}
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
-
-        <div className="hidden md:block absolute inset-0 w-full h-full">
-          {heroImage && (
+        {/* VISTA DESKTOP (MD+) */}
+        {heroDesktop && (
+          <div className="hidden md:block absolute inset-0 w-full h-full">
             <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
+              src={heroDesktop.imageUrl}
+              alt={heroDesktop.description}
+              fill
+              priority
+              className="object-cover object-center brightness-[1.10] contrast-[1.05]"
+            />
+            {/* Texture anti-sgranatura */}
+            <div
+              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
+            />
+            <div className="absolute inset-0 bg-black/35" />
+          </div>
+        )}
+
+        {/* VISTA MOBILE (< MD) */}
+        {heroMobile && (
+          <div className="block md:hidden absolute inset-0 w-full h-full">
+            <Image
+              src={heroMobile.imageUrl}
+              alt={heroMobile.description}
               fill
               priority
               className="object-cover object-center"
+              unoptimized
             />
-          )}
-        </div>
-
-        <div className="absolute inset-0 bg-black/45 z-0" />
+            <div className="absolute inset-0 bg-black/45" />
+          </div>
+        )}
 
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center text-white">
           <h1 className="font-headline text-4xl sm:text-6xl md:text-8xl leading-[1.1] drop-shadow-2xl px-2">
-            Mave: Passione{" "}<br className="sm:hidden" /> e Maestria, <br />
+            Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
             <span className="text-accent italic font-light">
               dal Legno al Mare.
             </span>
@@ -136,7 +164,6 @@ export default function Home() {
       <section className="py-24 md:py-32 bg-secondary/20 overflow-hidden">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-            
             {/* COLONNA IMMAGINE - GLASSMORPHISM STYLE */}
             <div className="lg:col-span-5 relative group order-2 lg:order-1">
               <div className="relative w-full aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/20">
@@ -170,7 +197,7 @@ export default function Home() {
             <div className="lg:col-span-7 space-y-10 order-1 lg:order-2 text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="space-y-4 flex flex-col items-center lg:items-start">
                 <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl text-primary italic leading-tight">
-                  Il Valore dell'Artigianalità{" "}<br />
+                  Il Valore dell'Artigianalità <br />
                   <span className="text-stone-400 not-italic text-2xl md:text-3xl font-light">
                     secondo Simonelli Massimo
                   </span>
@@ -248,7 +275,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="font-headline text-5xl md:text-7xl leading-tight">
-            Hai un progetto{" "}<br />
+            Hai un progetto <br />
             <span className="text-accent italic font-light">speciale?</span>
           </h2>
           <p className="mt-8 text-xl md:text-2xl max-w-3xl mx-auto opacity-90 font-light leading-relaxed">

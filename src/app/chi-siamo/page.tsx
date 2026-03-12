@@ -10,30 +10,53 @@ export default function ChiSiamoPage() {
   return (
     <>
       <section className="relative w-full overflow-hidden bg-zinc-900">
-        {/* 1. Cambiamo l'altezza: usiamo un range di pixel invece di aspect-ratio troppo spinti 
-         per evitare che il browser "mangi" la foto per tappare i buchi laterali. */}
-        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px]">
+        <div className="relative w-full h-[550px] md:h-[600px] lg:h-[650px]">
+          {/* 1. VERSIONE DESKTOP (MD+) */}
           {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover object-center transition-transform duration-[10s] hover:scale-105"
-              priority
-              unoptimized
-            />
+            <div className="hidden md:block absolute inset-0">
+              <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                className="object-cover object-center brightness-[1.12] contrast-[1.05] transition-transform duration-[10s] hover:scale-105"
+                priority
+              />
+              {/* Texture Noise per nobilitare i pixel su schermi grandi */}
+              <div
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                }}
+              />
+            </div>
           )}
 
-          {/* 3. Overlay a "Vignetta": scurisce gli angoli per far risaltare la scala 
-           e il testo, allontanando visivamente il centro. */}
-          <div className="absolute inset-0 bg-black/40 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]" />
+          {/* 2. VERSIONE MOBILE (< MD) */}
+          {/* Qui caricheremo l'immagine specifica per mobile quando l'avrai, 
+        per ora usiamo quella generale ma senza filtri pesanti che la scurirebbero troppo */}
+          {heroImage && (
+            <div className="block md:hidden absolute inset-0">
+              <Image
+                src="/images/hero-chi-siamo-mobile.jpg" // Cambia il nome se ne hai una specifica
+                alt={heroImage.description}
+                fill
+                className="object-cover object-center brightness-[1.05]"
+                priority
+                unoptimized
+              />
+            </div>
+          )}
+
+          {/* 3. OVERLAY E GRADIENTI (Comuni a entrambi) */}
+          <div className="absolute inset-0 bg-black/30 shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
 
+          {/* CONTENUTO TESTUALE */}
           <div className="absolute inset-0 flex items-center justify-center text-center p-6">
             <div className="relative z-10 max-w-5xl mx-auto">
               <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
                 La Mia
-                <span className="text-accent italic font-light">Storia</span>
+                <span className="text-accent italic font-light"> Storia</span>
               </h1>
 
               <div className="h-1.5 w-28 bg-accent mx-auto mt-6 rounded-full shadow-lg" />
@@ -44,8 +67,10 @@ export default function ChiSiamoPage() {
                 </p>
                 <p className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-light">
                   Sono un
-                  <span className="text-accent font-semibold">artigiano</span>.
-                  Ogni creazione porta con sé il valore del tempo e della cura
+                  <span className="text-accent font-semibold ml-1">
+                    artigiano
+                  </span>
+                  . Ogni creazione porta con sé il valore del tempo e della cura
                   manuale.
                 </p>
               </div>
