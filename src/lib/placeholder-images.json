@@ -8,7 +8,7 @@
   {
     "id": "hero-main-mobile",
     "description": "Mave Artigianato - Vista Mobile",
-    "imageUrl": "/images/hero-mobile.jpg",
+    "imageUrl": "/images/hero-main.jpg",
     "imageHint": "artisan carpentry mobile"
   },
   {
@@ -44,6 +44,16 @@
     "imageUrl": "/images/arredo_mave.36-mobile.jpg"
   },
   {
+    "id": "hero-galleria-desktop",
+    "description": "Panoramica dei lavori completati - Mave Artigianato",
+    "imageUrl": "/images/hero-progetti.jpg"
+  },
+  {
+    "id": "hero-galleria-mobile",
+    "description": "Dettaglio lavorazioni artigianali mobile",
+    "imageUrl": "/images/hero-progetti-mobile.jpg"
+  },
+  {
     "id": "hero-infissi-desktop",
     "description": "Infissi moderni in legno",
     "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080"
@@ -57,6 +67,21 @@
     "id": "hero-portoni-desktop",
     "description": "Portoni blindati artigianali",
     "imageUrl": "/images/portone.jpg"
+  },
+  {
+    "id": "hero-servizi-desktop",
+    "description": "Panoramica dei servizi artigianali Mave",
+    "imageUrl": "/images/hero-servizi.jpg"
+  },
+  {
+    "id": "hero-servizi-mobile",
+    "description": "I nostri servizi su misura",
+    "imageUrl": "/images/hero-servizi-mobile.jpg"
+  },
+  {
+    "id": "hero-servizi",
+    "description": "Eccellenza artigiana Terracina",
+    "imageUrl": "/images/hero-falegnameria.jpg"
   },
   {
     "id": "service-falegnameria",
@@ -82,5 +107,20 @@
     "id": "service-portoni",
     "description": "Legno massello per portoni",
     "imageUrl": "/images/portone.jpg"
+  }, 
+  {
+    "id": "about-massimo",
+    "description": "Massimo nel suo laboratorio a Terracina",
+    "imageUrl": "/images/soggiorno2.jpg"
+  },
+  {
+    "id": "home-filosofia",
+    "description": "Dettaglio del laboratorio artigiano",
+    "imageUrl": "/images/wood.jpeg"
+  },
+  {
+    "id": "about-me",
+    "description": "L'artigiano all'opera nel laboratorio Mave",
+    "imageUrl": "/images/scala.jpeg"
   }
 ]

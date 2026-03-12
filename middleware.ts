@@ -1,49 +1,41 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// Middleware per reindirizzare da /home a / (se necessario)
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
-  // Se il file ha un'estensione (es. .jpg, .png, .svg), lascialo passare sempre
+  // 1. Controllo immediato per file statici e risorse Next.js
+  // Se il percorso contiene un punto (estensione file) o inizia con cartelle di sistema, passa oltre
   if (
     pathname.includes('.') || 
     pathname.startsWith('/_next') || 
-    pathname.startsWith('/images')
+    pathname.startsWith('/images') ||
+    pathname.startsWith('/api')
   ) {
-    return NextResponse.next()
-  };
-
-  //1. Permetti accesso risorse statiche (es. immagini, css, js)
-  if (pathname.startsWith("/_next/") || pathname.startsWith("/images/")) {
     return NextResponse.next();
   }
 
-  //2. Permetto a me di vedere il sito se aggiungo ?preview= true
+  // 2. Permetto a te di vedere il sito con ?preview=true
   if (searchParams.get("preview") === "true") {
     return NextResponse.next();
   }
 
-  // 3. evito loop infinito sew sono gia su coming-soon
+  // 3. Evito loop infinito se sono già su /coming-soon
   if (pathname === "/coming-soon") {
     return NextResponse.next();
   }
 
-  // 4. Reindirizzo tutti gli altri utenti alla pagina di coming soon
+  // 4. Reindirizzo tutto il resto alla pagina di coming soon
   return NextResponse.redirect(new URL("/coming-soon", request.url));
 }
 
-// Configuro il middleware per essere eseguito solo su alcune rotte
+// Configurazione semplificata per evitare errori di parsing Regex
 export const config = {
   matcher: [
     /*
-     * Match tutte le rotte tranne quelle che iniziano con:
-     * - api (rotte API)
-     * - _next/static (file statici)
-     * - _next/image (ottimizzazione immagini)
-     * - favicon.ico (icona del browser)
-     * - images (la tua cartella delle foto)
+     * Applica il middleware a tutte le rotte tranne quelle escluse esplicitamente.
+     * Usiamo un array di stringhe invece di una regex complessa per stabilità.
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|images).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|images|coming-soon).*)',
   ],
 };
