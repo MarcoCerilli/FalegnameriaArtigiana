@@ -25,22 +25,145 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 const CATEGORIES = ["Tutti", "PVC", "Alluminio", "Legno-Alu", "Tecnico"];
 
+// URL dell'unica immagine placeholder che abbiamo scelto (coordinata con Mave Arredamenti)
+const PLACEHOLDER_IMG_URL = "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800&auto=format&fit=crop";
+
 const modelliInfissi = [
-  { id: "1", nome: "Evo 76 Classic", cat: "PVC", trasm: "0.78 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800", tag: "Efficienza" },
-  { id: "2", nome: "Natura Soft", cat: "PVC", trasm: "0.80 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=800", tag: "Effetto Legno" },
-  { id: "3", nome: "Urban Antracite", cat: "PVC", trasm: "0.76 Uw", sic: "Classe RC3", img: "https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?q=80&w=800", tag: "Minimal" },
-  { id: "4", nome: "AluMinimal 70", cat: "Alluminio", trasm: "1.1 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1623673056453-6ec9d27a6593?q=80&w=800", tag: "Design" },
-  { id: "5", nome: "AluStrong Blind", cat: "Alluminio", trasm: "1.2 Uw", sic: "Classe RC3", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800", tag: "Sicurezza" },
-  { id: "6", nome: "Industrial Grey", cat: "Alluminio", trasm: "1.1 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800", tag: "Loft Style" },
-  { id: "7", nome: "Prestige Gold", cat: "Legno-Alu", trasm: "0.85 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800", tag: "Esclusivo" },
-  { id: "8", nome: "Heritage Wood", cat: "Legno-Alu", trasm: "0.90 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800", tag: "Classico" },
-  { id: "9", nome: "Essenze Rovere", cat: "Legno-Alu", trasm: "0.88 Uw", sic: "Classe RC2", img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=800", tag: "Naturale" },
-  { id: "10", nome: "Panorama Slide", cat: "Alluminio", trasm: "1.3 Uw", sic: "Soglia 0", img: "https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?q=80&w=800", tag: "Panoramico" },
-  { id: "11", nome: "SkyView XL", cat: "Alluminio", trasm: "1.2 Uw", sic: "Automatic", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800", tag: "Premium" },
-  { id: "12", nome: "Profilo 7 Camere", cat: "Tecnico", trasm: "Sezione", sic: "Tech", img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800", tag: "R&D" },
-  { id: "13", nome: "Vetro Fonoisolante", cat: "Tecnico", trasm: "45dB", sic: "Acustica", img: "https://images.unsplash.com/photo-1565031491910-e57fac061c41?q=80&w=800", tag: "Silenzio" },
-  { id: "14", nome: "Ferramenta Maico", cat: "Tecnico", trasm: "RC3 Kit", sic: "Blindato", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800", tag: "Meccanica" },
-  { id: "15", nome: "Sistemi Oscuranti", cat: "Tecnico", trasm: "Grate", sic: "Privacy", img: "https://images.unsplash.com/photo-1513584684374-8bdb74838a0f?q=80&w=800", tag: "Esterni" },
+  { 
+    id: "1", 
+    nome: "Evo 76 Classic", 
+    cat: "PVC", 
+    trasm: "0.78 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Best Seller" 
+  },
+  { 
+    id: "2", 
+    nome: "Natura Soft", 
+    cat: "PVC", 
+    trasm: "0.80 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Effetto Legno" 
+  },
+  { 
+    id: "3", 
+    nome: "Urban Antracite", 
+    cat: "PVC", 
+    trasm: "0.76 Uw", 
+    sic: "Classe RC3", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Minimal" 
+  },
+  { 
+    id: "4", 
+    nome: "AluMinimal 70", 
+    cat: "Alluminio", 
+    trasm: "1.1 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Design" 
+  },
+  { 
+    id: "5", 
+    nome: "AluStrong Blind", 
+    cat: "Alluminio", 
+    trasm: "1.2 Uw", 
+    sic: "Classe RC3", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Sicurezza" 
+  },
+  { 
+    id: "6", 
+    nome: "Industrial Grey", 
+    cat: "Alluminio", 
+    trasm: "1.1 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Loft Style" 
+  },
+  { 
+    id: "7", 
+    nome: "Prestige Gold", 
+    cat: "Legno-Alu", 
+    trasm: "0.85 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Esclusivo" 
+  },
+  { 
+    id: "8", 
+    nome: "Heritage Wood", 
+    cat: "Legno-Alu", 
+    trasm: "0.90 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Classico" 
+  },
+  { 
+    id: "9", 
+    nome: "Essenze Rovere", 
+    cat: "Legno-Alu", 
+    trasm: "0.88 Uw", 
+    sic: "Classe RC2", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Naturale" 
+  },
+  { 
+    id: "10", 
+    nome: "Panorama Slide", 
+    cat: "Alluminio", 
+    trasm: "1.3 Uw", 
+    sic: "Soglia 0mm", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Panoramico" 
+  },
+  { 
+    id: "11", 
+    nome: "SkyView XL", 
+    cat: "Alluminio", 
+    trasm: "1.2 Uw", 
+    sic: "Motorizzato", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Premium" 
+  },
+  { 
+    id: "12", 
+    nome: "Profilo 7 Camere", 
+    cat: "Tecnico", 
+    trasm: "Sezione", 
+    sic: "Tecnologia", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "R&D" 
+  },
+  { 
+    id: "13", 
+    nome: "Vetro Fonoisolante", 
+    cat: "Tecnico", 
+    trasm: "45dB", 
+    sic: "Acustica", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Silenzio" 
+  },
+  { 
+    id: "14", 
+    nome: "Ferramenta Maico", 
+    cat: "Tecnico", 
+    trasm: "RC3 Kit", 
+    sic: "Blindato", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Meccanica" 
+  },
+  { 
+    id: "15", 
+    nome: "Sistemi Oscuranti", 
+    cat: "Tecnico", 
+    trasm: "Grate", 
+    sic: "Protezione", 
+    img: PLACEHOLDER_IMG_URL, // <--- Usa la costante
+    tag: "Esterni" 
+  }
 ];
 
 export default function CatalogoInfissiPage() {
