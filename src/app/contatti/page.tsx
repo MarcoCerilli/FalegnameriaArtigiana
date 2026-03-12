@@ -8,7 +8,6 @@ export default function ContattiPage() {
 
   return (
     <div className="bg-background min-h-screen">
-      {/* SEZIONE HERO CON IMMAGINE */}
       {/* SEZIONE HERO OTTIMIZZATA PER DESKTOP E MOBILE */}
       <section className="relative w-full overflow-hidden bg-zinc-900">
         <div className="relative w-full aspect-[21/9] md:aspect-[25/9] min-h-[400px]">

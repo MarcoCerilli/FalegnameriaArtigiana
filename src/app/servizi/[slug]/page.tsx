@@ -125,7 +125,7 @@ export default async function ServiceDetailPage({
                       alt={serviceImage.description}
                       fill
                       unoptimized
-                      className="object-contain p-4 drop-shadow-2xl"
+                      className="object-cover p-4 drop-shadow-2xl"
                     />
                   </>
                 )}

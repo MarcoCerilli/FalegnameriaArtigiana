@@ -14,8 +14,20 @@
   {
     "id": "hero-servizi",
     "description": "Dettaglio di un lavoro finito di falegnameria.",
-    "imageUrl": "/images/soggiorno3.jpeg",
+    "imageUrl": "/images/hero-servizi.jpeg",
     "imageHint": "craftsmanship detail"
+  },
+  {
+    "id": "hero-servizi-desktop",
+    "description": "Vista panoramica delle lavorazioni artigianali per desktop.",
+    "imageUrl": "/images/hero-servizi.jpeg",
+    "imageHint": "craftsmanship desktop view"
+  },
+  {
+    "id": "hero-servizi-mobile",
+    "description": "Dettaglio verticale delle lavorazioni artigianali per mobile.",
+    "imageUrl": "/images/hero-servizi-mobile.jpeg",
+    "imageHint": "craftsmanship mobile view"
   },
   {
     "id": "hero-chi-siamo",
