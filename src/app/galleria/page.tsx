@@ -116,25 +116,56 @@ export default function GalleriaPage() {
 
   return (
     <>
-      {/* SEZIONE HERO CON CAMBIO IMMAGINE MOBILE/DESKTOP */}
-      <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center text-center overflow-hidden bg-zinc-950">
+      {/* SEZIONE HERO CON EFFETTO ALLEGGERITO */}
+      <section className="relative h-[55vh] md:h-[60vh] flex items-center justify-center text-center overflow-hidden bg-zinc-950">
+        {/* Immagine Mobile */}
         <div className="md:hidden absolute inset-0">
-          <Image src={heroMobile} alt="MAVE Arredamenti Mobile" fill priority sizes="100vw" className="object-cover opacity-60" />
+          <Image
+            src={heroMobile}
+            alt="MAVE"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover brightness-[0.7]"
+          />
         </div>
+        {/* Immagine Desktop */}
         <div className="hidden md:block absolute inset-0">
-          <Image src={heroDesktop} alt="MAVE Arredamenti Progetti" fill priority sizes="100vw" className="object-cover opacity-60" />
+          <Image
+            src={heroDesktop}
+            alt="MAVE Progetti"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover brightness-[0.75] contrast-[1.05]"
+          />
         </div>
+
+        {/* Effetto Noise e Gradienti (Light) */}
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.4)_100%)]" />
 
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
           <h1 className="font-headline text-5xl md:text-8xl text-white leading-tight drop-shadow-2xl">
-            Galleria <span className="text-accent italic font-light tracking-tight">Progetti</span>
+            Galleria{" "}
+            <span className="text-accent italic font-light tracking-tight">
+              Progetti
+            </span>
           </h1>
-          <p className="text-white/80 mt-4 font-headline text-xl hidden md:block">MAVE Arredamenti di Massimo Simonelli</p>
+          {/* SOTTOTITOLO HERO: Rimosso 'hidden' così si vede anche su mobile */}
+          <p className="text-white/80 mt-4 font-headline text-lg md:text-xl drop-shadow-md">
+            MAVE Arredamenti di Massimo Simonelli
+          </p>
           <div className="h-1.5 w-24 bg-accent mx-auto mt-6 rounded-full" />
         </div>
       </section>
 
-      {/* GRIGLIA PROGETTI - EQUILIBRIO PERFETTO */}
+      {/* GRIGLIA PROGETTI */}
       <section className="py-12 md:py-24 bg-zinc-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
@@ -144,7 +175,7 @@ export default function GalleriaPage() {
                 onClick={() => setIndex(i)}
                 className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] bg-zinc-200 border border-zinc-300 shadow-lg cursor-zoom-in"
               >
-                {/* 1. SFONDO SFOCATO: Riempie i vuoti se l'immagine è stretta o larga */}
+                {/* 1. SFONDO SFOCATO */}
                 <Image
                   src={photo.src}
                   alt=""
@@ -153,7 +184,7 @@ export default function GalleriaPage() {
                   className="object-cover blur-xl opacity-50 scale-110"
                 />
 
-                {/* 2. IMMAGINE REALE: Sempre intera (contain) */}
+                {/* 2. IMMAGINE REALE */}
                 <div className="relative h-full w-full p-4 flex items-center justify-center z-10">
                   <div className="relative h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
                     <Image
@@ -161,13 +192,17 @@ export default function GalleriaPage() {
                       alt={photo.desc}
                       fill
                       sizes="(max-width: 640px) 100vw, 25vw"
-                      className="object-contain" // Qui l'immagine non viene MAI tagliata
+                      className="object-contain"
                     />
                   </div>
                 </div>
 
-                {/* 3. OVERLAY: Sfumatura scura per contrasto garantito */}
-                <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent p-6 pt-20 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                {/* 3. OVERLAY SOTTOTITOLI: Visibile sempre su mobile, hover su desktop */}
+                <div
+                  className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent p-6 pt-20 
+                  opacity-100 md:opacity-0 md:group-hover:opacity-100 
+                  transition-all duration-500 md:translate-y-2 md:group-hover:translate-y-0"
+                >
                   <div className="h-1 w-10 bg-accent mb-3 rounded-full" />
                   <p className="text-white text-lg font-headline italic leading-tight mb-2">
                     {photo.desc}

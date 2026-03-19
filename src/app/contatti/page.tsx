@@ -4,28 +4,50 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export default function ContattiPage() {
-  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-contatti");
+  const heroImage = PlaceHolderImages.find(
+    (p) => p.id === "hero-contatti-desktop",
+  );
+  const heroMobile = PlaceHolderImages.find(
+    (p) => p.id === "hero-contatti-mobile",
+  );
 
   return (
     <div className="bg-background min-h-screen">
       {/* SEZIONE HERO OTTIMIZZATA PER DESKTOP E MOBILE */}
       <section className="relative w-full overflow-hidden bg-zinc-900">
         <div className="relative w-full aspect-[21/9] md:aspect-[25/9] min-h-[400px]">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              priority
-              // Usiamo object-top o un valore percentuale per non tagliare il centro
-              className="object-cover object-[center_50%]"
-              unoptimized
-            />
+          {/* IMMAGINE MOBILE - Viene mostrata solo sotto i 768px (md) */}
+          {heroMobile && (
+            <div className="md:hidden absolute inset-0">
+              <Image
+                src={heroMobile.imageUrl}
+                alt={heroMobile.description}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover brightness-[0.7]"
+              />
+            </div>
           )}
 
-          {/* Overlay più scuro per staccare il testo bianco dallo sfondo chiaro della foto */}
-          <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
+          {/* IMMAGINE DESKTOP - Viene mostrata solo da 768px in su */}
+          {heroImage && (
+            <div className="hidden md:block absolute inset-0">
+              <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </div>
+          )}
 
+          {/* Overlay per leggibilità testo */}
+          <div className="absolute inset-0 bg-black/40 md:bg-black/30 z-[5]" />
+
+          {/* Testo */}
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center">
             <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
               Parliamo del tuo{" "}

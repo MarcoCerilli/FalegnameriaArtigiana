@@ -112,7 +112,7 @@
     "id": "service-portoni",
     "description": "Legno massello per portoni",
     "imageUrl": "/images/portone.jpg"
-  }, 
+  },
   {
     "id": "about-massimo",
     "description": "Massimo nel suo laboratorio a Terracina",
@@ -127,5 +127,15 @@
     "id": "about-me",
     "description": "L'artigiano all'opera nel laboratorio Mave",
     "imageUrl": "/images/scala.jpeg"
+  },
+  {
+    "id": "hero-contatti-desktop",
+    "description": "Contatta Mave Arredamenti",
+    "imageUrl": "/images/hero-contatti.jpg"
+  },
+  {
+    "id": "hero-contatti-mobile",
+    "description": "Contatta Mave Arredamenti",
+    "imageUrl": "/images/hero-contatti-mobile.jpg"
   }
 ]
