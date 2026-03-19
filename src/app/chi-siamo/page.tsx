@@ -6,13 +6,13 @@ import Link from "next/link";
 const heroImage = PlaceHolderImages.find(
   (p) => p.id === "hero-chi-siamo-desktop",
 );
-const aboutImage = PlaceHolderImages.find((p) => p.id === "home-filosofia"); // Usiamo questa come fallback se about-massimo non esiste
+const aboutImage = PlaceHolderImages.find((p) => p.id === "about-massimo"); // Usiamo questa come fallback se about-massimo non esiste
 
 export default function ChiSiamoPage() {
   return (
     <>
       <section className="relative w-full overflow-hidden bg-zinc-900">
-        <div className="relative w-full h-[550px] md:h-[600px] lg:h-[650px]">
+        <div className="relative w-full h-[400px] md:h-[450px] lg:h-[500px]">
           {/* 1. VERSIONE DESKTOP (MD+) */}
           {heroImage && (
             <div className="hidden md:block absolute inset-0">
@@ -20,11 +20,14 @@ export default function ChiSiamoPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover object-center brightness-[0.8] contrast-[1.05] transition-transform duration-[10s] hover:scale-105"
                 priority
+                /* EFFETTO ALLEGGERITO: rimosso blur, scala di base ridotta e luminosità naturale */
+                className="object-cover object-center brightness-[0.9] contrast-[1.02] transition-transform duration-[10s] hover:scale-105"
               />
+
+              {/* Grana quasi impercettibile: solo per dare texture senza coprire i dettagli */}
               <div
-                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                 }}
@@ -33,24 +36,26 @@ export default function ChiSiamoPage() {
           )}
 
           {/* 2. VERSIONE MOBILE (< MD) */}
-          {/* Qui caricheremo l'immagine specifica per mobile quando l'avrai, 
-        per ora usiamo quella generale ma senza filtri pesanti che la scurirebbero troppo */}
           {heroImage && (
             <div className="block md:hidden absolute inset-0">
               <Image
-                src="/images/hero-chi-siamo-mobile.jpg" // Cambia il nome se ne hai una specifica
+                src="/images/hero-chi-siamo-mobile.jpg"
                 alt={heroImage.description}
                 fill
-                className="object-cover object-center brightness-[1.05]"
                 priority
+                /* Su mobile: immagine pulita e luminosa */
+                className="object-cover object-center brightness-[0.85]"
                 unoptimized
               />
             </div>
           )}
 
-          {/* 3. OVERLAY E GRADIENTI (Comuni a entrambi) */}
-          <div className="absolute inset-0 bg-black/30 shadow-[inset_0_0_100px_rgba(0,0,0,0.3)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+          {/* 3. OVERLAY E GRADIENTI (Sottili per non "sporcare" l'immagine) */}
+          {/* Una vignettatura molto leggera solo sui bordi estremi */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_40%,_rgba(0,0,0,0.3)_100%)]" />
+
+          {/* Gradiente solo in basso per staccare il testo bianco */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50" />
 
           {/* CONTENUTO TESTUALE */}
           <div className="absolute inset-0 flex items-center justify-center text-center p-6">

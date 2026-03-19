@@ -63,16 +63,21 @@ export default function Home() {
               alt={heroDesktop.description}
               fill
               priority
-              className="object-cover object-center brightness-[1.10] contrast-[1.05]"
+              /* EQUILIBRATO: Blur ridotto a 1px e luminosità leggermente alzata */
+              className="object-cover object-center brightness-[0.85] contrast-[1.05] blur-[1px] scale-[1.03]"
             />
-            {/* Texture anti-sgranatura */}
+
+            {/* Texture Noise: Fondamentale, la manteniamo per rompere i pixel sgranati */}
             <div
-              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              className="absolute inset-0 opacity-[0.06] pointer-events-none"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               }}
             />
-            <div className="absolute inset-0 bg-black/35" />
+
+            {/* Vignettatura più morbida: meno nera, più sfumata */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.4)_100%)]" />
+            <div className="absolute inset-0 bg-black/15" />
           </div>
         )}
 
@@ -84,13 +89,21 @@ export default function Home() {
               alt={heroMobile.description}
               fill
               priority
-              className="object-cover object-center"
+              /* Su mobile togliamo il blur perché lo schermo piccolo maschera già bene */
+              className="object-cover object-center brightness-[0.75] contrast-[1.05]"
               unoptimized
             />
-            <div className="absolute inset-0 bg-black/45" />
+            <div
+              className="absolute inset-0 opacity-[0.05] pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
+            />
+            <div className="absolute inset-0 bg-black/35" />
           </div>
         )}
 
+        {/* CONTENUTO TEXT & ACTION */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center text-white">
           <h1 className="font-headline text-4xl sm:text-6xl md:text-8xl leading-[1.1] drop-shadow-2xl px-2">
             Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
@@ -113,7 +126,6 @@ export default function Home() {
               <Link href="/contatti">Preventivo Gratuito</Link>
             </Button>
 
-            {/* BUTTON 2: SERVIZI (Secondario ma elegante) */}
             <Button
               asChild
               size="lg"
@@ -243,34 +255,34 @@ export default function Home() {
       </section>
 
       {/* SEZIONE CAROSELLO - CORRETTA LEGGIBILITÀ */}
-<section className="py-24 bg-background overflow-hidden border-y border-stone-100">
-  <div className="container mx-auto px-4 mb-16 text-center">
-    <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
-      Lavori{" "}
-      {/* CAMBIATO: text-accent -> text-[#242c24] (Verde scuro) o semplicemente text-primary */}
-      <span className="text-primary not-italic font-bold">
-        In Evidenza
-      </span>
-    </h2>
-    {/* La linea resta accent perché è un elemento grafico, non testo */}
-    <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full shadow-sm" />
-  </div>
+      <section className="py-24 bg-background overflow-hidden border-y border-stone-100">
+        <div className="container mx-auto px-4 mb-16 text-center">
+          <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
+            Lavori{" "}
+            {/* CAMBIATO: text-accent -> text-[#242c24] (Verde scuro) o semplicemente text-primary */}
+            <span className="text-primary not-italic font-bold">
+              In Evidenza
+            </span>
+          </h2>
+          {/* La linea resta accent perché è un elemento grafico, non testo */}
+          <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full shadow-sm" />
+        </div>
 
-  <ProjectCarousel images={featuredProjects} />
+        <ProjectCarousel images={featuredProjects} />
 
-  <div className="text-center mt-16">
-    <Link
-      href="/galleria"
-      className="text-primary hover:opacity-70 font-bold tracking-[0.2em] uppercase text-sm transition-all flex items-center justify-center gap-3 group"
-    >
-      Sfoglia la galleria completa
-      <ArrowRight
-        size={18}
-        className="group-hover:translate-x-2 transition-transform" // Icona accent va bene, attira l'occhio
-      />
-    </Link>
-  </div>
-</section>
+        <div className="text-center mt-16">
+          <Link
+            href="/galleria"
+            className="text-primary hover:opacity-70 font-bold tracking-[0.2em] uppercase text-sm transition-all flex items-center justify-center gap-3 group"
+          >
+            Sfoglia la galleria completa
+            <ArrowRight
+              size={18}
+              className="group-hover:translate-x-2 transition-transform" // Icona accent va bene, attira l'occhio
+            />
+          </Link>
+        </div>
+      </section>
 
       {/* CTA FINALE */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">

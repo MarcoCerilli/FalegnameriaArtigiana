@@ -71,7 +71,7 @@
   {
     "id": "hero-servizi-desktop",
     "description": "Panoramica dei servizi artigianali Mave",
-    "imageUrl": "/images/hero-servizi.jpg"
+    "imageUrl": "/images/hero-servizi-desktop.jpg"
   },
   {
     "id": "hero-servizi-mobile",
@@ -79,9 +79,14 @@
     "imageUrl": "/images/hero-servizi-mobile.jpg"
   },
   {
-    "id": "hero-servizi",
+    "id": "hero-servizi-slug-desktop",
     "description": "Eccellenza artigiana Terracina",
-    "imageUrl": "/images/hero-falegnameria.jpg"
+    "imageUrl": "/images/hero-servizi-slug-desktop.jpg"
+  },
+  {
+    "id": "hero-servizi-slug-mobile",
+    "description": "Eccellenza artigiana Terracina",
+    "imageUrl": "/images/hero-servizi-slug-mobile.jpg"
   },
   {
     "id": "service-falegnameria",
@@ -96,7 +101,7 @@
   {
     "id": "service-infissi",
     "description": "Dettaglio telaio infisso",
-    "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080"
+    "imageUrl": "/images/infisso.jpg"
   },
   {
     "id": "service-zanzariere",
@@ -111,12 +116,12 @@
   {
     "id": "about-massimo",
     "description": "Massimo nel suo laboratorio a Terracina",
-    "imageUrl": "/images/soggiorno2.jpg"
+    "imageUrl": "/images/soggiorno.jpg"
   },
   {
     "id": "home-filosofia",
     "description": "Dettaglio del laboratorio artigiano",
-    "imageUrl": "/images/soggiorno2.jpg"
+    "imageUrl": "/images/wood.jpeg"
   },
   {
     "id": "about-me",

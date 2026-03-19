@@ -24,59 +24,23 @@ export default async function ServiceDetailPage({
     notFound();
   }
 
-  // 1. Recupero Immagine del Servizio (quella nel contenuto)
+  // Recupero Immagine del Servizio per il box in basso
   const serviceImage = PlaceHolderImages.find((p) => p.id === service.imageId);
-
-  // 2. Cerchiamo la Hero specifica per il servizio (es. id: "hero-falegnameria-desktop")
-  const heroDesktop =
-    PlaceHolderImages.find((p) => p.id === `hero-${service.slug}-desktop`) ||
-    PlaceHolderImages.find((p) => p.id === "hero-servizi") ||
-    serviceImage;
-
-  const heroMobile =
-    PlaceHolderImages.find((p) => p.id === `hero-${service.slug}-mobile`) ||
-    PlaceHolderImages.find((p) => p.id === "hero-servizi-mobile") ||
-    serviceImage;
 
   return (
     <div className="flex flex-col">
-      {/* --- SEZIONE HERO OTTIMIZZATA --- */}
-      <section className="relative h-[55vh] md:h-[65vh] flex items-center justify-center text-center overflow-hidden bg-zinc-950">
-        {/* VISTA DESKTOP: Immagine panoramica + Filtri pulizia */}
-        {heroDesktop && (
-          <div className="hidden md:block absolute inset-0 w-full h-full">
-            <Image
-              src={heroDesktop.imageUrl}
-              alt={heroDesktop.description}
-              fill
-              className="object-cover brightness-[1.10] contrast-[1.05]"
-              priority
-            />
-            {/* Texture Anti-Sgranatura */}
-            <div
-              className="absolute inset-0 opacity-[0.05] pointer-events-none"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              }}
-            />
-          </div>
-        )}
+      {/* --- HERO MINIMAL CON SFONDO MATERICO (NO FOTO FULL WIDTH) --- */}
+      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center text-center overflow-hidden bg-zinc-700">
+        {/* Effetto Profondità: Gradiente Radiale */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-zinc-600 to-black opacity-60" />
 
-        {/* VISTA MOBILE: Immagine verticale/adattata */}
-        {heroMobile && (
-          <div className="block md:hidden absolute inset-0 w-full h-full">
-            <Image
-              src={heroMobile.imageUrl}
-              alt={heroMobile.description}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Overlay sfumato per leggibilità testo */}
-        <div className="absolute inset-0 bg-black/50 md:bg-black/40 shadow-[inset_0_0_100px_rgba(0,0,0,0.4)]" />
+        {/* Texture Noise per rendere il grigio "materico" e non piatto */}
+        <div
+          className="absolute inset-0 opacity-[0.15] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
 
         <div className="relative z-10 p-4 max-w-4xl mx-auto">
           <Link
@@ -90,7 +54,7 @@ export default async function ServiceDetailPage({
             Torna ai servizi
           </Link>
 
-          <h1 className="font-headline text-5xl md:text-8xl text-white leading-tight drop-shadow-2xl">
+          <h1 className="font-headline text-5xl md:text-8xl text-white leading-tight">
             {service.title.split(" ")[0]}{" "}
             <span className="text-accent italic font-light tracking-tight">
               {service.title.split(" ").slice(1).join(" ")}
@@ -100,12 +64,12 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      {/* --- SEZIONE CONTENUTO --- */}
+      {/* --- SEZIONE CONTENUTO (CON FOTO PRODOTTO) --- */}
       <section className="py-16 md:py-28 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-24 items-center justify-center max-w-7xl mx-auto text-center lg:text-left">
             {/* Colonna Testo */}
-            <div className="lg:col-span-3 space-y-10 flex flex-col items-center lg:items-start">
+            <div className="lg:col-span-3 space-y-10 flex flex-col items-center lg:items-start order-2 lg:order-1">
               <div className="space-y-4">
                 <h2 className="font-headline text-4xl md:text-6xl text-primary italic leading-tight">
                   L'eccellenza nel{" "}
@@ -145,35 +109,24 @@ export default async function ServiceDetailPage({
               </div>
             </div>
 
-            {/* Colonna Immagine - EFFETTO MATERICO ANTI-SGRANATURA */}
-            <div className="lg:col-span-2 relative group w-full">
-              <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-stone-100 transition-all duration-700 hover:shadow-primary/10">
+            <div className="lg:col-span-2 relative group w-full order-1 lg:order-2">
+              <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border border-stone-100 bg-white p-4">
                 {serviceImage && (
-                  <>
-                    {/* 1. Sfondo Blur Dinamico */}
-                    <Image
-                      src={serviceImage.imageUrl}
-                      alt=""
-                      fill
-                      className="object-cover blur-3xl opacity-30 scale-125"
-                    />
-
-                    {/* 2. Immagine Principale con correzione luce */}
+                  <div className="relative w-full h-full overflow-hidden rounded-[2rem]">
                     <Image
                       src={serviceImage.imageUrl}
                       alt={serviceImage.description}
                       fill
-                      className="object-cover p-4 drop-shadow-2xl brightness-[1.03] contrast-[1.02]"
+                      className="object-cover brightness-[1.03] transition-transform duration-500 group-hover:scale-105"
                     />
-
-                    {/* 3. Noise sottile per nascondere i pixel nelle zone d'ombra */}
+                    {/* Noise texture applicata sopra l'immagine arrotondata */}
                     <div
                       className="absolute inset-0 opacity-[0.03] pointer-events-none"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                       }}
                     />
-                  </>
+                  </div>
                 )}
               </div>
             </div>
