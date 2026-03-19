@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     siteName: "Mave Arredamenti",
     locale: "it_IT",
     type: "website",
+    images: [
+      {
+        url: "https://www.mavearredamenti.it/image.jpg", // Un'immagine rappresentativa
+        width: 1200, // Dimensione consigliata per FB/WA
+        height: 630,
+        alt: "Mave Arredamenti - Artigianato su misura a Terracina",
+      },
+    ],
   },
 };
 export default function RootLayout({
