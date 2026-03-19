@@ -14,12 +14,16 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    // Sfondo scurito: Verde Bosco Profondo con blur
+    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#242c24]/95 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex h-20 items-center justify-between">
-        
         {/* LOGO */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
+          <Link
+            href="/"
+            className="flex items-center hover:opacity-90 transition-opacity"
+          >
+            {/* Il logo ora risalterà tantissimo su questo sfondo */}
             <Logo />
           </Link>
         </div>
@@ -33,12 +37,12 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative text-[14px] font-bold uppercase tracking-widest transition-colors py-2",
-                  isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
+                  "relative text-[13px] font-bold uppercase tracking-[0.15em] transition-colors py-2",
+                  // Testo bianco/crema per contrasto su scuro
+                  isActive ? "text-accent" : "text-white/70 hover:text-white",
                 )}
               >
                 {link.label}
-                {/* Sottolineatura elegante in giallo lime per la pagina attiva */}
                 {isActive && (
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent rounded-full animate-in fade-in zoom-in duration-300" />
                 )}
@@ -49,9 +53,9 @@ export default function Header() {
 
         {/* BOTTONI */}
         <div className="flex items-center gap-4">
-          <Button 
-            asChild 
-            className="hidden md:flex bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-md hover:shadow-lg transition-all border-b-2 border-primary/20"
+          <Button
+            asChild
+            className="hidden md:flex bg-accent text-[#1a231a] hover:bg-accent/90 font-bold rounded-full px-8 shadow-lg transition-all"
           >
             <Link href="/contatti">Contattaci</Link>
           </Button>
@@ -60,17 +64,20 @@ export default function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-primary"
+            className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+            {isMobileMenuOpen ? (
+              <X className="h-7 w-7" />
+            ) : (
+              <Menu className="h-7 w-7" />
+            )}
           </Button>
         </div>
       </div>
-
       {/* MENU MOBILE */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t bg-background shadow-2xl animate-in slide-in-from-top-5 duration-300">
+        <div className="md:hidden border-t border-white/10 bg-[#1a231a] shadow-2xl animate-in slide-in-from-top-5 duration-300">
           <nav className="container flex flex-col p-8 gap-6">
             {NAV_LINKS.map((link) => (
               <Link
@@ -79,22 +86,14 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
                   "text-xl font-headline italic transition-all p-2",
-                  pathname === link.href 
-                    ? "text-primary border-l-4 border-accent pl-4" 
-                    : "text-muted-foreground"
+                  pathname === link.href
+                    ? "text-accent border-l-4 border-accent pl-4"
+                    : "text-white/60",
                 )}
               >
                 {link.label}
               </Link>
             ))}
-            <Button 
-              asChild 
-              size="lg"
-              className="w-full mt-4 bg-primary text-white" 
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Link href="/contatti">Richiedi un Preventivo</Link>
-            </Button>
           </nav>
         </div>
       )}

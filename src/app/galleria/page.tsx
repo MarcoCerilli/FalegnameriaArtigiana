@@ -18,11 +18,11 @@ export default function GalleriaPage() {
     { id: 3, src: "/gallery/arredo_mave.3.jpg", desc: "Armadio a muro su misura" },
     { id: 4, src: "/gallery/arredo_mave.4.jpg", desc: "Dettaglio mobili per interni yacht" },
     { id: 5, src: "/gallery/arredo_mave.5.jpg", desc: "Portone blindato con pannello in legno" },
-    { id: 6, src: "/gallery/arredo_mave.6.jpg", desc: "Infissi ad alto isolamento termico" },
+   /*  { id: 6, src: "/gallery/arredo_mave.6.jpg", desc: "Infissi ad alto isolamento termico" }, */
     { id: 7, src: "/gallery/arredo_mave.7.jpg", desc: "Tavolo da pranzo in rovere naturale" },
     { id: 8, src: "/gallery/arredo_mave.8.jpg", desc: "Restauro mobili d'epoca" },
     { id: 9, src: "/gallery/arredo_mave.9.jpg", desc: "Separè per soggiorno" },
-    { id: 10, src: "/gallery/arredo_mave.10.jpg", desc: "Zanzariere integrate su misura" },
+   /*  { id: 10, src: "/gallery/arredo_mave.10.jpg", desc: "Zanzariere integrate su misura" }, */
     { id: 11, src: "/gallery/arredo_mave.11.jpg", desc: "Scale interne in legno pregiato" },
     { id: 12, src: "/gallery/arredo_mave.12.jpg", desc: "Arredo bagno personalizzato" },
     { id: 13, src: "/gallery/arredo_mave.13.jpg", desc: "Lavorazione artigianale sottocoperta" },

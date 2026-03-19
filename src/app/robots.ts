@@ -6,10 +6,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: '/private/', // Qui puoi bloccare cartelle che non vuoi su Google
+        // Blocchiamo l'indicizzazione delle cartelle di sviluppo e API
+        disallow: [
+          '/ai/',           // I tuoi flussi Genkit e file dev
+          '/api/',          // Le rotte nodemailer e contatti
+          '/coming-soon',   // Pagina temporanea di cantiere
+          '/private/',      // Eventuali aree riservate
+        ],
       },
     ],
-    // Qui indichi a Google dove trovare la sitemap
-    sitemap: 'https://www.maveartigianato.it/sitemap.xml',
+    // Specifichiamo l'URL assoluto della sitemap per Search Console
+    sitemap: 'https://www.mavearredamenti.it/sitemap.xml',
   };
 }

@@ -1,0 +1,79 @@
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export async function POST(request: Request) {
+  try {
+    const { name, email, phone, subject, message } = await request.json();
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.office365.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: { ciphers: 'SSLv3' }
+    });
+
+    // 1. MAIL PER LA FALEGNAMERIA (Notifica interno)
+    const adminMail = {
+      from: `"Sito Web Mave" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER, // Arriva a Massimo/Luana
+      replyTo: email,
+      subject: `🛠️ Nuovo Progetto: ${subject} - ${name}`,
+      html: `
+        <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-top: 6px solid #4a5d4d; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <div style="padding: 30px; border-bottom: 1px solid #eee;">
+              <h1 style="color: #2c362e; margin: 0; font-size: 20px;">Nuova richiesta di preventivo</h1>
+            </div>
+            <div style="padding: 30px; color: #444; line-height: 1.6;">
+              <p>Hai ricevuto un nuovo messaggio dal sito:</p>
+              <p><strong>Cliente:</strong> ${name}<br>
+                 <strong>Interesse:</strong> ${subject}<br>
+                 <strong>Telefono:</strong> ${phone}<br>
+                 <strong>Email:</strong> ${email}</p>
+              <div style="background-color: #f9f9f9; padding: 20px; border-left: 4px solid #b7c767; margin-top: 20px; font-style: italic;">
+                "${message}"
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+    };
+
+    // 2. MAIL DI CONFERMA PER IL CLIENTE
+    const clientMail = {
+      from: `"Mave Arredamenti" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: `Grazie per averci contattato - Mave Arredamenti`,
+      html: `
+        <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; text-align: center;">
+            <div style="background-color: #4a5d4d; padding: 30px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Mave Arredamenti</h1>
+            </div>
+            <div style="padding: 40px; color: #444;">
+              <p style="font-size: 18px;">Grazie <strong>${name}</strong>,</p>
+              <p>Abbiamo ricevuto la tua richiesta per <strong>"${subject}"</strong>.</p>
+              <p>Il nostro team artigiano analizzerà i dettagli e ti ricontatterà al più presto per discutere del tuo progetto.</p>
+              <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+              <p style="font-size: 12px; color: #888;">Mave Arredamenti - Falegnameria Artigiana & Nautica</p>
+            </div>
+          </div>
+        </div>
+      `,
+    };
+
+    // Invia entrambe le mail
+    await Promise.all([
+      transporter.sendMail(adminMail),
+      transporter.sendMail(clientMail)
+    ]);
+
+    return NextResponse.json({ message: "Inviato con successo" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Errore invio" }, { status: 500 });
+  }
+}
