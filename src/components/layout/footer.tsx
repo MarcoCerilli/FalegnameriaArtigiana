@@ -53,10 +53,10 @@ export default function Footer() {
                 </h3>
                 <div className="flex flex-col gap-1.5 text-xs text-white/70 font-medium">
                   <a href="tel:+393479417554" className="hover:text-accent transition-colors flex items-center gap-2">
-                    <span className="text-accent/50">M.</span> 347 9417554
+                    <span className="text-accent/50">Massimo</span> 347 9417554
                   </a>
                   <a href="tel:+393471809003" className="hover:text-accent transition-colors flex items-center gap-2">
-                    <span className="text-accent/50">L.</span> 347 1809003
+                    <span className="text-accent/50">Luana</span> 347 1809003
                   </a>
                 </div>
             </div>
@@ -67,11 +67,11 @@ export default function Footer() {
                   <Mail className="h-4 w-4" /> Scrivici
                 </h3>
                 <div className="flex flex-col gap-1.5 text-xs text-white/70">
-                  <a href="mailto:massimosimonelli@hotmail.it" className="hover:text-accent transition-colors truncate">
-                    massimosimonelli@hotmail.it
+                  <a href="mailto:massimosimonelli@hotmaiLuanait" className="hover:text-accent transition-colors truncate">
+                    massimosimonelli@hotmaiLuanait
                   </a>
-                  <a href="mailto:fonziluana@hotmail.it" className="hover:text-accent transition-colors truncate">
-                    fonziluana@hotmail.it
+                  <a href="mailto:fonziluana@hotmaiLuanait" className="hover:text-accent transition-colors truncate">
+                    fonziluana@hotmaiLuanait
                   </a>
                 </div>
             </div>
@@ -96,12 +96,29 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         {/* Bottom Bar - Schiarita per leggibilità */}
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/50 uppercase tracking-[0.25em] font-medium">
-          <p className="hover:text-white/80 transition-colors">
-            &copy; {new Date().getFullYear()} Mave Arredamenti | Terracina
-          </p>
+          {/* Copyright e Credito Sviluppatore */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center text-center sm:text-left">
+            <p className="hover:text-white/80 transition-colors">
+              &copy; {new Date().getFullYear()} Mave Arredamenti | Terracina
+            </p>
+            {/* Linea verticale separatrice visibile solo su schermi 'sm' o più grandi */}
+            <span className="hidden sm:block text-white/20">|</span>
+            <p>
+              Sito sviluppato da{' '}
+              <a 
+                href="https://marcocerilli.it" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors font-semibold"
+              >
+                M Solutions Web di Marco Cerilli
+              </a>
+            </p>
+          </div>
+          
+          {/* Link Legali e Partita IVA */}
           <div className="flex gap-6 items-center">
             <Link href="/privacy" className="hover:text-accent transition-colors underline underline-offset-4 decoration-white/10">
               Privacy & Cookies
