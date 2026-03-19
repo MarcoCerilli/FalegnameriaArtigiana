@@ -3,8 +3,10 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 
-const aboutImage = PlaceHolderImages.find((p) => p.id === "about-massimo");
-const heroImage = PlaceHolderImages.find((p) => p.id === "hero-chi-siamo");
+const heroImage = PlaceHolderImages.find(
+  (p) => p.id === "hero-chi-siamo-desktop",
+);
+const aboutImage = PlaceHolderImages.find((p) => p.id === "home-filosofia"); // Usiamo questa come fallback se about-massimo non esiste
 
 export default function ChiSiamoPage() {
   return (
@@ -18,10 +20,9 @@ export default function ChiSiamoPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover object-center brightness-[1.12] contrast-[1.05] transition-transform duration-[10s] hover:scale-105"
+                className="object-cover object-center brightness-[0.8] contrast-[1.05] transition-transform duration-[10s] hover:scale-105"
                 priority
               />
-              {/* Texture Noise per nobilitare i pixel su schermi grandi */}
               <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"
                 style={{

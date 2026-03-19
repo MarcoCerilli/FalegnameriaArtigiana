@@ -242,33 +242,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEZIONE CAROSELLO */}
-      <section className="py-24 bg-background overflow-hidden border-y border-stone-100">
-        <div className="container mx-auto px-4 mb-16 text-center">
-          <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
-            Lavori{" "}
-            <span className="text-accent not-italic font-bold">
-              In Evidenza
-            </span>
-          </h2>
-          <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full" />
-        </div>
+      {/* SEZIONE CAROSELLO - CORRETTA LEGGIBILITÀ */}
+<section className="py-24 bg-background overflow-hidden border-y border-stone-100">
+  <div className="container mx-auto px-4 mb-16 text-center">
+    <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
+      Lavori{" "}
+      {/* CAMBIATO: text-accent -> text-[#242c24] (Verde scuro) o semplicemente text-primary */}
+      <span className="text-primary not-italic font-bold">
+        In Evidenza
+      </span>
+    </h2>
+    {/* La linea resta accent perché è un elemento grafico, non testo */}
+    <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full shadow-sm" />
+  </div>
 
-        <ProjectCarousel images={featuredProjects} />
+  <ProjectCarousel images={featuredProjects} />
 
-        <div className="text-center mt-16">
-          <Link
-            href="/galleria"
-            className="text-primary hover:text-accent font-bold tracking-[0.2em] uppercase text-sm transition-all flex items-center justify-center gap-3 group"
-          >
-            Sfoglia la galleria completa
-            <ArrowRight
-              size={18}
-              className="group-hover:translate-x-2 transition-transform"
-            />
-          </Link>
-        </div>
-      </section>
+  <div className="text-center mt-16">
+    <Link
+      href="/galleria"
+      className="text-primary hover:opacity-70 font-bold tracking-[0.2em] uppercase text-sm transition-all flex items-center justify-center gap-3 group"
+    >
+      Sfoglia la galleria completa
+      <ArrowRight
+        size={18}
+        className="group-hover:translate-x-2 transition-transform" // Icona accent va bene, attira l'occhio
+      />
+    </Link>
+  </div>
+</section>
 
       {/* CTA FINALE */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">

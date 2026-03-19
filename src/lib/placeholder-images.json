@@ -14,7 +14,7 @@
   {
     "id": "hero-chi-siamo-desktop",
     "description": "Atmosfera del laboratorio artigiano",
-    "imageUrl": "/images/scala.jpeg",
+    "imageUrl": "/images/hero-chi-siamo.jpg",
     "imageHint": "artisan workshop"
   },
   {
@@ -46,12 +46,12 @@
   {
     "id": "hero-galleria-desktop",
     "description": "Panoramica dei lavori completati - Mave Artigianato",
-    "imageUrl": "/images/hero-progetti.jpg"
+    "imageUrl": "/images/hero-galleria-desktop.jpg"
   },
   {
     "id": "hero-galleria-mobile",
     "description": "Dettaglio lavorazioni artigianali mobile",
-    "imageUrl": "/images/hero-progetti-mobile.jpg"
+    "imageUrl": "/images/hero-galleria-mobile.jpg"
   },
   {
     "id": "hero-infissi-desktop",
@@ -91,7 +91,7 @@
   {
     "id": "service-tappezzeria",
     "description": "Dettaglio cuciture nautiche",
-    "imageUrl": "/images/arredo_mave.36.jpg"
+    "imageUrl": "/images/cuciture_nautiche.jpg"
   },
   {
     "id": "service-infissi",
@@ -116,7 +116,7 @@
   {
     "id": "home-filosofia",
     "description": "Dettaglio del laboratorio artigiano",
-    "imageUrl": "/images/wood.jpeg"
+    "imageUrl": "/images/soggiorno2.jpg"
   },
   {
     "id": "about-me",
