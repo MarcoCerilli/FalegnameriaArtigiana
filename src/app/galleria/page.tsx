@@ -62,54 +62,54 @@ export default function GalleriaPage() {
       </section>
 
       {/* GRIGLIA PROGETTI */}
-      <section className="py-16 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-            {galleryPhotos.map((photo, i) => (
-              <div
-                key={photo.id}
-                onClick={() => setIndex(i)}
-                className="group relative h-[450px] overflow-hidden rounded-[2.5rem] shadow-2xl bg-zinc-200 transition-all duration-700 hover:shadow-accent/30 border border-white/10 cursor-zoom-in"
-              >
-                {/* 1. SFONDO SFOCATO (Crea profondità se l'immagine è piccola) */}
-                <Image
-                  src={photo.src}
-                  alt=""
-                  fill
-                  className="object-cover blur-2xl opacity-30 scale-125 group-hover:opacity-50 transition-opacity duration-700"
-                />
-                
-                {/* 2. IMMAGINE PRINCIPALE */}
-                <div className="relative h-full w-full p-4 flex items-center justify-center">
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={photo.src}
-                      alt={photo.desc}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      // CAMBIATO: object-contain per non tagliare, rounded per stile
-                      className="object-contain drop-shadow-2xl transition-transform duration-700 ease-in-out group-hover:scale-[1.03]"
-                    />
-                  </div>
-                </div>
+<section className="py-16 md:py-32 bg-background">
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      {galleryPhotos.map((photo, i) => (
+        <div
+          key={photo.id}
+          onClick={() => setIndex(i)}
+          className="group relative h-[450px] overflow-hidden rounded-[2.5rem] shadow-2xl bg-zinc-200 transition-all duration-700 hover:shadow-accent/30 border border-white/10 cursor-zoom-in"
+        >
+          {/* 1. SFONDO SFOCATO */}
+          <Image
+            src={photo.src}
+            alt=""
+            fill
+            className="object-cover blur-2xl opacity-30 scale-125 group-hover:opacity-50 transition-opacity duration-700"
+          />
+          
+          {/* 2. IMMAGINE PRINCIPALE CON ANGOLI ARROTONDATI */}
+          <div className="relative h-full w-full p-4 flex items-center justify-center">
+            {/* Wrapper con arrotondamento e overflow-hidden */}
+            <div className="relative h-full w-full rounded-[1.5rem] overflow-hidden shadow-2xl transition-transform duration-700 ease-in-out group-hover:scale-[1.03]">
+              <Image
+                src={photo.src}
+                alt={photo.desc}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                className="object-contain" // Ora l'arrotondamento è gestito dal div padre
+              />
+            </div>
+          </div>
 
-                {/* Pulsante d'ingrandimento visibile al hover */}
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
-                    <Maximize2 size={20} />
-                </div>
+          {/* Pulsante d'ingrandimento visibile al hover */}
+          <div className="absolute top-8 right-8 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
+              <Maximize2 size={20} />
+          </div>
 
-                {/* Overlay Informativo */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#242c24] via-[#242c24]/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 translate-y-4 group-hover:translate-y-0">
-                  <div className="h-1 w-10 bg-accent mb-4 rounded-full" />
-                  <p className="text-[#f5f5f0] text-xl font-headline italic leading-snug">
-                    {photo.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+          {/* Overlay Informativo (Coordinato Verde Foresta/Acido) */}
+          <div className="absolute inset-x-0 bottom-0 z-30 bg-gradient-to-t from-[#242c24] via-[#242c24]/90 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 translate-y-4 group-hover:translate-y-0">
+            <div className="h-1 w-10 bg-accent mb-4 rounded-full" />
+            <p className="text-[#f5f5f0] text-xl font-headline italic leading-snug">
+              {photo.desc}
+            </p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* LIGHTBOX */}
       <Lightbox

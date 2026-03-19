@@ -108,15 +108,17 @@ export default function Home() {
             <Button
               asChild
               size="lg"
-              className="w-full max-w-[280px] sm:w-auto bg-accent text-accent-foreground py-7 sm:py-8 text-lg sm:text-xl shadow-2xl hover:scale-105 transition-transform"
+              className="w-full max-w-[280px] sm:w-auto bg-accent text-[#242c24] font-bold py-7 sm:py-8 text-lg sm:text-xl rounded-full shadow-[0_10px_30px_-10px_rgba(190,242,2,0.4)] hover:bg-[#d4ff00] hover:scale-105 hover:shadow-[0_15px_35px_-5px_rgba(190,242,2,0.6)] transition-all duration-300"
             >
               <Link href="/contatti">Preventivo Gratuito</Link>
             </Button>
+
+            {/* BUTTON 2: SERVIZI (Secondario ma elegante) */}
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="w-full max-w-[280px] sm:w-auto bg-white/10 backdrop-blur-md text-white border-white/40 py-7 sm:py-8 text-lg sm:text-xl hover:bg-white/20"
+              className="w-full max-w-[280px] sm:w-auto bg-white/10 backdrop-blur-md text-white border-white/20 py-7 sm:py-8 text-lg sm:text-xl rounded-full hover:bg-white hover:text-[#242c24] hover:border-white hover:scale-105 transition-all duration-300 shadow-xl"
             >
               <Link href="#servizi">I nostri servizi</Link>
             </Button>
