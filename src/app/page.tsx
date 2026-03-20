@@ -63,19 +63,27 @@ export default function Home() {
               alt={heroDesktop.description}
               fill
               priority
-              /* EQUILIBRATO: Blur ridotto a 1px e luminosità leggermente alzata */
-              className="object-cover object-center brightness-[0.85] contrast-[1.05] blur-[1px] scale-[1.03]"
+              /* MODIFICHE EFFETTUATE:
+         1. Rimosso COMPLETAMENTE blur-[0.3px] (per nitidezza).
+         2. Rimosso COMPLETAMENTE scale-[1.03] (per nitidezza, evita zoom).
+         3. Mantenuto brightness/contrast per atmosfera e leggibilità testo. */
+              className="object-cover object-center brightness-[0.85] contrast-[1.05]"
             />
 
-            {/* Texture Noise: Fondamentale, la manteniamo per rompere i pixel sgranati */}
+            {/* Texture Noise: MODIFICATA
+        1. Rimosso pointer-events-none (Next.js Image si occupa dell'accessibilità).
+        2. RIDOTTA opacità da 0.06 a 0.02.
+           A 0.06 (6%) è troppo aggressiva e 'impasta' i dettagli. 
+           A 0.02 (2%) rompe la sgranatura ma senza togliere nitidezza. */}
             <div
-              className="absolute inset-0 opacity-[0.06] pointer-events-none"
+              className="absolute inset-0 opacity-[0.02]"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               }}
             />
 
             {/* Vignettatura più morbida: meno nera, più sfumata */}
+            {/* Queste vanno bene, scuriscono i bordi per focus centrale e contrasto testo. */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.4)_100%)]" />
             <div className="absolute inset-0 bg-black/15" />
           </div>

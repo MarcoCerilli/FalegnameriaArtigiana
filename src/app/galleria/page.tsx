@@ -126,7 +126,7 @@ export default function GalleriaPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover brightness-[0.7]"
+            className="object-cover brightness-[0.55] contrast-[1.05]"
           />
         </div>
         {/* Immagine Desktop */}
