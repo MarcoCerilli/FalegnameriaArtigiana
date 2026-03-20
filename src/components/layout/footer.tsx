@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Social Icons */}
           <div className="flex gap-3">
             <Link 
-              href="#" 
+              href="https://www.instagram.com/mave_arredamenti/" 
               aria-label="Instagram"
               className="p-2.5 rounded-full bg-white/5 border border-white/10 text-white hover:bg-accent hover:text-[#242c24] transition-all"
             >
