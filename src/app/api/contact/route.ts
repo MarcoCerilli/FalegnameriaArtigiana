@@ -5,21 +5,20 @@ export async function POST(request: Request) {
   try {
     const { name, email, phone, subject, message } = await request.json();
 
+    // Configurazione specifica per Gmail
     const transporter = nodemailer.createTransport({
-      host: "smtp.office365.com",
-      port: 587,
-      secure: false,
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        // Qui devi inserire la password per le app di 16 caratteri
+        pass: process.env.EMAIL_PASS, 
       },
-      tls: { ciphers: 'SSLv3' }
     });
 
-    // 1. MAIL PER LA FALEGNAMERIA (Notifica interno)
+    // 1. MAIL PER LA FALEGNAMERIA
     const adminMail = {
       from: `"Sito Web Mave" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // Arriva a Massimo/Luana
+      to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `🛠️ Nuovo Progetto: ${subject} - ${name}`,
       html: `
@@ -57,7 +56,7 @@ export async function POST(request: Request) {
             <div style="padding: 40px; color: #444;">
               <p style="font-size: 18px;">Grazie <strong>${name}</strong>,</p>
               <p>Abbiamo ricevuto la tua richiesta per <strong>"${subject}"</strong>.</p>
-              <p>Il nostro team artigiano analizzerà i dettagli e ti ricontatterà al più presto per discutere del tuo progetto.</p>
+              <p>Il nostro team artigiano analizzerà i dettagli e ti ricontatterà al più presto.</p>
               <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
               <p style="font-size: 12px; color: #888;">Mave Arredamenti - Falegnameria Artigiana & Nautica</p>
             </div>
@@ -69,11 +68,16 @@ export async function POST(request: Request) {
     // Invia entrambe le mail
     await Promise.all([
       transporter.sendMail(adminMail),
-      transporter.sendMail(clientMail)
+      transporter.sendMail(clientMail),
     ]);
 
     return NextResponse.json({ message: "Inviato con successo" }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: "Errore invio" }, { status: 500 });
+
+  } catch (error: any) {
+    console.error("❌ ERRORE GMAIL:", error);
+    return NextResponse.json(
+      { error: "Errore invio", details: error.message },
+      { status: 500 },
+    );
   }
 }

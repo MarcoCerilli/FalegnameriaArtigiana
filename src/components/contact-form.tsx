@@ -26,6 +26,7 @@ const formSchema = z.object({
 export default function ContactForm() {
   const { toast } = useToast();
   const [isAiLoading, startAiTransition] = useTransition();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Stato per il caricamento invio
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,15 +41,48 @@ export default function ContactForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values); // Placeholder for submission logic
-    toast({
-      title: "Messaggio Inviato!",
-      description: "Grazie per averci contattato. Ti risponderemo il prima possibile.",
-    });
-    form.reset();
-    setAiSuggestions([]);
+    setIsSubmitting(true); // Inizia il caricamento
+    try {
+      const readableServices = values.selectedServices
+        .map(slug => services.find(s => s.slug === slug)?.title || slug)
+        .join(", ");
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          subject: readableServices || "Richiesta generica",
+          message: values.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Messaggio Inviato!",
+          description: "Grazie per averci contattato. Ti risponderemo il prima possibile.",
+        });
+        form.reset();
+        setAiSuggestions([]);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.details || "Errore durante l'invio");
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Errore di invio",
+        description: "Non è stato possibile inviare la mail. Riprova più tardi.",
+      });
+      console.error("Errore submit form:", error);
+    } finally {
+      setIsSubmitting(false); // Fine caricamento
+    }
   }
 
+  // ... (handleGenerateRequest rimane uguale)
   const handleGenerateRequest = () => {
     const selectedServices = form.getValues("selectedServices");
     const initialMessage = form.getValues("message");
@@ -87,10 +121,11 @@ export default function ContactForm() {
 
   return (
     <Card className="shadow-lg">
-        <CardContent className="p-6 md:p-8">
-            <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <div className="grid md:grid-cols-2 gap-8">
+      <CardContent className="p-6 md:p-8">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            {/* ... campi input (uguali) ... */}
+            <div className="grid md:grid-cols-2 gap-8">
                 <FormField
                     control={form.control}
                     name="name"
@@ -117,72 +152,60 @@ export default function ContactForm() {
                     </FormItem>
                     )}
                 />
-                </div>
-                <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Telefono (Opzionale)</FormLabel>
-                        <FormControl>
-                        <Input placeholder="Il tuo numero di telefono" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-
-                <FormField
+            </div>
+            
+            <FormField
                 control={form.control}
-                name="selectedServices"
-                render={() => (
-                    <FormItem>
-                    <div className="mb-4">
-                        <FormLabel className="text-base">Servizi di interesse</FormLabel>
-                        <FormDescription>
-                        Seleziona uno o più servizi per aiutarmi a capire meglio la tua richiesta.
-                        </FormDescription>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                name="phone"
+                render={({ field }) => (
+                <FormItem>
+                    <FormLabel>Telefono (Opzionale)</FormLabel>
+                    <FormControl>
+                    <Input placeholder="Il tuo numero di telefono" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+                )}
+            />
+
+            <FormField
+              control={form.control}
+              name="selectedServices"
+              render={() => (
+                <FormItem>
+                  <div className="mb-4">
+                    <FormLabel className="text-base">Servizi di interesse</FormLabel>
+                    <FormDescription>Seleziona uno o più servizi.</FormDescription>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {services.map((item) => (
-                        <FormField
+                      <FormField
                         key={item.slug}
                         control={form.control}
                         name="selectedServices"
-                        render={({ field }) => {
-                            return (
-                            <FormItem
-                                key={item.slug}
-                                className="flex flex-row items-start space-x-3 space-y-0"
-                            >
-                                <FormControl>
-                                <Checkbox
-                                    checked={field.value?.includes(item.slug)}
-                                    onCheckedChange={(checked) => {
-                                    return checked
-                                        ? field.onChange([...field.value, item.slug])
-                                        : field.onChange(
-                                            field.value?.filter(
-                                            (value) => value !== item.slug
-                                            )
-                                        );
-                                    }}
-                                />
-                                </FormControl>
-                                <FormLabel className="font-normal">
-                                {item.title}
-                                </FormLabel>
-                            </FormItem>
-                            );
-                        }}
-                        />
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item.slug)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...field.value, item.slug])
+                                    : field.onChange(field.value?.filter((value) => value !== item.slug));
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">{item.title}</FormLabel>
+                          </FormItem>
+                        )}
+                      />
                     ))}
-                    </div>
-                    </FormItem>
-                )}
-                />
+                  </div>
+                </FormItem>
+              )}
+            />
 
-                <FormField
+            <FormField
                 control={form.control}
                 name="message"
                 render={({ field }) => (
@@ -190,7 +213,7 @@ export default function ContactForm() {
                     <FormLabel>Messaggio</FormLabel>
                     <FormControl>
                         <Textarea
-                        placeholder="Descrivi la tua richiesta o lascia che l'AI ti aiuti..."
+                        placeholder="Descrivi la tua richiesta..."
                         className="min-h-[150px]"
                         {...field}
                         />
@@ -198,41 +221,42 @@ export default function ContactForm() {
                     <FormMessage />
                     </FormItem>
                 )}
-                />
-                
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <Button type="submit">Invia Messaggio</Button>
-                    <Button type="button" variant="outline" onClick={handleGenerateRequest} disabled={isAiLoading}>
-                        {isAiLoading ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                            <Wand2 className="mr-2 h-4 w-4" />
-                        )}
-                        Genera con AI
-                    </Button>
-                </div>
+            />
 
-                {aiSuggestions.length > 0 && (
-                    <Card className="bg-secondary mt-8">
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2 font-headline text-xl">
-                                <Wand2 className="h-5 w-5"/>
-                                Prossimi Passi Suggeriti
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ul className="list-disc pl-5 space-y-2 text-secondary-foreground">
-                                {aiSuggestions.map((suggestion, index) => (
-                                    <li key={index}>{suggestion}</li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
-                )}
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* PULSANTE MODIFICATO CON LOADER */}
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isSubmitting ? "Invio in corso..." : "Invia Messaggio"}
+              </Button>
 
-            </form>
-            </Form>
-        </CardContent>
+              <Button type="button" variant="outline" onClick={handleGenerateRequest} disabled={isAiLoading || isSubmitting}>
+                {isAiLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
+                Genera con AI
+              </Button>
+            </div>
+
+            {/* ... Suggerimenti AI (uguali) ... */}
+            {aiSuggestions.length > 0 && (
+                <Card className="bg-secondary mt-8">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 font-headline text-xl">
+                            <Wand2 className="h-5 w-5"/>
+                            Prossimi Passi Suggeriti
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="list-disc pl-5 space-y-2 text-secondary-foreground">
+                            {aiSuggestions.map((suggestion, index) => (
+                                <li key={index}>{suggestion}</li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+            )}
+          </form>
+        </Form>
+      </CardContent>
     </Card>
   );
 }
