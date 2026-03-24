@@ -6,32 +6,46 @@ import Footer from "@/components/layout/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 import { CraftPopup } from "@/components/craft-popup";
 
-// Definizione del Viewport per il mobile (AGGIUNTA CONSIGLIATA)
+// Definizione del Viewport per il mobile
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5, // Permette lo zoom per accessibilità
-  themeColor: "#4a3c2c", // Colore della barra indirizzi (es. un marrone scuro come il legno)
+  maximumScale: 5, 
+  themeColor: "#4a3c2c", // Marrone scuro richiamo legno
 };
 
 export const metadata: Metadata = {
-  // Titolo ottimizzato per la ricerca (max 60 caratteri)
+  // Titolo ottimizzato per la ricerca
   title: "Mave Arredamenti | Falegnameria e Tappezzeria Nautica Terracina",
 
-  // Descrizione che spinge al click (max 160 caratteri)
+  // Descrizione per Google (max 160 caratteri)
   description:
     "Eccellenza artigiana di Simonelli Massimo a Terracina. Arredi su misura, tappezzeria nautica di lusso, infissi e portoni blindati. Trasforma la tua casa e la tua barca.",
 
-  // Keywords mirate (AGGIUNTA CONSIGLIATA: una lista più pulita e concisa)
+  // Configurazione Icone (Punta ai file nella cartella /src/app)
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon-180x180.png",
+    other: [
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        url: "/android-icon-192x192.png",
+      },
+    ],
+  },
+
+  // Keywords mirate
   keywords:
     "falegnameria Terracina, tappezzeria nautica Terracina, arredi su misura Terracina, restauro barche Terracina, infissi in legno Terracina, Simonelli Massimo Terracina, zanzariere Terracina",
 
-  // URL Canonica per evitare contenuti duplicati (AGGIUNTA CONSIGLIATA)
+  // URL Canonica
   alternates: {
     canonical: "https://www.mavearredamenti.it",
   },
 
-  // Open Graph per quando condividi il sito su WhatsApp o Social
+  // Open Graph per Social e WhatsApp
   openGraph: {
     title: "Mave Arredamenti | Dal Legno al Mare",
     description:
@@ -42,22 +56,21 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        // URL ASSOLUTA CORRETTA dell'immagine opengraph-image.jpg inserita in app
         url: "https://www.mavearredamenti.it/opengraph-image.jpg",
-        width: 1200, // Dimensione consigliata per FB/WA
+        width: 1200,
         height: 630,
         alt: "Mave Arredamenti - Artigianato su misura a Terracina",
       },
     ],
   },
 
-  // Metadata per Twitter/X (AGGIUNTA CONSIGLIATA)
+  // Metadata per Twitter/X
   twitter: {
-    card: "summary_large_image", // Visualizzazione immagine grande
+    card: "summary_large_image",
     title: "Mave Arredamenti | Dal Legno al Mare",
     description:
       "Soluzioni artigianali su misura per casa e nautica a Terracina.",
-    images: ["https://www.mavearredamenti.it/opengraph-image.jpg"], // URL assoluta dell'immagine
+    images: ["https://www.mavearredamenti.it/opengraph-image.jpg"],
   },
 };
 
@@ -68,7 +81,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className="scroll-smooth">
-      {/* Aggiunta scroll-smooth per i link ancora */}
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -80,7 +92,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Belleza&display=swap"
           rel="stylesheet"
         />
-        {/* Next.js gestirà automaticamente il Viewport e altri tag head dai metadata */}
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen selection:bg-accent/30 selection:text-primary">
         <Header />
