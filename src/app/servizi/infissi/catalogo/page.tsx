@@ -211,7 +211,7 @@ export default function CatalogoPortePage() {
                   src={m.img}
                   alt={m.nome}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                  className="object-contain group-hover:scale-105 transition-transform duration-1000"
                   unoptimized
                 />
                 <Badge className="absolute top-4 left-4 bg-primary/90 text-white font-bold text-[9px] px-3 py-1 uppercase">
