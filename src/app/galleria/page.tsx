@@ -7,6 +7,7 @@ import { ArrowRight, Maximize2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Lightbox from "yet-another-react-lightbox";
+// @ts-ignore
 import "yet-another-react-lightbox/styles.css";
 
 export default function GalleriaPage() {
