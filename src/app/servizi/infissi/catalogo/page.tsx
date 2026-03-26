@@ -24,7 +24,6 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const CATEGORIES = ["Tutti", "Anta a vista", "Anta a scomparsa", "Panoramica"];
 
 const modelliInfissi = [
-  // PANORAMICA
   {
     id: "aws-75-pd",
     nome: "Schüco AWS 75 PD.SI",
@@ -34,7 +33,6 @@ const modelliInfissi = [
     img: "/catalogo/finestre/panoramica.webp",
     tag: "Panoramica",
   },
-  // ANTA A SCOMPARSA (Block System)
   {
     id: "aws-90-bs",
     nome: "Schüco AWS 90 BS.SI+",
@@ -62,7 +60,6 @@ const modelliInfissi = [
     img: "/catalogo/finestre/aws65bs.png",
     tag: "Scomparsa",
   },
-  // ANTA A VISTA
   {
     id: "aws-90-si",
     nome: "Schüco AWS 90.SI+",
@@ -120,13 +117,15 @@ export default function CatalogoSchucoPage() {
             <ArrowLeft size={14} /> Torna ai servizi
           </Link>
 
-          <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
-            <div className="bg-white inline-flex p-4 rounded-xl shadow-xl shrink-0">
+          {/* Cambiato in flex-row-reverse per mettere il logo a destra su desktop */}
+         <div className="flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-start md:items-center justify-end">
+            {/* Box Logo: aumentato padding e dimensioni immagine */}
+            <div className="bg-white inline-flex p-6 rounded-2xl shadow-2xl shrink-0">
               <Image
                 src="/logos/shuco.png"
                 alt="Schüco Official Logo"
-                width={140}
-                height={35}
+                width={180} // Aumentato da 140
+                height={45} // Aumentato da 35
                 className="object-contain"
                 priority
               />
@@ -205,8 +204,11 @@ export default function CatalogoSchucoPage() {
                   asChild
                   className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground h-14 rounded-xl font-black uppercase text-[10px] tracking-widest border-none transition-colors"
                 >
-                  <a href={`https://wa.me/393479417554?text=Info Schüco ${m.nome}`}>
-                    <WhatsAppIcon className="mr-2 h-5 w-5" /> Richiedi Preventivo
+                  <a
+                    href={`https://wa.me/393479417554?text=Info Schüco ${m.nome}`}
+                  >
+                    <WhatsAppIcon className="mr-2 h-5 w-5" /> Richiedi
+                    Preventivo
                   </a>
                 </Button>
               </div>
@@ -215,7 +217,86 @@ export default function CatalogoSchucoPage() {
         </div>
       </section>
 
-      {/* Sezione Tecnica e Mazzette rimangono invariate come nell'ultimo aggiornamento */}
+      {/* --- SEZIONE TECNICA (COMPATTA) --- */}
+      <section className="py-16 bg-secondary/40 rounded-[2.5rem] mx-6 mb-12 border border-border">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 text-primary">
+                <Ruler size={24} />
+                <h2 className="text-3xl font-black uppercase tracking-tighter leading-tight">
+                  Ingegneria del <br />
+                  <span className="text-primary italic">Profilo</span>
+                </h2>
+              </div>
+              <p className="text-muted-foreground text-base leading-relaxed italic max-w-md">
+                Ogni sistema Schüco è progettato per garantire stabilità e
+                isolamento termico tramite materiali di ultima generazione.
+              </p>
+              <div className="grid grid-cols-1 gap-3 pt-2 text-[9px] font-bold uppercase tracking-[0.15em]">
+                {[
+                  "Taglio termico integrato ad alta densità",
+                  "Sedi per guarnizioni EPDM a lunga durata",
+                  "Profili a spessori rinforzati",
+                ].map((t, i) => (
+                  <div key={i} className="flex gap-2 items-center">
+                    <CheckCircle2 className="text-accent" size={14} /> {t}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative aspect-square max-w-sm mx-auto w-full bg-white rounded-2xl shadow-lg overflow-hidden border-4 border-white group">
+              <Image
+                src="/catalogo/sezione-tecnica.png"
+                alt="Sezione Tecnica Schüco"
+                fill
+                className="object-contain p-6 group-hover:scale-105 transition-transform duration-1000"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SEZIONE MAZZETTE (SLIM) --- */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-6 max-w-5xl text-center mb-10">
+          <Badge className="bg-primary/10 text-primary mb-3 border-none text-[9px] tracking-widest uppercase font-black">
+            Showroom Terracina
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none">
+            Colori & <span className="text-primary italic">Finiture</span>
+          </h2>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-md border-2 border-card">
+            <Image
+              src="/catalogo/colori/colori2.jpeg"
+              alt="Mazzetta RAL"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <p className="absolute bottom-6 left-6 text-white font-black uppercase tracking-widest text-[10px]">
+              Campionario RAL
+            </p>
+          </div>
+
+          <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-md border-2 border-card">
+            <Image
+              src="/catalogo/colori/colori1.jpeg"
+              alt="Finiture Sablé"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <p className="absolute bottom-6 left-6 text-white font-black uppercase tracking-widest text-[10px]">
+              Sablé & Legno
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* --- CONSULENZA A DOMICILIO --- */}
       <section className="py-24 bg-secondary/10 border-t border-border mt-12">
@@ -228,11 +309,16 @@ export default function CatalogoSchucoPage() {
                 <span className="text-primary italic">a casa tua</span>
               </h3>
               <p className="text-muted-foreground italic text-lg max-w-2xl mx-auto">
-                I nostri tecnici verranno da te con i <strong>campionari reali Schüco</strong> per valutare le finiture migliori.
+                I nostri tecnici verranno da te con i{" "}
+                <strong>campionari reali Schüco</strong> per valutare le
+                finiture migliori.
               </p>
             </div>
             <div className="pt-4">
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-12 h-16 font-black uppercase text-[11px] tracking-[0.2em] transition-all border-none shadow-2xl shadow-primary/20">
+              <Button
+                asChild
+                className="bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-12 h-16 font-black uppercase text-[11px] tracking-[0.2em] transition-all border-none shadow-2xl shadow-primary/20"
+              >
                 <Link href="/contatti">Prenota un sopralluogo gratuito</Link>
               </Button>
             </div>
