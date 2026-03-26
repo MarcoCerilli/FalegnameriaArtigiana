@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Sparkles, Hammer, Palette, ShieldCheck, ThermometerSun } from "lucide-react";
+import {
+  ArrowLeft,
+  ShieldCheck,
+  ThermometerSun,
+  Palette,
+  CheckCircle2,
+  Ruler,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -14,44 +21,83 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const CATEGORIES = ["Tutti", "Finestre", "Scorrevoli", "Facciate", "Sistemi Smart"];
+const CATEGORIES = ["Tutti", "Anta a vista", "Anta a scomparsa", "Panoramica"];
 
 const modelliInfissi = [
+  // PANORAMICA
   {
-    id: "s1",
-    nome: "Schüco AWS 75.SI",
-    cat: "Finestre",
-    materiale: "Alluminio",
-    finitura: "Super Insulation",
-    img: "/catalogo/schuco-aws75.jpg",
-    tag: "Efficienza",
+    id: "aws-75-pd",
+    nome: "Schüco AWS 75 PD.SI",
+    cat: "Panoramica",
+    prestazione: "Design Panorama",
+    plus: "Super Isolamento SI",
+    img: "/catalogo/finestre/panoramica.webp",
+    tag: "Panoramica",
+  },
+  // ANTA A SCOMPARSA (Block System)
+  {
+    id: "aws-90-bs",
+    nome: "Schüco AWS 90 BS.SI+",
+    cat: "Anta a scomparsa",
+    prestazione: "Standard Casa Passiva",
+    plus: "Uf = 0.96 W/m²K",
+    img: "/catalogo/finestre/aws90bs.png",
+    tag: "Scomparsa",
   },
   {
-    id: "s2",
-    nome: "Schüco ASE 60",
-    cat: "Scorrevoli",
-    materiale: "Profilo Sottile",
-    finitura: "Soglia a filo",
-    img: "/catalogo/schuco-ase60.jpg",
-    tag: "Design",
+    id: "aws-75-bs",
+    nome: "Schüco AWS 75 BS.HI+",
+    cat: "Anta a scomparsa",
+    prestazione: "Elevato Isolamento",
+    plus: "Profilo Snello",
+    img: "/catalogo/finestre/aws75bs.png",
+    tag: "Scomparsa",
   },
   {
-    id: "s3",
-    nome: "AWS 90 AC.SI",
-    cat: "Finestre",
-    materiale: "Isolamento Acustico",
-    finitura: "Premium Grey",
-    img: "/catalogo/schuco-acustico.jpg",
-    tag: "Comfort",
+    id: "aws-65-bs",
+    nome: "Schüco AWS 65 BS.HI+",
+    cat: "Anta a scomparsa",
+    prestazione: "Versatilità e Design",
+    plus: "Anta Minimal",
+    img: "/catalogo/finestre/aws65bs.png",
+    tag: "Scomparsa",
+  },
+  // ANTA A VISTA
+  {
+    id: "aws-90-si",
+    nome: "Schüco AWS 90.SI+",
+    cat: "Anta a vista",
+    prestazione: "Isolamento Estremo",
+    plus: "Massima Efficienza",
+    img: "/catalogo/finestre/aws90.png",
+    tag: "A vista",
   },
   {
-    id: "s4",
-    nome: "FWS 50",
-    cat: "Facciate",
-    materiale: "Vetro Continuo",
-    finitura: "Minimale",
-    img: "/catalogo/schuco-facciata.jpg",
-    tag: "Architettura",
+    id: "aws-75-si",
+    nome: "Schüco AWS 75.SI+",
+    cat: "Anta a vista",
+    prestazione: "Isolamento Top",
+    plus: "Il più venduto",
+    img: "/catalogo/finestre/aws75.png",
+    tag: "A vista",
+  },
+  {
+    id: "aws-65",
+    nome: "Schüco AWS 65",
+    cat: "Anta a vista",
+    prestazione: "Moderno e Funzionale",
+    plus: "Soluzione Standard",
+    img: "/catalogo/finestre/aws65.png",
+    tag: "A vista",
+  },
+  {
+    id: "aws-90-ac",
+    nome: "Schüco AWS 90 AC.SI",
+    cat: "Anta a vista",
+    prestazione: "Isolamento Acustico",
+    plus: "Silent Comfort",
+    img: "/catalogo/finestre/aws90ac.png",
+    tag: "Acustica",
   },
 ];
 
@@ -63,37 +109,54 @@ export default function CatalogoSchucoPage() {
       : modelliInfissi.filter((m) => m.cat === filter);
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="relative py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
+    <div className="min-h-screen bg-background text-foreground">
+      {/* --- HEADER --- */}
+      <section className="relative pt-32 pb-20 bg-primary text-primary-foreground overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
           <Link
             href="/servizi"
-            className="inline-flex items-center gap-2 text-accent mb-4 hover:opacity-80 transition-opacity text-[10px] uppercase tracking-[0.2em] font-bold"
+            className="inline-flex items-center gap-2 text-accent mb-12 hover:opacity-80 transition-all text-[10px] uppercase tracking-[0.2em] font-black"
           >
-            <ArrowLeft size={12} /> Torna ai servizi
+            <ArrowLeft size={14} /> Torna ai servizi
           </Link>
-          <h1 className="text-4xl md:text-5xl font-headline italic mb-4">
-            Sistemi <span className="text-accent">Schüco</span>
-          </h1>
-          <p className="opacity-90 max-w-xl mx-auto text-sm italic font-light leading-relaxed">
-            Eccellenza tecnologica in alluminio per il massimo isolamento termico e acustico.
-          </p>
+
+          <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
+            <div className="bg-white inline-flex p-4 rounded-xl shadow-xl shrink-0">
+              <Image
+                src="/logos/shuco.png"
+                alt="Schüco Official Logo"
+                width={140}
+                height={35}
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            <div className="max-w-4xl">
+              <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+                Sistemi <span className="text-accent italic">Schüco</span>
+              </h1>
+              <p className="text-primary-foreground/80 text-lg font-medium leading-relaxed max-w-xl">
+                L'alluminio Schüco incontra l'esperienza Mave. Soluzioni
+                d'avanguardia per isolamento e design a Terracina.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Filtri */}
-      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border py-4">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center gap-2">
+      {/* --- FILTRI --- */}
+      <div className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border py-6">
+        <div className="container mx-auto px-6 flex flex-wrap justify-center gap-2">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
               className={cn(
-                "rounded-full px-5 py-2 text-[10px] font-black uppercase tracking-widest transition-all border",
+                "rounded-full px-6 py-2 text-[11px] font-black uppercase tracking-widest transition-all border-2",
                 filter === cat
-                  ? "bg-primary text-white border-primary"
-                  : "bg-secondary/30 text-muted-foreground",
+                  ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20"
+                  : "bg-transparent text-muted-foreground border-transparent hover:border-secondary",
               )}
             >
               {cat}
@@ -102,53 +165,48 @@ export default function CatalogoSchucoPage() {
         </div>
       </div>
 
-      {/* Sezione Prodotti */}
-      <section className="py-12 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {/* --- GRID MODELLI --- */}
+      <section className="py-20 container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {filteredModels.map((m) => (
             <div
               key={m.id}
-              className="group bg-card rounded-2xl border border-border/40 overflow-hidden flex flex-col"
+              className="group bg-card rounded-[2rem] border border-border overflow-hidden flex flex-col hover:shadow-xl transition-all duration-500"
             >
-              <div className="relative h-[350px] overflow-hidden bg-stone-100">
+              <div className="relative h-[350px] bg-secondary/30 flex items-center justify-center p-8">
                 <Image
                   src={m.img}
                   alt={m.nome}
                   fill
-                  className="object-contain p-6 group-hover:scale-105 transition-transform duration-1000"
-                  unoptimized
+                  className="object-contain p-8 group-hover:scale-110 transition-transform duration-700"
                 />
-                <Badge className="absolute top-4 left-4 bg-primary/90 text-white font-bold text-[9px] px-3 py-1 uppercase">
+                <Badge className="absolute top-6 left-6 bg-accent text-accent-foreground font-black text-[9px] uppercase tracking-widest border-none px-4 py-1.5 pointer-events-none">
                   {m.tag}
                 </Badge>
               </div>
-              <div className="p-6 bg-white flex flex-col flex-grow">
-                <span className="text-[9px] font-black text-accent uppercase tracking-[0.2em]">
+              <div className="p-8 flex flex-col flex-grow bg-card">
+                <span className="text-[10px] font-black text-primary/60 uppercase tracking-widest mb-1">
                   {m.cat}
                 </span>
-                <h3 className="text-xl font-headline italic text-primary mt-1 mb-4">
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">
                   {m.nome}
                 </h3>
-                <div className="grid grid-cols-2 gap-4 py-4 border-y border-border/40 mb-6 text-[11px]">
-                  <div>
-                    <span className="text-[8px] uppercase text-muted-foreground font-bold flex items-center gap-1">
-                      <ThermometerSun size={10} /> Prestazione
-                    </span>
-                    <span className="font-bold">{m.finitura}</span>
+                <div className="space-y-4 mb-8 pt-6 border-t border-border">
+                  <div className="flex items-center gap-3">
+                    <ThermometerSun size={18} className="text-primary" />
+                    <p className="text-sm font-bold">{m.prestazione}</p>
                   </div>
-                  <div>
-                    <span className="text-[8px] uppercase text-muted-foreground font-bold flex items-center gap-1">
-                      <ShieldCheck size={10} /> Sicurezza
-                    </span>
-                    <span className="font-bold">RC2 / RC3</span>
+                  <div className="flex items-center gap-3">
+                    <ShieldCheck size={18} className="text-primary" />
+                    <p className="text-sm font-bold">{m.plus}</p>
                   </div>
                 </div>
                 <Button
                   asChild
-                  className="w-full bg-primary text-white h-12 rounded-xl text-[10px] font-black uppercase tracking-widest"
+                  className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground h-14 rounded-xl font-black uppercase text-[10px] tracking-widest border-none transition-colors"
                 >
-                  <a href={`https://wa.me/393479417554?text=Info su infisso Schüco ${m.nome}`}>
-                    <WhatsAppIcon className="mr-2 h-4 w-4" /> Richiedi Consulenza
+                  <a href={`https://wa.me/393479417554?text=Info Schüco ${m.nome}`}>
+                    <WhatsAppIcon className="mr-2 h-5 w-5" /> Richiedi Preventivo
                   </a>
                 </Button>
               </div>
@@ -157,74 +215,28 @@ export default function CatalogoSchucoPage() {
         </div>
       </section>
 
-      {/* SEZIONE ACCESSORI - COMPATTA */}
-      <section className="py-12 bg-[#F8F7F5] border-y border-stone-200">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-10 max-w-6xl mx-auto">
-            <div className="w-full lg:w-1/2">
-              <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg bg-white border border-stone-100">
-                <Image
-                  src="/catalogo/accessori-maniglie.jpg"
-                  alt="Componenti Schüco"
-                  fill
-                  className="object-contain p-4"
-                  unoptimized
-                />
-              </div>
+      {/* Sezione Tecnica e Mazzette rimangono invariate come nell'ultimo aggiornamento */}
+
+      {/* --- CONSULENZA A DOMICILIO --- */}
+      <section className="py-24 bg-secondary/10 border-t border-border mt-12">
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <Palette className="mx-auto text-primary" size={48} />
+            <div className="space-y-4">
+              <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-foreground leading-none">
+                Scegli i colori <br />
+                <span className="text-primary italic">a casa tua</span>
+              </h3>
+              <p className="text-muted-foreground italic text-lg max-w-2xl mx-auto">
+                I nostri tecnici verranno da te con i <strong>campionari reali Schüco</strong> per valutare le finiture migliori.
+              </p>
             </div>
-
-            <div className="w-full lg:w-1/2 space-y-5">
-              <div className="inline-flex items-center gap-2 text-stone-400 uppercase tracking-widest text-[9px] font-bold">
-                <span className="w-6 h-[1px] bg-stone-300"></span>
-                Hardware & Design
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-3xl font-headline italic text-primary">
-                  Sistemi di <span className="text-stone-500">Apertura</span>
-                </h2>
-                <p className="text-stone-600 italic text-xs md:text-sm leading-relaxed">
-                  Dalle maniglie di design ai sistemi di automazione a scomparsa Schüco SimplySmart.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white border border-stone-100 shadow-sm flex items-center gap-3">
-                  <Sparkles size={14} className="text-stone-400" />
-                  <div>
-                    <p className="text-[8px] uppercase font-black text-stone-400 mb-1">Finiture</p>
-                    <p className="text-[10px] font-bold text-primary italic">Inox, Nero, RAL Custom</p>
-                  </div>
-                </div>
-                <div className="p-3 rounded-xl bg-white border border-stone-100 shadow-sm flex items-center gap-3">
-                  <ShieldCheck size={14} className="text-stone-400" />
-                  <div>
-                    <p className="text-[8px] uppercase font-black text-stone-400 mb-1">Smart Home</p>
-                    <p className="text-[10px] font-bold text-primary italic">Apertura Meccatronica</p>
-                  </div>
-                </div>
-              </div>
+            <div className="pt-4">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-12 h-16 font-black uppercase text-[11px] tracking-[0.2em] transition-all border-none shadow-2xl shadow-primary/20">
+                <Link href="/contatti">Prenota un sopralluogo gratuito</Link>
+              </Button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA FINALE */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="bg-primary rounded-[3rem] p-12 text-primary-foreground text-center">
-          <h2 className="text-3xl font-headline italic mb-4 text-accent">
-            Progettazione Tecnica
-          </h2>
-          <p className="text-sm opacity-80 italic mb-8 max-w-lg mx-auto leading-relaxed">
-            Siamo partner certificati per la posa e la progettazione di sistemi Schüco. 
-            Trasformiamo le tue idee in soluzioni ad alta efficienza energetica.
-          </p>
-          <Button
-            size="lg"
-            className="bg-accent text-primary hover:bg-white text-[10px] font-black uppercase tracking-widest px-10 py-6 rounded-xl"
-            asChild
-          >
-            <Link href="/contatti">Richiedi un sopralluogo</Link>
-          </Button>
         </div>
       </section>
     </div>
