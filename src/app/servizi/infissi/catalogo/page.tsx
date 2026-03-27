@@ -118,15 +118,14 @@ export default function CatalogoSchucoPage() {
           </Link>
 
           {/* Cambiato in flex-row-reverse per mettere il logo a destra su desktop */}
-         <div className="flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-start md:items-center justify-end">
-            {/* Box Logo: aumentato padding e dimensioni immagine */}
-            <div className="bg-white inline-flex p-6 rounded-2xl shadow-2xl shrink-0">
+          <div className="flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-start md:items-center justify-end">
+            <div className="inline-flex p-7 rounded-2xl bg-white/40 backdrop-blur-md border border-white/20 shadow-xl shrink-0">
               <Image
                 src="/logos/shuco.png"
-                alt="Schüco Official Logo"
-                width={180} // Aumentato da 140
-                height={45} // Aumentato da 35
-                className="object-contain"
+                alt="Schüco Official Partner"
+                width={220}
+                height={60}
+                className="object-contain drop-shadow-sm"
                 priority
               />
             </div>
