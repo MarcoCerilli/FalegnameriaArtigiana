@@ -119,13 +119,13 @@ export default function CatalogoSchucoPage() {
 
           {/* Cambiato in flex-row-reverse per mettere il logo a destra su desktop */}
           <div className="flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-start md:items-center justify-end">
-            <div className="inline-flex p-7 rounded-2xl bg-white/40 backdrop-blur-md border border-white/20 shadow-xl shrink-0">
+            <div className="inline-flex p-4 rounded-xl bg-white/30 backdrop-blur-sm border border-white/10 shadow-sm hover:border-white/20 transition-all duration-300 shrink-0">
               <Image
                 src="/logos/shuco.png"
                 alt="Schüco Official Partner"
-                width={220}
-                height={60}
-                className="object-contain drop-shadow-sm"
+                width={200} // Leggermente ridotto per proporzione
+                height={55}
+                className="object-contain drop-shadow-sm filter brightness-105" // Drop-shadow leggerissimo e un filo più luminoso
                 priority
               />
             </div>
