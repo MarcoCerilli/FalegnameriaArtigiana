@@ -39,7 +39,7 @@ const modelliInfissi = [
     cat: "Anta a scomparsa",
     prestazione: "Standard Casa Passiva",
     plus: "Uf = 0.96 W/m²K",
-    img: "/catalogo/finestre/aws90bs.png",
+    img: "/catalogo/finestre/scomparsa1.webp",
     tag: "Scomparsa",
   },
   {
@@ -48,7 +48,7 @@ const modelliInfissi = [
     cat: "Anta a scomparsa",
     prestazione: "Elevato Isolamento",
     plus: "Profilo Snello",
-    img: "/catalogo/finestre/aws75bs.png",
+    img: "/catalogo/finestre/aws-75-m-abschliessbarer-griff.webp",
     tag: "Scomparsa",
   },
   {
@@ -57,7 +57,7 @@ const modelliInfissi = [
     cat: "Anta a scomparsa",
     prestazione: "Versatilità e Design",
     plus: "Anta Minimal",
-    img: "/catalogo/finestre/aws65bs.png",
+    img: "/catalogo/finestre/Finestre Schüco AWS 65 BS.HI+.webp",
     tag: "Scomparsa",
   },
   {
@@ -93,7 +93,7 @@ const modelliInfissi = [
     cat: "Anta a vista",
     prestazione: "Isolamento Acustico",
     plus: "Silent Comfort",
-    img: "/catalogo/finestre/aws90ac.png",
+    img: "/catalogo/finestre/aws90ac-si.webp",
     tag: "Acustica",
   },
 ];
