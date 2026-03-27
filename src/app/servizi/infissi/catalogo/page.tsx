@@ -66,7 +66,7 @@ const modelliInfissi = [
     cat: "Anta a vista",
     prestazione: "Isolamento Estremo",
     plus: "Massima Efficienza",
-    img: "/catalogo/finestre/aws90.png",
+    img: "/catalogo/finestre/Finestre Schüco AWS 90.SI+.webp",
     tag: "A vista",
   },
   {
@@ -75,7 +75,7 @@ const modelliInfissi = [
     cat: "Anta a vista",
     prestazione: "Isolamento Top",
     plus: "Il più venduto",
-    img: "/catalogo/finestre/aws75.png",
+    img: "/catalogo/finestre/Finestre Schüco AWS 75.SI+.webp",
     tag: "A vista",
   },
   {
@@ -84,7 +84,7 @@ const modelliInfissi = [
     cat: "Anta a vista",
     prestazione: "Moderno e Funzionale",
     plus: "Soluzione Standard",
-    img: "/catalogo/finestre/aws65.png",
+    img: "/catalogo/finestre/Finestre Schüco AWS 65.webp",
     tag: "A vista",
   },
   {
