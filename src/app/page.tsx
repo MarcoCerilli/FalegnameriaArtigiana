@@ -63,27 +63,14 @@ export default function Home() {
               alt={heroDesktop.description}
               fill
               priority
-              /* MODIFICHE EFFETTUATE:
-         1. Rimosso COMPLETAMENTE blur-[0.3px] (per nitidezza).
-         2. Rimosso COMPLETAMENTE scale-[1.03] (per nitidezza, evita zoom).
-         3. Mantenuto brightness/contrast per atmosfera e leggibilità testo. */
               className="object-cover object-center brightness-[0.85] contrast-[1.05]"
             />
-
-            {/* Texture Noise: MODIFICATA
-        1. Rimosso pointer-events-none (Next.js Image si occupa dell'accessibilità).
-        2. RIDOTTA opacità da 0.06 a 0.02.
-           A 0.06 (6%) è troppo aggressiva e 'impasta' i dettagli. 
-           A 0.02 (2%) rompe la sgranatura ma senza togliere nitidezza. */}
             <div
               className="absolute inset-0 opacity-[0.02]"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
               }}
             />
-
-            {/* Vignettatura più morbida: meno nera, più sfumata */}
-            {/* Queste vanno bene, scuriscono i bordi per focus centrale e contrasto testo. */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.4)_100%)]" />
             <div className="absolute inset-0 bg-black/15" />
           </div>
@@ -97,8 +84,7 @@ export default function Home() {
               alt={heroMobile.description}
               fill
               priority
-              /* Su mobile togliamo il blur perché lo schermo piccolo maschera già bene */
-              className="object-cover object-center brightness-[0.75] contrast-[1.05]"
+              className="object-cover object-top brightness-[0.75] contrast-[1.05]"
               unoptimized
             />
             <div
@@ -112,24 +98,37 @@ export default function Home() {
         )}
 
         {/* CONTENUTO TEXT & ACTION */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center text-white">
-          <h1 className="font-headline text-4xl sm:text-6xl md:text-8xl leading-[1.1] drop-shadow-2xl px-2">
+        <div
+          className="absolute inset-0 z-10 flex flex-col items-center px-10 sm:px-6 text-center text-white 
+             top-16 justify-start 
+             md:top-0 md:relative md:h-full md:justify-center"
+        >
+          {/* Titolo */}
+          <h1 className="font-headline text-3xl sm:text-6xl md:text-8xl leading-[1.1] drop-shadow-2xl px-2">
             Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
             <span className="text-accent italic font-light">
               dal Legno al Mare.
             </span>
           </h1>
 
-          <p className="mt-6 md:mt-8 text-lg md:text-2xl max-w-2xl mx-auto text-white/90 font-light px-4 drop-shadow-md">
+          {/* Paragrafo */}
+          <p className="mt-4 md:mt-8 text-base md:text-2xl max-w-2xl mx-auto text-white/90 font-light px-4 drop-shadow-md">
             Soluzioni su misura per la tua casa <br className="sm:hidden" /> e
             la tua imbarcazione.
           </p>
 
+          {/* Bottoni */}
           <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center w-full">
             <Button
               asChild
               size="lg"
-              className="w-full max-w-[280px] sm:w-auto bg-accent text-[#242c24] font-bold py-7 sm:py-8 text-lg sm:text-xl rounded-full shadow-[0_10px_30px_-10px_rgba(190,242,2,0.4)] hover:bg-[#d4ff00] hover:scale-105 hover:shadow-[0_15px_35px_-5px_rgba(190,242,2,0.6)] transition-all duration-300"
+              className="w-full max-w-[280px] sm:w-auto 
+                 /* MOBILE: Trasparente */
+                 bg-transparent border-2 border-accent text-accent 
+                 /* DESKTOP: Giallo Pieno */
+                 md:bg-accent md:text-[#242c24] md:border-transparent
+                 font-bold py-7 sm:py-8 text-lg sm:text-xl rounded-full transition-all duration-300 shadow-md 
+                 hover:bg-accent hover:text-[#242c24] hover:scale-105 active:scale-95"
             >
               <Link href="/contatti">Preventivo Gratuito</Link>
             </Button>
@@ -138,7 +137,13 @@ export default function Home() {
               asChild
               size="lg"
               variant="outline"
-              className="w-full max-w-[280px] sm:w-auto bg-white/10 backdrop-blur-md text-white border-white/20 py-7 sm:py-8 text-lg sm:text-xl rounded-full hover:bg-white hover:text-[#242c24] hover:border-white hover:scale-105 transition-all duration-300 shadow-xl"
+              className="w-full max-w-[280px] sm:w-auto 
+                 /* MOBILE: Trasparente */
+                 bg-transparent border-2 border-white/40 text-white 
+                 /* DESKTOP: Effetto vetro scuro più leggibile */
+                 md:bg-white/10 md:backdrop-blur-md md:border-white/20
+                 font-medium py-7 sm:py-8 text-lg sm:text-xl rounded-full transition-all duration-300 shadow-lg 
+                 hover:bg-white hover:text-zinc-950 hover:border-white hover:scale-105 active:scale-95"
             >
               <Link href="#servizi">I nostri servizi</Link>
             </Button>

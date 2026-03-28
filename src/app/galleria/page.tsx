@@ -101,12 +101,22 @@ export default function GalleriaPage() {
     {
       id: 20,
       src: "/gallery/arredo_mave.20.jpg",
-      desc: "Progetto completo arredo nautico",
+      desc: "Progetto Letto sospeso con testiera e led integrati in rovere massello",
     },
     {
       id: 21,
       src: "/gallery/arredo_mave.21.jpg",
       desc: "Porta scorrevole design",
+    },
+    {
+      id: 22,
+      src: "/gallery/arredo_mave.22.jpg",
+      desc: "Cantinetta vino refrigerata",
+    },
+    {
+      id: 23,
+      src: "/gallery/arredo_mave.23.jpg",
+      desc: "Armadio laminato con mensola cassetto laccato",
     },
   ];
 
