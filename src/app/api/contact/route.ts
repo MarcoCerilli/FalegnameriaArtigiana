@@ -5,22 +5,28 @@ export async function POST(request: Request) {
   try {
     const { name, email, phone, subject, message } = await request.json();
 
-    // Configurazione specifica per Gmail
+    // 1. Configurazione Robusta: Usiamo l'host esplicito invece di "service: gmail"
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        // Qui devi inserire la password per le app di 16 caratteri
-        pass: process.env.EMAIL_PASS, 
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // 1. MAIL PER LA FALEGNAMERIA
+    // 2. Definizione contenuti testuali (fondamentale contro lo spam)
+    const adminText = `Nuovo messaggio da ${name} (${email}, tel: ${phone}):\n\nOggetto: ${subject}\n\nMessaggio:\n${message}`;
+    const clientText = `Ciao ${name}, abbiamo ricevuto la tua richiesta per "${subject}". Ti ricontatteremo al più presto. Grazie da Mave Arredamenti.`;
+
+    // 3. Configurazione Mail Admin
     const adminMail = {
       from: `"Sito Web Mave" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `🛠️ Nuovo Progetto: ${subject} - ${name}`,
+      text: adminText, // Aggiunto per migliorare deliverability
       html: `
         <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-top: 6px solid #4a5d4d; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
@@ -42,11 +48,12 @@ export async function POST(request: Request) {
       `,
     };
 
-    // 2. MAIL DI CONFERMA PER IL CLIENTE
+    // 4. Configurazione Mail Cliente (Semplificata un minimo per non insospettire i filtri)
     const clientMail = {
       from: `"Mave Arredamenti" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: `Grazie per averci contattato - Mave Arredamenti`,
+      text: clientText, // Aggiunto per migliorare deliverability
       html: `
         <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; text-align: center;">
@@ -65,11 +72,9 @@ export async function POST(request: Request) {
       `,
     };
 
-    // Invia entrambe le mail
-    await Promise.all([
-      transporter.sendMail(adminMail),
-      transporter.sendMail(clientMail),
-    ]);
+    // 5. Invio SEQUENZIALE (più sicuro dell'invio contemporaneo)
+    await transporter.sendMail(adminMail);
+    await transporter.sendMail(clientMail);
 
     return NextResponse.json({ message: "Inviato con successo" }, { status: 200 });
 
