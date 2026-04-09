@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `🛠️ Nuovo Progetto: ${subject} - ${name}`,
-      text: adminText, // Aggiunto per migliorare deliverability
+      text: adminText, 
       html: `
         <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-top: 6px solid #4a5d4d; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
