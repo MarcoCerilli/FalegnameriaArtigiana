@@ -67,8 +67,8 @@ export default function Footer() {
                   <Mail className="h-4 w-4" /> Scrivici
                 </h3>
                 <div className="flex flex-col gap-1.5 text-xs text-white/70">
-                  <a href="mailto:..." className="hover:text-accent transition-colors truncate">
-                   ...
+                  <a href="mailto:mavearredamenti@gmail.com" className="hover:text-accent transition-colors truncate">
+                   mavearredamenti@gmail.com
                   </a>
                  
                 </div>

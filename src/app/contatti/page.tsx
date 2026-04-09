@@ -130,7 +130,7 @@ export default function ContattiPage() {
                       Scrivici
                     </p>
                     <div className="text-sm md:text-base text-muted-foreground break-all">
-                      <p>....</p>
+                      <p>mavearredamenti@gmail.com</p>
                     </div>
                   </div>
                 </div>
