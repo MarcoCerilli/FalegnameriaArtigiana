@@ -43,14 +43,28 @@ export default function Header() {
           })}
         </nav>
 
-        {/* LOGO (Centro Assoluto) */}
-        <div className="flex justify-center items-center z-10 shrink-0">
+        {/* LOGO */}
+        <div className="flex justify-start lg:justify-center items-center z-10 shrink-0">
           <Link
             href="/"
             className="flex items-center hover:opacity-90 transition-opacity"
           >
             <Logo />
           </Link>
+        </div>
+
+        {/* MOBILE TOGGLE */}
+        <div className="flex lg:hidden flex-1 justify-end items-center">
+          <button
+            className="text-accent hover:bg-accent/10 hover:text-accent active:bg-accent/20 rounded-full transition-colors h-14 w-14 flex items-center justify-center focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-10 w-10" />
+            ) : (
+              <Menu className="h-10 w-10" />
+            )}
+          </button>
         </div>
 
         {/* NAV DESKTOP E BOTTONE (Destra) */}
@@ -80,25 +94,6 @@ export default function Header() {
             <Link href="/contatti">Contattaci</Link>
           </Button>
         </nav>
-
-        {/* MOBILE ALIGNMENT (Logo a sinistra su mobile, Toggle a destra) */}
-        <div className="lg:hidden flex items-center justify-between w-full">
-          {/* Su mobile il logo l'abbiamo già messo al centro ma dobbiamo gestire il layout flex:
-              La struttura sopra assumeva logo al centro ma per mobile serve flex-between */}
-          <div className="flex-1" />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-white hover:bg-white/10 rounded-full transition-colors absolute right-4"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
-        </div>
       </div>
 
       {/* MENU MOBILE */}
@@ -114,7 +109,7 @@ export default function Header() {
                   "text-lg font-headline italic transition-all p-3 rounded-xl",
                   pathname === link.href
                     ? "bg-accent/10 text-accent border-l-4 border-accent"
-                    : "text-white/70 hover:bg-white/5 hover:text-white hover:pl-4",
+                    : "text-white/80 hover:bg-accent/5 hover:text-accent hover:pl-4",
                 )}
               >
                 {link.label}
