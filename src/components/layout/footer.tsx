@@ -55,9 +55,6 @@ export default function Footer() {
                   <a href="tel:+393479417554" className="hover:text-accent transition-colors flex items-center gap-2">
                     <span className="text-accent/50">Massimo</span> 347 9417554
                   </a>
-                  <a href="tel:+393471809003" className="hover:text-accent transition-colors flex items-center gap-2">
-                    <span className="text-accent/50">Luana</span> 347 1809003
-                  </a>
                 </div>
             </div>
 

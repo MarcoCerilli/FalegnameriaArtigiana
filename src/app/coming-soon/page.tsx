@@ -41,14 +41,14 @@ export default function ComingSoon() {
               size="lg" 
               className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-7 text-lg shadow-2xl transition-transform hover:scale-105"
             >
-              <a href="https://wa.me/39XXXXXXXXXX" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/393479417554" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2 h-6 w-6" />
                 Contattaci su WhatsApp
               </a>
             </Button>
             
             <p className="text-white/60 font-medium tracking-widest uppercase text-xs">
-              Terracina (LT) • Dal 19XX
+              Terracina (LT) • Falegnameria Artigiana & Nautica
             </p>
           </div>
         </div>

@@ -16,6 +16,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.mavearredamenti.it"),
   // Titolo ottimizzato per la ricerca
   title: "Mave Arredamenti | Falegnameria e Tappezzeria Nautica Terracina",
 

@@ -110,12 +110,6 @@ export default function ContattiPage() {
                         </span>{" "}
                         347 9417554
                       </p>
-                      <p>
-                        <span className="font-semibold text-primary/70">
-                          Luana:
-                        </span>{" "}
-                        347 1809003
-                      </p>
                     </div>
                   </div>
                 </div>
