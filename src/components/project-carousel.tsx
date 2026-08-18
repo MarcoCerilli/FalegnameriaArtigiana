@@ -12,13 +12,13 @@ interface ProjectCarouselProps {
 }
 
 export function ProjectCarousel({ images }: ProjectCarouselProps) {
-  const autoplay = React.useRef(
+  const [plugins] = React.useState(() => [
     Autoplay({ delay: 3000, stopOnInteraction: false }),
-  );
+  ]);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "center" },
-    [autoplay.current],
+    plugins,
   );
 
   const scrollPrev = React.useCallback(
