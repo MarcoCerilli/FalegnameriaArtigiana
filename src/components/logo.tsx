@@ -9,6 +9,7 @@ export default function Logo() {
           alt="Mave Arredamenti Logo" 
           width={180} 
           height={180} 
+          sizes="180px"
           className="object-contain h-full w-auto scale-120 rounded-xl"
           priority
         />

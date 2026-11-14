@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-//@ts-ignore
+import type { Metadata, Viewport } from "next";
+import { Alegreya, Belleza } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
@@ -7,24 +7,36 @@ import Footer from "@/components/layout/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 import { CraftPopup } from "@/components/craft-popup";
 
-// Definizione del Viewport per il mobile
-export const viewport = {
+const alegreya = Alegreya({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-alegreya",
+  display: "swap",
+});
+
+const belleza = Belleza({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-belleza",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5, 
-  themeColor: "#4a3c2c", // Marrone scuro richiamo legno
+  maximumScale: 5,
+  themeColor: "#4a3c2c",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mavearredamenti.it"),
-  // Titolo ottimizzato per la ricerca
-  title: "Mave Arredamenti | Falegnameria e Tappezzeria Nautica Terracina",
-
-  // Descrizione per Google (max 160 caratteri)
+  title: {
+    default: "Mave Arredamenti | Falegnameria e Tappezzeria Nautica Terracina",
+    template: "%s | Mave Arredamenti",
+  },
   description:
     "Eccellenza artigiana di Simonelli Massimo a Terracina. Arredi su misura, tappezzeria nautica di lusso, infissi e portoni blindati. Trasforma la tua casa e la tua barca.",
-
-  // Configurazione Icone (Punta ai file nella cartella /src/app)
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon-180x180.png",
@@ -37,17 +49,17 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // Keywords mirate
-  keywords:
-    "falegnameria Terracina, tappezzeria nautica Terracina, arredi su misura Terracina, restauro barche Terracina, infissi in legno Terracina, Simonelli Massimo Terracina, zanzariere Terracina",
-
-  // URL Canonica
-  alternates: {
-    canonical: "https://www.mavearredamenti.it",
-  },
-
-  // Open Graph per Social e WhatsApp
+  keywords: [
+    "falegnameria Terracina",
+    "tappezzeria nautica Terracina",
+    "arredi su misura Terracina",
+    "restauro barche Terracina",
+    "infissi in legno Terracina",
+    "infissi Schüco Terracina",
+    "Simonelli Massimo Terracina",
+    "zanzariere Terracina",
+    "portoni blindati Terracina",
+  ],
   openGraph: {
     title: "Mave Arredamenti | Dal Legno al Mare",
     description:
@@ -65,8 +77,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // Metadata per Twitter/X
   twitter: {
     card: "summary_large_image",
     title: "Mave Arredamenti | Dal Legno al Mare",
@@ -76,26 +86,46 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: "Mave Arredamenti",
+  description:
+    "Falegnameria artigianale, tappezzeria nautica, installazione infissi Schüco, zanzariere e portoni blindati su misura a Terracina.",
+  url: "https://www.mavearredamenti.it",
+  telephone: "+393479417554",
+  email: "mavearredamenti@gmail.com",
+  founder: {
+    "@type": "Person",
+    name: "Massimo Simonelli",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via Giorgione SNC",
+    addressLocality: "Terracina",
+    addressRegion: "LT",
+    postalCode: "04019",
+    addressCountry: "IT",
+  },
+  areaServed: ["Terracina", "Latina", "San Felice Circeo", "Fondi", "Sabaudia"],
+  sameAs: ["https://www.instagram.com/mave_arredamenti/"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className="scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Belleza&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="it"
+      className={`${alegreya.variable} ${belleza.variable} scroll-smooth`}
+    >
       <body className="font-body antialiased flex flex-col min-h-screen selection:bg-accent/30 selection:text-primary">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />

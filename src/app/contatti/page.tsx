@@ -1,9 +1,19 @@
 
 
+import type { Metadata } from "next";
 import ContactForm from "@/components/contact-form";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: "Contatti e Preventivi",
+  description:
+    "Contatta Mave Arredamenti di Massimo Simonelli a Terracina per un preventivo gratuito su falegnameria, tappezzeria nautica, infissi Schüco e portoni blindati.",
+  alternates: {
+    canonical: "/contatti",
+  },
+};
 
 export default function ContattiPage() {
   const heroImage = PlaceHolderImages.find(
@@ -67,7 +77,7 @@ export default function ContattiPage() {
       </section>
 
       {/* SEZIONE CONTATTO */}
-      <main className="container mx-auto px-4 py-16 md:py-24">
+      <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* Colonna Info */}
           <aside className="lg:col-span-1 space-y-8">
@@ -147,7 +157,7 @@ export default function ContattiPage() {
             <ContactForm />
           </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }

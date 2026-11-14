@@ -1,6 +1,6 @@
 import Logo from "@/components/logo";
 import { NAV_LINKS } from "@/lib/constants";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -74,20 +74,15 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex gap-3">
-            <Link 
-              href="https://www.instagram.com/mave_arredamenti/" 
+            <a
+              href="https://www.instagram.com/mave_arredamenti/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="p-2.5 rounded-full bg-white/5 border border-white/10 text-white hover:bg-accent hover:text-[#242c24] transition-all"
             >
               <Instagram className="h-5 w-5" />
-            </Link>
-            <Link 
-              href="#" 
-              aria-label="Facebook"
-              className="p-2.5 rounded-full bg-white/5 border border-white/10 text-white hover:bg-[#1877F2] transition-all"
-            >
-              <Facebook className="h-5 w-5" />
-            </Link>
+            </a>
           </div>
         </div>
 

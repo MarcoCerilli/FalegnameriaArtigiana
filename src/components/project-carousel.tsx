@@ -54,8 +54,9 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
                   src={image.imageUrl}
                   alt=""
                   fill
+                  quality={30}
+                  sizes="(max-width: 768px) 85vw, (max-width: 1024px) 55vw, 45vw"
                   className="object-cover blur-3xl opacity-20 scale-125"
-                  unoptimized
                 />
 
                 {/* Overlay per dare l'effetto "carta o legno chiaro" */}
@@ -67,8 +68,8 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
                     src={image.imageUrl}
                     alt={image.description}
                     fill
+                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 55vw, 45vw"
                     className="object-contain drop-shadow-2xl transition-transform duration-700 group-hover/card:scale-[1.03]"
-                    unoptimized
                   />
                 </div>
 
@@ -93,6 +94,7 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
       <Button
         variant="outline"
         size="icon"
+        aria-label="Progetto precedente"
         className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white/90 shadow-lg border-none hover:bg-accent hover:text-white transition-all -translate-x-1/2 hidden md:flex z-20"
         onClick={scrollPrev}
       >
@@ -102,6 +104,7 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
       <Button
         variant="outline"
         size="icon"
+        aria-label="Progetto successivo"
         className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white/90 shadow-lg border-none hover:bg-accent hover:text-white transition-all translate-x-1/2 hidden md:flex z-20"
         onClick={scrollNext}
       >

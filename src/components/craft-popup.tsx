@@ -17,7 +17,9 @@ export function CraftPopup() {
     <div className="fixed bottom-6 left-6 z-50 animate-in fade-in slide-in-from-left-10 duration-700">
       <div className="bg-card text-card-foreground shadow-2xl p-6 rounded-2xl max-w-[320px] relative border-2 border-primary/20">
         {/* Tasto chiusura */}
-        <button 
+        <button
+          type="button"
+          aria-label="Chiudi avviso"
           onClick={() => setShow(false)}
           className="absolute top-3 right-3 text-muted-foreground hover:text-primary transition-colors"
         >

@@ -56,7 +56,10 @@ export default function Header() {
         {/* MOBILE TOGGLE */}
         <div className="flex lg:hidden flex-1 justify-end items-center">
           <button
-            className="text-accent hover:bg-accent/10 hover:text-accent active:bg-accent/20 rounded-full transition-colors h-14 w-14 flex items-center justify-center focus:outline-none"
+            type="button"
+            aria-label={isMobileMenuOpen ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={isMobileMenuOpen}
+            className="text-accent hover:bg-accent/10 hover:text-accent active:bg-accent/20 rounded-full transition-colors h-14 w-14 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (

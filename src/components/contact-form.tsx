@@ -70,7 +70,7 @@ export default function ContactForm() {
         const errorData = await response.json();
         throw new Error(errorData.details || "Errore durante l'invio");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         variant: "destructive",
         title: "Errore di invio",

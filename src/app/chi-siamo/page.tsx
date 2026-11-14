@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Chi Siamo",
+  description:
+    "La storia e la filosofia artigiana di Massimo Simonelli a Terracina: passione per il legno, falegnameria nautica e lavorazioni su misura.",
+  alternates: {
+    canonical: "/chi-siamo",
+  },
+};
 
 const heroImage = PlaceHolderImages.find(
   (p) => p.id === "hero-chi-siamo-desktop",
@@ -21,6 +31,7 @@ export default function ChiSiamoPage() {
                 alt={heroImage.description}
                 fill
                 priority
+                sizes="100vw"
                 /* EFFETTO ALLEGGERITO: rimosso blur, scala di base ridotta e luminosità naturale */
                 className="object-cover object-center brightness-[0.9] contrast-[1.02] transition-transform duration-[10s] hover:scale-105"
               />
@@ -43,9 +54,9 @@ export default function ChiSiamoPage() {
                 alt={heroImage.description}
                 fill
                 priority
+                sizes="100vw"
                 /* Su mobile: immagine pulita e luminosa */
                 className="object-cover object-center brightness-[0.85]"
-                unoptimized
               />
             </div>
           )}
@@ -100,8 +111,7 @@ export default function ChiSiamoPage() {
                     src={aboutImage.imageUrl}
                     alt={aboutImage.description}
                     fill
-                    unoptimized
-                    priority
+                    sizes="(max-width: 768px) 100vw, 448px"
                     className="object-cover scale-100 object-center transition-transform duration-700 group-hover:scale-105"
                   />
                 )}

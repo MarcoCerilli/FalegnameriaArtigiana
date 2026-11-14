@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -14,6 +13,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectCarousel } from "@/components/project-carousel";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   // Recupero immagini con fallback
@@ -63,6 +68,7 @@ export default function Home() {
               alt={heroDesktop.description}
               fill
               priority
+              sizes="100vw"
               className="object-cover object-center brightness-[0.85] contrast-[1.05]"
             />
             <div
@@ -84,8 +90,8 @@ export default function Home() {
               alt={heroMobile.description}
               fill
               priority
+              sizes="100vw"
               className="object-cover object-top brightness-[1.25] contrast-[1.0]"
-              unoptimized
             />
             <div
               className="absolute inset-0 opacity-[0.05] pointer-events-none"
@@ -148,7 +154,7 @@ export default function Home() {
               <Link href="#servizi">I nostri servizi</Link>
             </Button>
           </div>
-        </div>ò
+        </div>
       </section>
 
       {/* SERVIZI SECTION */}
@@ -201,8 +207,9 @@ export default function Home() {
                       src={aboutHomeImage.imageUrl}
                       alt=""
                       fill
+                      quality={30}
+                      sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover blur-3xl opacity-30 scale-110"
-                      unoptimized
                     />
                     {/* 2. Overlay di contrasto */}
                     <div className="absolute inset-0 bg-black/5" />
@@ -211,8 +218,8 @@ export default function Home() {
                       src={aboutHomeImage.imageUrl}
                       alt={aboutHomeImage.description}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-contain p-4 drop-shadow-2xl transition-transform duration-700 group-hover:scale-[1.03]"
-                      unoptimized
                     />
                   </>
                 )}

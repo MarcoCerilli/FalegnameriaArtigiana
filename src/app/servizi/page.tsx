@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   Card,
   CardContent,
@@ -9,6 +10,15 @@ import { services, type Service } from "@/lib/services";
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: "Servizi",
+  description:
+    "Scopri tutti i servizi artigianali di Mave Arredamenti a Terracina: falegnameria su misura, tappezzeria nautica, infissi Schüco, zanzariere e portoni blindati.",
+  alternates: {
+    canonical: "/servizi",
+  },
+};
 
 function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
@@ -62,6 +72,7 @@ export default function ServiziPage() {
               src={heroDesktop.imageUrl}
               alt={heroDesktop.description}
               fill
+              sizes="100vw"
               // 1. Schiarito a 1.15
               // 2. scale-105: ridotto leggermente lo zoom rispetto a prima per "allontanare"
               // 3. object-cover: mantiene il riempimento ma con una scala più dolce
@@ -92,9 +103,9 @@ export default function ServiziPage() {
               src={heroMobile.imageUrl}
               alt={heroMobile.description}
               fill
+              sizes="100vw"
               className="object-cover object-center"
               priority
-              unoptimized
             />
           </div>
         )}

@@ -28,7 +28,9 @@ export default function WhatsAppButton() {
       {isOpen && (
         <div className="mb-4 mr-2 bg-white text-gray-800 p-4 rounded-2xl shadow-2xl border border-gray-100 max-w-[250px] relative animate-in fade-in slide-in-from-bottom-4 duration-500">
           {/* Pulsante per chiudere solo il fumetto */}
-          <button 
+          <button
+            type="button"
+            aria-label="Chiudi messaggio"
             onClick={() => setIsOpen(false)}
             className="absolute -top-2 -right-2 bg-gray-200 text-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-gray-300"
           >

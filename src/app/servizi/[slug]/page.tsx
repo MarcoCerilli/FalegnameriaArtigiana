@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { services } from "@/lib/services";
@@ -10,6 +11,29 @@ export async function generateStaticParams() {
   return services.map((service) => ({
     slug: service.slug,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
+
+  if (!service) {
+    return {
+      title: "Servizio non trovato",
+    };
+  }
+
+  return {
+    title: `${service.title} a Terracina`,
+    description: service.longDescription.slice(0, 160),
+    alternates: {
+      canonical: `/servizi/${service.slug}`,
+    },
+  };
 }
 
 export default async function ServiceDetailPage({
@@ -117,6 +141,7 @@ export default async function ServiceDetailPage({
                       src={serviceImage.imageUrl}
                       alt={serviceImage.description}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 448px"
                       className="object-cover brightness-[1.03] transition-transform duration-500 group-hover:scale-105"
                     />
                     {/* Noise texture applicata sopra l'immagine arrotondata */}

@@ -1,129 +1,51 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight, Maximize2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Lightbox from "yet-another-react-lightbox";
-// @ts-ignore
-import "yet-another-react-lightbox/styles.css";
+import { GalleryGrid, type GalleryPhoto } from "@/components/gallery-grid";
+
+export const metadata: Metadata = {
+  title: "Galleria Progetti",
+  description:
+    "Esplora la galleria dei lavori artigianali di Mave Arredamenti a Terracina: cucine su misura, rivestimenti nautici in teak, portoni blindati, scale e arredi in legno.",
+  alternates: {
+    canonical: "/galleria",
+  },
+};
+
+const galleryPhotos: GalleryPhoto[] = [
+  { id: 1, src: "/gallery/arredo_mave.1.jpg", desc: "Cucina artigianale in massello" },
+  { id: 2, src: "/gallery/arredo_mave.2.jpg", desc: "Rivestimento pozzetto in Teak" },
+  { id: 3, src: "/gallery/arredo_mave.3.jpg", desc: "Armadio a muro su misura" },
+  { id: 4, src: "/gallery/arredo_mave.4.jpg", desc: "Dettaglio mobili per interni yacht" },
+  { id: 5, src: "/gallery/arredo_mave.5.jpg", desc: "Portone blindato con pannello in legno" },
+  { id: 7, src: "/gallery/arredo_mave.7.jpg", desc: "Tavolo da pranzo in rovere naturale" },
+  { id: 8, src: "/gallery/arredo_mave.8.jpg", desc: "Restauro mobili d'epoca" },
+  { id: 9, src: "/gallery/arredo_mave.9.jpg", desc: "Separè per soggiorno" },
+  { id: 11, src: "/gallery/arredo_mave.11.jpg", desc: "Scale interne in legno pregiato" },
+  { id: 12, src: "/gallery/arredo_mave.12.jpg", desc: "Arredo bagno personalizzato" },
+  { id: 13, src: "/gallery/arredo_mave.13.jpg", desc: "Lavorazione artigianale sottocoperta" },
+  { id: 14, src: "/gallery/arredo_mave.14.jpg", desc: "Porte interne di design" },
+  { id: 15, src: "/gallery/arredo_mave.15.jpg", desc: "Dettagli tecnici di falegnameria" },
+  { id: 16, src: "/gallery/arredo_mave.16.jpg", desc: "Complementi d'arredo per il mare" },
+  { id: 17, src: "/gallery/arredo_mave.17.jpg", desc: "Libreria su misura" },
+  { id: 18, src: "/gallery/arredo_mave.18.jpg", desc: "Finiture artigianali di pregio" },
+  { id: 19, src: "/gallery/arredo_mave.19.jpg", desc: "Strutture in legno per esterni" },
+  { id: 20, src: "/gallery/arredo_mave.20.jpg", desc: "Progetto Letto sospeso con testiera e led integrati in rovere massello" },
+  { id: 21, src: "/gallery/arredo_mave.21.jpg", desc: "Porta scorrevole design" },
+  { id: 22, src: "/gallery/arredo_mave.22.jpg", desc: "Cantinetta vino refrigerata" },
+  { id: 23, src: "/gallery/arredo_mave.23.jpg", desc: "Armadio laminato con mensola cassetto laccato" },
+];
 
 export default function GalleriaPage() {
-  const [index, setIndex] = useState(-1);
-
   const heroDesktop =
     PlaceHolderImages.find((p) => p.id === "hero-galleria-desktop")?.imageUrl ||
     "/images/hero-main.jpg";
   const heroMobile =
     PlaceHolderImages.find((p) => p.id === "hero-galleria-mobile")?.imageUrl ||
     heroDesktop;
-
-  const galleryPhotos = [
-    {
-      id: 1,
-      src: "/gallery/arredo_mave.1.jpg",
-      desc: "Cucina artigianale in massello",
-    },
-    {
-      id: 2,
-      src: "/gallery/arredo_mave.2.jpg",
-      desc: "Rivestimento pozzetto in Teak",
-    },
-    {
-      id: 3,
-      src: "/gallery/arredo_mave.3.jpg",
-      desc: "Armadio a muro su misura",
-    },
-    {
-      id: 4,
-      src: "/gallery/arredo_mave.4.jpg",
-      desc: "Dettaglio mobili per interni yacht",
-    },
-    {
-      id: 5,
-      src: "/gallery/arredo_mave.5.jpg",
-      desc: "Portone blindato con pannello in legno",
-    },
-    {
-      id: 7,
-      src: "/gallery/arredo_mave.7.jpg",
-      desc: "Tavolo da pranzo in rovere naturale",
-    },
-    {
-      id: 8,
-      src: "/gallery/arredo_mave.8.jpg",
-      desc: "Restauro mobili d'epoca",
-    },
-    { id: 9, src: "/gallery/arredo_mave.9.jpg", desc: "Separè per soggiorno" },
-    {
-      id: 11,
-      src: "/gallery/arredo_mave.11.jpg",
-      desc: "Scale interne in legno pregiato",
-    },
-    {
-      id: 12,
-      src: "/gallery/arredo_mave.12.jpg",
-      desc: "Arredo bagno personalizzato",
-    },
-    {
-      id: 13,
-      src: "/gallery/arredo_mave.13.jpg",
-      desc: "Lavorazione artigianale sottocoperta",
-    },
-    {
-      id: 14,
-      src: "/gallery/arredo_mave.14.jpg",
-      desc: "Porte interne di design",
-    },
-    {
-      id: 15,
-      src: "/gallery/arredo_mave.15.jpg",
-      desc: "Dettagli tecnici di falegnameria",
-    },
-    {
-      id: 16,
-      src: "/gallery/arredo_mave.16.jpg",
-      desc: "Complementi d'arredo per il mare",
-    },
-    { id: 17, src: "/gallery/arredo_mave.17.jpg", desc: "Libreria su misura" },
-    {
-      id: 18,
-      src: "/gallery/arredo_mave.18.jpg",
-      desc: "Finiture artigianali di pregio",
-    },
-    {
-      id: 19,
-      src: "/gallery/arredo_mave.19.jpg",
-      desc: "Strutture in legno per esterni",
-    },
-    {
-      id: 20,
-      src: "/gallery/arredo_mave.20.jpg",
-      desc: "Progetto Letto sospeso con testiera e led integrati in rovere massello",
-    },
-    {
-      id: 21,
-      src: "/gallery/arredo_mave.21.jpg",
-      desc: "Porta scorrevole design",
-    },
-    {
-      id: 22,
-      src: "/gallery/arredo_mave.22.jpg",
-      desc: "Cantinetta vino refrigerata",
-    },
-    {
-      id: 23,
-      src: "/gallery/arredo_mave.23.jpg",
-      desc: "Armadio laminato con mensola cassetto laccato",
-    },
-  ];
-
-  const slides = galleryPhotos.map((photo) => ({
-    src: photo.src,
-    title: photo.desc,
-  }));
 
   return (
     <>
@@ -168,7 +90,6 @@ export default function GalleriaPage() {
               Progetti
             </span>
           </h1>
-          {/* SOTTOTITOLO HERO: Rimosso 'hidden' così si vede anche su mobile */}
           <p className="text-white/80 mt-4 font-headline text-lg md:text-xl drop-shadow-md">
             MAVE Arredamenti di Massimo Simonelli
           </p>
@@ -179,61 +100,9 @@ export default function GalleriaPage() {
       {/* GRIGLIA PROGETTI */}
       <section className="py-12 md:py-24 bg-zinc-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-            {galleryPhotos.map((photo, i) => (
-              <div
-                key={photo.id}
-                onClick={() => setIndex(i)}
-                className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] bg-zinc-200 border border-zinc-300 shadow-lg cursor-zoom-in"
-              >
-                {/* 1. SFONDO SFOCATO */}
-                <Image
-                  src={photo.src}
-                  alt=""
-                  fill
-                  sizes="25vw"
-                  className="object-cover blur-xl opacity-50 scale-110"
-                />
-
-                {/* 2. IMMAGINE REALE */}
-                <div className="relative h-full w-full p-4 flex items-center justify-center z-10">
-                  <div className="relative h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
-                    <Image
-                      src={photo.src}
-                      alt={photo.desc}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 25vw"
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* 3. OVERLAY SOTTOTITOLI: Visibile sempre su mobile, hover su desktop */}
-                <div
-                  className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent p-6 pt-20 
-                  opacity-100 md:opacity-0 md:group-hover:opacity-100 
-                  transition-all duration-500 md:translate-y-2 md:group-hover:translate-y-0"
-                >
-                  <div className="h-1 w-10 bg-accent mb-3 rounded-full" />
-                  <p className="text-white text-lg font-headline italic leading-tight mb-2">
-                    {photo.desc}
-                  </p>
-                  <div className="flex items-center text-accent text-xs font-bold uppercase tracking-widest">
-                    Ingrandisci <Maximize2 size={14} className="ml-2" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <GalleryGrid photos={galleryPhotos} />
         </div>
       </section>
-
-      <Lightbox
-        index={index}
-        slides={slides}
-        open={index >= 0}
-        close={() => setIndex(-1)}
-      />
 
       {/* CTA FINALE */}
       <section className="pb-24 pt-12 bg-background text-center">

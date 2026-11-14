@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Sito in Arrivo",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function ComingSoon() {
   return (

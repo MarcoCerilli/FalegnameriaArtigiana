@@ -1,11 +1,55 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(200),
+  phone: z.string().trim().max(40).optional().default(""),
+  subject: z.string().trim().min(1).max(200).optional().default("Richiesta generica"),
+  message: z.string().trim().min(10).max(5000),
+});
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function stripCrLf(value: string): string {
+  return value.replaceAll(/[\r\n]+/g, " ").trim();
+}
 
 export async function POST(request: Request) {
   try {
-    const { name, email, phone, subject, message } = await request.json();
+    const rawBody = await request.json();
+    const parsed = contactSchema.safeParse(rawBody);
 
-    // 1. Configurazione Robusta: Usiamo l'host esplicito invece di "service: gmail"
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Dati non validi", details: parsed.error.flatten().fieldErrors },
+        { status: 400 },
+      );
+    }
+
+    const { name, email, phone, subject, message } = parsed.data;
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      return NextResponse.json(
+        { error: "Servizio email non configurato" },
+        { status: 500 },
+      );
+    }
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone || "Non fornito");
+    const safeSubject = escapeHtml(subject);
+    const safeMessage = escapeHtml(message).replaceAll("\n", "<br>");
+
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -16,17 +60,15 @@ export async function POST(request: Request) {
       },
     });
 
-    // 2. Definizione contenuti testuali (fondamentale contro lo spam)
-    const adminText = `Nuovo messaggio da ${name} (${email}, tel: ${phone}):\n\nOggetto: ${subject}\n\nMessaggio:\n${message}`;
+    const adminText = `Nuovo messaggio da ${name} (${email}, tel: ${phone || "Non fornito"}):\n\nOggetto: ${subject}\n\nMessaggio:\n${message}`;
     const clientText = `Ciao ${name}, abbiamo ricevuto la tua richiesta per "${subject}". Ti ricontatteremo al più presto. Grazie da Mave Arredamenti.`;
 
-    // 3. Configurazione Mail Admin
     const adminMail = {
       from: `"Sito Web Mave" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      replyTo: email,
-      subject: `🛠️ Nuovo Progetto: ${subject} - ${name}`,
-      text: adminText, 
+      replyTo: stripCrLf(email),
+      subject: stripCrLf(`Nuovo Progetto: ${subject} - ${name}`),
+      text: adminText,
       html: `
         <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-top: 6px solid #4a5d4d; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
@@ -35,12 +77,12 @@ export async function POST(request: Request) {
             </div>
             <div style="padding: 30px; color: #444; line-height: 1.6;">
               <p>Hai ricevuto un nuovo messaggio dal sito:</p>
-              <p><strong>Cliente:</strong> ${name}<br>
-                 <strong>Interesse:</strong> ${subject}<br>
-                 <strong>Telefono:</strong> ${phone}<br>
-                 <strong>Email:</strong> ${email}</p>
+              <p><strong>Cliente:</strong> ${safeName}<br>
+                 <strong>Interesse:</strong> ${safeSubject}<br>
+                 <strong>Telefono:</strong> ${safePhone}<br>
+                 <strong>Email:</strong> ${safeEmail}</p>
               <div style="background-color: #f9f9f9; padding: 20px; border-left: 4px solid #b7c767; margin-top: 20px; font-style: italic;">
-                "${message}"
+                "${safeMessage}"
               </div>
             </div>
           </div>
@@ -48,12 +90,11 @@ export async function POST(request: Request) {
       `,
     };
 
-    // 4. Configurazione Mail Cliente (Semplificata un minimo per non insospettire i filtri)
     const clientMail = {
       from: `"Mave Arredamenti" <${process.env.EMAIL_USER}>`,
-      to: email,
+      to: stripCrLf(email),
       subject: `Grazie per averci contattato - Mave Arredamenti`,
-      text: clientText, // Aggiunto per migliorare deliverability
+      text: clientText,
       html: `
         <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; text-align: center;">
@@ -61,27 +102,26 @@ export async function POST(request: Request) {
               <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Mave Arredamenti</h1>
             </div>
             <div style="padding: 40px; color: #444;">
-              <p style="font-size: 18px;">Grazie <strong>${name}</strong>,</p>
-              <p>Abbiamo ricevuto la tua richiesta per <strong>"${subject}"</strong>.</p>
+              <p style="font-size: 18px;">Grazie <strong>${safeName}</strong>,</p>
+              <p>Abbiamo ricevuto la tua richiesta per <strong>"${safeSubject}"</strong>.</p>
               <p>Il nostro team artigiano analizzerà i dettagli e ti ricontatterà al più presto.</p>
               <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-              <p style="font-size: 12px; color: #888;">Mave Arredamenti - Falegnameria Artigiana & Nautica</p>
+              <p style="font-size: 12px; color: #888;">Mave Arredamenti - Falegnameria Artigiana &amp; Nautica</p>
             </div>
           </div>
         </div>
       `,
     };
 
-    // 5. Invio SEQUENZIALE (più sicuro dell'invio contemporaneo)
     await transporter.sendMail(adminMail);
     await transporter.sendMail(clientMail);
 
     return NextResponse.json({ message: "Inviato con successo" }, { status: 200 });
-
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const details = error instanceof Error ? error.message : "Errore sconosciuto";
     console.error("❌ ERRORE GMAIL:", error);
     return NextResponse.json(
-      { error: "Errore invio", details: error.message },
+      { error: "Errore invio", details },
       { status: 500 },
     );
   }

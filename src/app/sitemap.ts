@@ -1,65 +1,61 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
+import { services } from "@/lib/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.mavearredamenti.it';
+  const baseUrl = "https://www.mavearredamenti.it";
+  const lastModified = new Date();
 
-  // 1. Rotte Statiche Principali
-  const staticRoutes = [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${baseUrl}/chi-siamo`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/galleria`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      lastModified,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/servizi`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/servizi/infissi/catalogo`,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contatti`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      lastModified,
+      changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 
-  // 2. Rotta Specifica Catalogo Infissi (struttura nidificata)
-  const catalogueRoute = {
-    url: `${baseUrl}/servizi/infissi/catalogo`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  };
-
-  // 3. Servizi Dinamici (basati sulla cartella [slug])
-  const services = [
-    'falegnameria-su-misura',
-    'tappezzeria-nautica',
-    'infissi-alluminio-pvc',
-    'zanzariere',
-    'portoni-blindati',
-  ];
-
-  const serviceRoutes = services.map((slug) => ({
-    url: `${baseUrl}/servizi/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
+  const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${baseUrl}/servizi/${service.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  return [...staticRoutes, catalogueRoute, ...serviceRoutes];
+  return [...staticRoutes, ...serviceRoutes];
 }
