@@ -49,7 +49,7 @@ export const MODELLI_INFISSI_SCHUCO: ModelloSchuco[] = [
     cat: "Anta a scomparsa",
     prestazione: "Versatilità e Design",
     plus: "Anta Minimal",
-    img: "/catalogo/finestre/Finestre Schüco AWS 65 BS.HI+.webp",
+    img: "/catalogo/finestre/aws-65-bs-hi-plus.webp",
     tag: "Scomparsa",
   },
   {
@@ -58,7 +58,7 @@ export const MODELLI_INFISSI_SCHUCO: ModelloSchuco[] = [
     cat: "Anta a vista",
     prestazione: "Isolamento Estremo",
     plus: "Massima Efficienza",
-    img: "/catalogo/finestre/Finestre Schüco AWS 90.SI+.webp",
+    img: "/catalogo/finestre/aws-90-si-plus.webp",
     tag: "A vista",
   },
   {
@@ -67,7 +67,7 @@ export const MODELLI_INFISSI_SCHUCO: ModelloSchuco[] = [
     cat: "Anta a vista",
     prestazione: "Isolamento Top",
     plus: "Il più venduto",
-    img: "/catalogo/finestre/Finestre Schüco AWS 75.SI+.webp",
+    img: "/catalogo/finestre/aws-75-si-plus.webp",
     tag: "A vista",
   },
   {
@@ -76,7 +76,7 @@ export const MODELLI_INFISSI_SCHUCO: ModelloSchuco[] = [
     cat: "Anta a vista",
     prestazione: "Moderno e Funzionale",
     plus: "Soluzione Standard",
-    img: "/catalogo/finestre/Finestre Schüco AWS 65.webp",
+    img: "/catalogo/finestre/aws-65.webp",
     tag: "A vista",
   },
   {

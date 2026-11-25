@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
 import Link from "next/link";
 import { ResponsiveHeroImage } from "@/components/responsive-hero-image";
+import { ArtisanPhotoFrame } from "@/components/artisan-photo-frame";
 import { Compass, Hammer, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -58,49 +58,51 @@ export default function ChiSiamoPage() {
 
   return (
     <>
-      <section className="relative w-full h-[380px] md:h-[460px] flex items-center justify-center text-center overflow-hidden bg-zinc-900">
-        <ResponsiveHeroImage
-          desktopSrc={heroDesktop}
-          mobileSrc={heroMobile}
-          alt="Laboratorio artigiano Mave Arredamenti a Terracina"
-          className="object-cover object-center"
-        />
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-2">
+        <section className="relative w-full h-[340px] md:h-[400px] flex items-center justify-center text-center overflow-hidden bg-zinc-900 rounded-[2rem] md:rounded-[2.5rem] shadow-xl">
+          <ResponsiveHeroImage
+            desktopSrc={heroDesktop}
+            mobileSrc={heroMobile}
+            alt="Laboratorio artigiano Mave Arredamenti a Terracina"
+            className="object-cover object-center"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
-            La Nostra{" "}
-            <span className="text-accent italic font-light">Storia</span>
-          </h1>
+          <div className="relative z-10 max-w-4xl mx-auto px-6">
+            <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-2xl">
+              La Nostra{" "}
+              <span className="text-accent italic font-light">Storia</span>
+            </h1>
 
-          <div className="h-1.5 w-24 bg-accent mx-auto mt-5 rounded-full shadow-lg" />
+            <div className="h-1.5 w-24 bg-accent mx-auto mt-5 rounded-full shadow-lg" />
 
-          <p className="mt-6 text-xl md:text-3xl text-white font-medium italic drop-shadow-md">
-            &ldquo;Il mio lavoro è la mia passione.&rdquo;
-          </p>
-          <p className="mt-3 text-base md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-light">
-            Ogni creazione di Mave Arredamenti porta con sé il valore del tempo,
-            della ricerca dei materiali e della cura manuale.
-          </p>
-        </div>
-      </section>
+            <p className="mt-5 text-xl md:text-3xl text-white font-medium italic drop-shadow-md">
+              &ldquo;Il mio lavoro è la mia passione.&rdquo;
+            </p>
+            <p className="mt-2.5 text-base md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-light">
+              Ogni creazione di Mave Arredamenti porta con sé il valore del
+              tempo, della ricerca dei materiali e della cura manuale.
+            </p>
+          </div>
+        </section>
+      </div>
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="relative group flex justify-center w-full">
-              <div className="relative w-full max-w-md h-[400px] md:h-[460px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-card">
-                {aboutImage && (
-                  <Image
-                    src={aboutImage.imageUrl}
-                    alt={aboutImage.description}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 448px"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
-              </div>
+            <div className="w-full max-w-md mx-auto">
+              {aboutImage && (
+                <ArtisanPhotoFrame
+                  src={aboutImage.imageUrl}
+                  alt={aboutImage.description}
+                  sizes="(max-width: 768px) 100vw, 448px"
+                  aspectClass="aspect-[4/5]"
+                  mode="cover"
+                  caption="Arredi su misura realizzati a Terracina"
+                  className="shadow-xl"
+                />
+              )}
             </div>
 
             <div className="space-y-6 text-foreground">

@@ -1,15 +1,24 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
+import {
+  ArtisanPhotoFrame,
+  type PhotoFrameMode,
+} from "@/components/artisan-photo-frame";
+
+export interface FeaturedProjectSlide {
+  imageUrl: string;
+  description: string;
+  fitMode?: PhotoFrameMode;
+}
 
 interface ProjectCarouselProps {
-  images: { imageUrl: string; description: string }[];
+  images: FeaturedProjectSlide[];
 }
 
 export function ProjectCarousel({ images }: ProjectCarouselProps) {
@@ -67,7 +76,7 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
 
   return (
     <div
-      className="relative group max-w-7xl mx-auto px-4 py-8"
+      className="relative group max-w-6xl mx-auto px-4 md:px-10 py-4"
       role="region"
       aria-roledescription="carousel"
       aria-label="Lavori artigianali in evidenza"
@@ -81,27 +90,17 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
           {images.map((image) => (
             <div
               key={image.imageUrl}
-              className="flex-[0_0_85%] md:flex-[0_0_55%] lg:flex-[0_0_45%] min-w-0 pl-6"
+              className="flex-[0_0_85%] md:flex-[0_0_52%] lg:flex-[0_0_42%] min-w-0 pl-6"
             >
-              <div className="relative h-[380px] md:h-[460px] w-full rounded-[2rem] overflow-hidden border border-border shadow-xl bg-gradient-to-br from-stone-100 via-stone-50 to-secondary/50 group/card transition-all duration-500">
-                <div className="relative h-full w-full p-4 md:p-6">
-                  <Image
-                    src={image.imageUrl}
-                    alt={image.description}
-                    fill
-                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 55vw, 45vw"
-                    className="object-contain drop-shadow-xl transition-transform duration-700 group-hover/card:scale-[1.03]"
-                  />
-                </div>
-
-                {/* Didascalia */}
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-white via-white/90 to-transparent">
-                  <div className="h-1 w-10 bg-primary mb-2.5 rounded-full" />
-                  <p className="font-headline text-xl md:text-2xl leading-tight text-foreground">
-                    {image.description}
-                  </p>
-                </div>
-              </div>
+              <ArtisanPhotoFrame
+                src={image.imageUrl}
+                alt={image.description}
+                sizes="(max-width: 768px) 85vw, (max-width: 1024px) 52vw, 42vw"
+                aspectClass="aspect-[4/3]"
+                mode={image.fitMode ?? "cover"}
+                caption={image.description}
+                className="h-full shadow-lg"
+              />
             </div>
           ))}
         </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import { MobileNavPill } from "@/components/layout/mobile-nav-pill";
 import WhatsAppButton from "@/components/whatsapp-button";
 import { services } from "@/lib/services";
 
@@ -26,6 +27,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: "cover",
   themeColor: "#242c24",
 };
 
@@ -149,9 +151,9 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${alegreya.variable} ${belleza.variable} scroll-smooth`}
+      className={`${alegreya.variable} ${belleza.variable} scroll-smooth overflow-x-clip`}
     >
-      <body className="font-body antialiased flex flex-col min-h-screen selection:bg-accent/30 selection:text-primary">
+      <body className="font-body antialiased flex flex-col min-h-screen overflow-x-clip selection:bg-accent/30 selection:text-primary">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-accent focus:text-[#1a231a] focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold focus:shadow-lg"
@@ -169,6 +171,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <MobileNavPill />
         <WhatsAppButton />
         <Toaster />
       </body>

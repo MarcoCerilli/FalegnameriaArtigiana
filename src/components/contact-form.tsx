@@ -20,7 +20,6 @@ import { services } from "@/lib/services";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { Card, CardContent } from "./ui/card";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -143,9 +142,8 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className="shadow-lg border-border">
-      <CardContent className="p-6 md:p-8">
-        {isSent && (
+    <>
+      {isSent && (
           <div
             role="status"
             className="mb-8 flex items-start gap-3 rounded-2xl border border-primary/25 bg-secondary/60 p-4 text-foreground"
@@ -349,7 +347,6 @@ export default function ContactForm() {
             </Button>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+    </>
   );
 }

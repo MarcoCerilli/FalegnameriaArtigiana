@@ -10,10 +10,13 @@ import {
   Ruler,
   ShieldCheck,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { ProjectCarousel } from "@/components/project-carousel";
+import {
+  ProjectCarousel,
+  type FeaturedProjectSlide,
+} from "@/components/project-carousel";
 import { ResponsiveHeroImage } from "@/components/responsive-hero-image";
+import { ArtisanPhotoFrame } from "@/components/artisan-photo-frame";
 
 export const metadata: Metadata = {
   alternates: {
@@ -47,13 +50,37 @@ export default function Home() {
     (p) => p.id === "home-filosofia",
   );
 
-  const featuredProjects = [
-    { imageUrl: "/images/cucina.jpg", description: "Arredi su Misura" },
-    { imageUrl: "/images/bagno.jpeg", description: "Dettagli in Rovere" },
-    { imageUrl: "/images/cuscineria.jpg", description: "Rifiniture Nautiche" },
-    { imageUrl: "/images/tettoia.jpg", description: "Soluzioni per Esterni" },
-    { imageUrl: "/images/lampada.jpeg", description: "Design Artigianale" },
-    { imageUrl: "/images/recenti.jpg", description: "Mobile Angolare Design" },
+  const featuredProjects: FeaturedProjectSlide[] = [
+    {
+      imageUrl: "/images/cucina.jpg",
+      description: "Arredi su Misura",
+      fitMode: "mat",
+    },
+    {
+      imageUrl: "/images/bagno.jpeg",
+      description: "Dettagli in Rovere",
+      fitMode: "cover",
+    },
+    {
+      imageUrl: "/images/cuscineria.jpg",
+      description: "Rifiniture Nautiche",
+      fitMode: "cover",
+    },
+    {
+      imageUrl: "/images/tettoia.jpg",
+      description: "Soluzioni per Esterni",
+      fitMode: "cover",
+    },
+    {
+      imageUrl: "/images/lampada.jpeg",
+      description: "Design Artigianale",
+      fitMode: "cover",
+    },
+    {
+      imageUrl: "/images/recenti.jpg",
+      description: "Mobile Angolare Design",
+      fitMode: "mat",
+    },
   ];
 
   const trustPillars = [
@@ -108,61 +135,63 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* HERO SECTION */}
-      <section className="relative w-full h-[80vh] min-h-[540px] max-h-[820px] overflow-hidden bg-zinc-950 flex items-center justify-center">
-        <ResponsiveHeroImage
-          desktopSrc={heroDesktop}
-          mobileSrc={heroMobile}
-          alt="Mave Arredamenti - Falegnameria artigianale e tappezzeria nautica a Terracina"
-          className="object-cover object-center"
-        />
+      {/* HERO SECTION BOXED */}
+      <div className="max-w-6xl mx-auto w-full px-3 sm:px-5 pt-2">
+        <section className="relative w-full h-[54vh] sm:h-[58vh] md:h-[60vh] min-h-[410px] max-h-[540px] overflow-hidden bg-zinc-950 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl flex items-center justify-center">
+          <ResponsiveHeroImage
+            desktopSrc={heroDesktop}
+            mobileSrc={heroMobile}
+            alt="Mave Arredamenti - Falegnameria artigianale e tappezzeria nautica a Terracina"
+            className="object-cover object-center"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
 
-        <div className="relative z-10 flex flex-col items-center px-6 text-center text-white max-w-5xl mx-auto">
-          <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent mb-4">
-            Terracina &bull; Falegnameria e Nautica
-          </p>
+          <div className="relative z-10 flex flex-col items-center px-6 text-center text-white max-w-4xl mx-auto">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent mb-3">
+              Terracina &bull; Falegnameria e Nautica
+            </p>
 
-          <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] drop-shadow-2xl">
-            Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
-            <span className="text-accent italic font-light">
-              dal Legno al Mare.
-            </span>
-          </h1>
+            <h1 className="font-headline text-3xl sm:text-5xl md:text-6xl leading-[1.1] drop-shadow-2xl">
+              Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
+              <span className="text-accent italic font-light">
+                dal Legno al Mare.
+              </span>
+            </h1>
 
-          <p className="mt-5 md:mt-7 text-base sm:text-xl md:text-2xl max-w-2xl mx-auto text-white/95 font-light drop-shadow-md">
-            Soluzioni artigianali su misura per la tua casa e la tua
-            imbarcazione.
-          </p>
+            <p className="mt-4 md:mt-5 text-base sm:text-lg md:text-xl max-w-xl mx-auto text-white/95 font-light drop-shadow-md">
+              Soluzioni artigianali su misura per la tua casa e la tua
+              imbarcazione.
+            </p>
 
-          <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
-            <Button
-              asChild
-              size="lg"
-              className="w-full max-w-[280px] sm:w-auto bg-accent text-[#1a231a] hover:bg-accent/90 font-bold py-6 sm:py-7 px-8 text-lg rounded-full transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
-            >
-              <Link href="/contatti">Preventivo Gratuito</Link>
-            </Button>
+            <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3.5 justify-center items-center w-full sm:w-auto">
+              <Button
+                asChild
+                size="lg"
+                className="w-full max-w-[260px] sm:w-auto bg-accent text-[#1a231a] hover:bg-accent/90 font-bold py-5 px-7 text-base rounded-full transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+              >
+                <Link href="/contatti">Preventivo Gratuito</Link>
+              </Button>
 
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="w-full max-w-[280px] sm:w-auto bg-black/35 backdrop-blur-md border-2 border-white/60 text-white font-semibold py-6 sm:py-7 px-8 text-lg rounded-full transition-all duration-300 shadow-lg hover:bg-white hover:text-zinc-950 hover:border-white"
-            >
-              <Link href="#servizi">I nostri servizi</Link>
-            </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="w-full max-w-[260px] sm:w-auto bg-black/35 backdrop-blur-md border-2 border-white/60 text-white font-semibold py-5 px-7 text-base rounded-full transition-all duration-300 shadow-lg hover:bg-white hover:text-zinc-950 hover:border-white"
+              >
+                <Link href="#servizi">I nostri servizi</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* FASCIA GARANZIE */}
-      <section className="bg-[#242c24] text-white border-b border-white/10">
-        <div className="container mx-auto px-4 py-8">
+      {/* FASCIA GARANZIE BOXED */}
+      <section className="max-w-6xl mx-auto w-full px-3 sm:px-5 mt-4">
+        <div className="rounded-[1.75rem] bg-[#242c24] text-white px-6 py-6 md:px-8 shadow-lg border border-white/10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trustPillars.map((pillar) => (
-              <div key={pillar.title} className="flex items-start gap-4">
+              <div key={pillar.title} className="flex items-start gap-3.5">
                 <div className="p-2.5 rounded-xl bg-accent/15 text-accent shrink-0">
                   <pillar.icon className="w-5 h-5" aria-hidden="true" />
                 </div>
@@ -181,9 +210,9 @@ export default function Home() {
       </section>
 
       {/* SERVIZI SECTION */}
-      <section id="servizi" className="py-20 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section id="servizi" className="py-16 md:py-22 bg-background">
+        <div className="max-w-6xl mx-auto px-3 sm:px-5">
+          <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
               Servizi Artigianali
             </h2>
@@ -194,7 +223,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-5">
             {services.map((service) => (
               <Link
                 href={`/servizi/${service.slug}`}
@@ -202,7 +231,7 @@ export default function Home() {
                 className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-2xl"
               >
                 <Card className="h-full border border-border transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-card overflow-hidden">
-                  <CardHeader className="flex flex-col items-center text-center pt-10 pb-8 h-full">
+                  <CardHeader className="flex flex-col items-center text-center px-5 pt-8 pb-7 h-full">
                     <div className="p-4 rounded-2xl bg-secondary group-hover:bg-accent transition-colors duration-300 shadow-inner">
                       <service.icon
                         className="w-10 h-10 text-primary group-hover:text-accent-foreground transition-colors"
@@ -227,19 +256,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CHI SIAMO / VALORI SECTION */}
-      <section className="py-20 md:py-28 bg-secondary/30 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <div className="lg:col-span-5 relative group order-2 lg:order-1">
-              <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-card">
+      {/* CHI SIAMO / VALORI SECTION BOXED */}
+      <section className="max-w-6xl mx-auto w-full px-3 sm:px-5 my-4">
+        <div className="rounded-[2rem] md:rounded-[2.5rem] bg-secondary/40 border border-border/80 px-6 py-12 md:px-12 md:py-16 overflow-hidden">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="max-w-md mx-auto">
                 {aboutHomeImage && (
-                  <Image
+                  <ArtisanPhotoFrame
                     src={aboutHomeImage.imageUrl}
                     alt={aboutHomeImage.description}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 1024px) 100vw, 448px"
+                    aspectClass="aspect-[3/4]"
+                    mode="cover"
+                    caption="Laboratorio Mave • Essenze Selezionate"
+                    className="shadow-xl"
                   />
                 )}
               </div>
@@ -292,8 +323,8 @@ export default function Home() {
       </section>
 
       {/* COME LAVORIAMO */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl">
+      <section className="py-16 md:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-3 sm:px-5">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
               Come Lavoriamo
@@ -325,43 +356,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAROSELLO LAVORI IN EVIDENZA */}
-      <section className="py-20 bg-secondary/20 overflow-hidden border-y border-border">
-        <div className="container mx-auto px-4 mb-10 text-center">
-          <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
-            Lavori{" "}
-            <span className="text-foreground not-italic font-bold">
-              In Evidenza
-            </span>
-          </h2>
-          <div className="h-1.5 w-20 bg-accent mx-auto mt-5 rounded-full shadow-sm" />
-        </div>
+      {/* CAROSELLO LAVORI IN EVIDENZA BOXED */}
+      <section className="max-w-6xl mx-auto w-full px-3 sm:px-5 my-4">
+        <div className="rounded-[2rem] md:rounded-[2.5rem] bg-secondary/35 border border-border/80 py-14 md:py-16 overflow-hidden">
+          <div className="px-4 mb-10 text-center">
+            <h2 className="font-headline text-4xl md:text-5xl text-primary italic">
+              Lavori{" "}
+              <span className="text-foreground not-italic font-bold">
+                In Evidenza
+              </span>
+            </h2>
+            <div className="h-1.5 w-20 bg-accent mx-auto mt-5 rounded-full shadow-sm" />
+          </div>
 
-        <ProjectCarousel images={featuredProjects} />
+          <ProjectCarousel images={featuredProjects} />
 
-        <div className="text-center mt-12">
-          <Link
-            href="/galleria"
-            className="inline-flex items-center justify-center gap-3 text-primary hover:opacity-80 font-bold tracking-[0.2em] uppercase text-sm transition-all group"
-          >
-            Sfoglia la galleria completa
-            <ArrowRight
-              size={18}
-              className="group-hover:translate-x-2 transition-transform"
-              aria-hidden="true"
-            />
-          </Link>
+          <div className="text-center mt-10 px-4">
+            <Link
+              href="/galleria"
+              className="inline-flex items-center justify-center gap-3 text-primary hover:opacity-80 font-bold tracking-[0.2em] uppercase text-sm transition-all group"
+            >
+              Sfoglia la galleria completa
+              <ArrowRight
+                size={18}
+                className="group-hover:translate-x-2 transition-transform"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* CTA FINALE */}
-      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="font-headline text-4xl sm:text-5xl md:text-7xl leading-tight">
+      {/* CTA FINALE BOXED */}
+      <section className="max-w-6xl mx-auto w-full px-3 sm:px-5 pb-10 pt-4">
+        <div className="rounded-[2rem] md:rounded-[2.5rem] bg-primary text-primary-foreground px-6 py-14 md:py-20 shadow-2xl text-center relative overflow-hidden">
+          <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl leading-tight">
             Hai un progetto <br />
             <span className="text-accent italic font-light">speciale?</span>
           </h2>
-          <p className="mt-6 text-lg md:text-2xl max-w-3xl mx-auto text-white/90 font-light leading-relaxed">
+          <p className="mt-5 text-lg md:text-xl max-w-2xl mx-auto text-white/90 font-light leading-relaxed">
             Contattaci per una consulenza personalizzata o un sopralluogo
             gratuito. Trasformiamo insieme la tua idea in una creazione fatta
             per durare.
@@ -369,7 +402,7 @@ export default function Home() {
           <Button
             asChild
             size="lg"
-            className="mt-10 bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 py-7 text-xl font-bold shadow-2xl transition-transform hover:scale-105"
+            className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-10 py-6 text-lg font-bold shadow-2xl transition-transform hover:scale-105"
           >
             <Link href="/contatti">Parliamone ora</Link>
           </Button>

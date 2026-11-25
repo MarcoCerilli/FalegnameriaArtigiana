@@ -11,10 +11,10 @@ const cspDirectives = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  "upgrade-insecure-requests",
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  ...(process.env.NEXT_DIST_DIR ? { distDir: process.env.NEXT_DIST_DIR } : {}),
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],

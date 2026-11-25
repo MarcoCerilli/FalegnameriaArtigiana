@@ -4,8 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Palette, CheckCircle2, Ruler } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { CatalogoSchuco } from "@/components/catalogo-schuco";
+import {
+  CatalogoSchuco,
+} from "@/components/catalogo-schuco";
 import { MODELLI_INFISSI_SCHUCO } from "@/lib/catalogo-schuco";
+import { ArtisanPhotoFrame } from "@/components/artisan-photo-frame";
 
 export const metadata: Metadata = {
   title: "Catalogo Infissi Schüco",
@@ -79,47 +82,59 @@ export default function CatalogoSchucoPage() {
         }}
       />
 
-      {/* --- HEADER --- */}
-      <section className="relative pt-16 pb-20 bg-[#242c24] text-white overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <Link
-            href="/servizi/infissi"
-            className="inline-flex items-center gap-2 text-accent mb-10 hover:opacity-80 transition-all text-xs uppercase tracking-[0.2em] font-bold"
-          >
-            <ArrowLeft size={14} aria-hidden="true" /> Torna al servizio Infissi
-          </Link>
+      {/* --- HEADER LEGGERO BOXED --- */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-2">
+        <section className="relative py-10 md:py-14 bg-[#f4f6f2] text-foreground overflow-hidden border border-border rounded-[2rem] md:rounded-[2.5rem] shadow-md">
+          <Image
+            src="/images/hero-catalogo-bg.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1152px) 100vw, 1152px"
+            className="object-cover object-center opacity-45"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f6f7f4]/95 via-[#f6f7f4]/80 to-[#f6f7f4]/40" />
 
-          <div className="flex flex-col md:flex-row-reverse gap-10 md:gap-16 items-start md:items-center justify-between">
-            <div className="inline-flex p-4 rounded-2xl bg-white/95 shadow-lg shrink-0">
-              <Image
-                src="/logos/shuco.png"
-                alt="Schüco Partner"
-                width={180}
-                height={50}
-                className="object-contain"
-                priority
-              />
-            </div>
+          <div className="px-6 md:px-10 relative z-10">
+            <Link
+              href="/servizi/infissi"
+              className="inline-flex items-center gap-2 text-primary mb-6 hover:opacity-75 transition-all text-xs uppercase tracking-[0.2em] font-bold"
+            >
+              <ArrowLeft size={14} aria-hidden="true" /> Torna al servizio Infissi
+            </Link>
 
-            <div className="max-w-3xl">
-              <h1 className="font-headline text-5xl md:text-7xl leading-tight mb-5">
-                Sistemi <span className="text-accent italic">Schüco</span>
-              </h1>
-              <p className="text-white/85 text-lg md:text-xl font-light leading-relaxed max-w-xl">
-                L&apos;alluminio Schüco incontra l&apos;esperienza artigiana
-                Mave. Soluzioni d&apos;avanguardia per isolamento termico,
-                acustico e design a Terracina.
-              </p>
+            <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-14 items-start md:items-center justify-between">
+              <div className="inline-flex p-4 rounded-2xl bg-white/85 backdrop-blur-sm border border-border/70 shadow-sm shrink-0">
+                <Image
+                  src="/logos/shuco.png"
+                  alt="Schüco Partner"
+                  width={175}
+                  height={48}
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <div className="max-w-3xl">
+                <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl text-foreground leading-tight mb-4">
+                  Sistemi <span className="text-primary italic">Schüco</span>
+                </h1>
+                <p className="text-muted-foreground text-base md:text-xl font-light leading-relaxed max-w-xl">
+                  L&apos;alluminio Schüco incontra l&apos;esperienza artigiana
+                  Mave. Soluzioni d&apos;avanguardia per isolamento termico,
+                  acustico e design a Terracina.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <CatalogoSchuco />
 
-      {/* --- SEZIONE TECNICA --- */}
-      <section className="py-16 bg-secondary/40 rounded-[2.5rem] mx-4 md:mx-6 mb-12 border border-border">
-        <div className="container mx-auto px-6 max-w-6xl">
+      {/* --- SEZIONE TECNICA BOXED --- */}
+      <section className="max-w-6xl mx-auto px-3 sm:px-5 mb-12">
+        <div className="py-12 px-6 md:px-10 bg-secondary/40 rounded-[2rem] md:rounded-[2.5rem] border border-border">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
               <div className="flex items-center gap-3 text-primary">
@@ -152,13 +167,14 @@ export default function CatalogoSchucoPage() {
               </div>
             </div>
 
-            <div className="relative aspect-square max-w-sm mx-auto w-full bg-white rounded-2xl shadow-lg overflow-hidden border-4 border-white group">
-              <Image
+            <div className="max-w-sm mx-auto w-full">
+              <ArtisanPhotoFrame
                 src="/catalogo/sezione-tecnica.png"
                 alt="Sezione Tecnica profilo Schüco"
-                fill
                 sizes="(max-width: 1024px) 100vw, 384px"
-                className="object-contain p-6 group-hover:scale-105 transition-transform duration-700"
+                aspectClass="aspect-square"
+                mode="mat"
+                className="shadow-lg"
               />
             </div>
           </div>
@@ -166,8 +182,8 @@ export default function CatalogoSchucoPage() {
       </section>
 
       {/* --- SEZIONE MAZZETTE --- */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl text-center mb-10">
+      <section className="py-14 md:py-16 bg-background">
+        <div className="max-w-6xl mx-auto px-3 sm:px-5 text-center mb-10">
           <Badge className="bg-primary/10 text-primary mb-3 border-none text-xs tracking-widest uppercase font-bold px-4 py-1">
             Showroom &amp; Consulenza Terracina
           </Badge>
@@ -176,40 +192,32 @@ export default function CatalogoSchucoPage() {
           </h2>
         </div>
 
-        <div className="container mx-auto px-6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-md border-2 border-card">
-            <Image
-              src="/catalogo/colori/colori2.jpeg"
-              alt="Campionario mazzetta colori RAL per infissi Schüco"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <p className="absolute bottom-5 left-6 text-white font-bold uppercase tracking-widest text-xs">
-              Campionario RAL
-            </p>
-          </div>
+        <div className="max-w-6xl mx-auto px-3 sm:px-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ArtisanPhotoFrame
+            src="/catalogo/colori/colori2.jpeg"
+            alt="Campionario mazzetta colori RAL per infissi Schüco"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            aspectClass="aspect-[4/3]"
+            mode="cover"
+            subcaption="Mazzetta Colori"
+            caption="Campionario RAL"
+          />
 
-          <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-md border-2 border-card">
-            <Image
-              src="/catalogo/colori/colori1.jpeg"
-              alt="Finiture Sablé ed effetto legno per serramenti Schüco"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <p className="absolute bottom-5 left-6 text-white font-bold uppercase tracking-widest text-xs">
-              Sablé &amp; Effetto Legno
-            </p>
-          </div>
+          <ArtisanPhotoFrame
+            src="/catalogo/colori/colori1.jpeg"
+            alt="Finiture Sablé ed effetto legno per serramenti Schüco"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            aspectClass="aspect-[4/3]"
+            mode="cover"
+            subcaption="Texture & Essenze"
+            caption="Sablé & Effetto Legno"
+          />
         </div>
       </section>
 
-      {/* --- CONSULENZA A DOMICILIO --- */}
-      <section className="py-20 bg-secondary/25 border-t border-border mt-12">
-        <div className="container mx-auto px-6 text-center">
+      {/* --- CONSULENZA A DOMICILIO BOXED --- */}
+      <section className="max-w-6xl mx-auto px-3 sm:px-5 pb-12 pt-4">
+        <div className="py-14 md:py-16 px-5 sm:px-6 bg-secondary/35 border border-border rounded-[2rem] md:rounded-[2.5rem] text-center overflow-hidden">
           <div className="max-w-3xl mx-auto space-y-6">
             <Palette
               className="mx-auto text-primary"
@@ -233,7 +241,7 @@ export default function CatalogoSchucoPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-10 py-6 font-bold uppercase text-xs tracking-[0.2em] transition-all shadow-xl"
+                className="w-full sm:w-auto max-w-full whitespace-normal text-center h-auto bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground rounded-full px-6 sm:px-10 py-4 sm:py-5 font-bold uppercase text-xs tracking-[0.12em] sm:tracking-[0.2em] transition-all shadow-xl"
               >
                 <Link href="/contatti?servizio=infissi">
                   Prenota un sopralluogo gratuito

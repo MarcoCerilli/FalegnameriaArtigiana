@@ -33,9 +33,9 @@ export function CatalogoSchuco() {
   return (
     <>
       {/* --- FILTRI --- */}
-      <div className="sticky top-[76px] md:top-[84px] z-30 bg-background/95 backdrop-blur-md border-b border-border py-4">
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-5">
         <div
-          className="container mx-auto px-6 flex flex-wrap justify-center gap-2"
+          className="rounded-2xl md:rounded-full bg-card/95 backdrop-blur-md border border-border/85 shadow-sm px-3 py-2.5 flex flex-wrap justify-center gap-2"
           role="group"
           aria-label="Filtra modelli Schüco per tipologia"
         >
@@ -48,10 +48,10 @@ export function CatalogoSchuco() {
                 aria-pressed={active}
                 onClick={() => setFilter(cat)}
                 className={cn(
-                  "rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                  "rounded-full px-3.5 sm:px-5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   active
                     ? "bg-primary text-primary-foreground border-primary shadow-md"
-                    : "bg-card text-foreground border-border hover:border-primary/50 hover:bg-secondary/60",
+                    : "bg-background text-foreground border-border hover:border-primary/50 hover:bg-secondary/60",
                 )}
               >
                 {cat}
@@ -62,7 +62,7 @@ export function CatalogoSchuco() {
       </div>
 
       {/* --- GRID MODELLI --- */}
-      <section className="py-16 container mx-auto px-6">
+      <section className="py-12 md:py-16 max-w-6xl mx-auto px-3 sm:px-5">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <h2 className="font-headline text-3xl md:text-4xl text-primary">
@@ -87,25 +87,25 @@ export function CatalogoSchuco() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {filteredModels.map((m) => (
             <article
               key={m.id}
               className="group bg-card rounded-[2rem] border border-border overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative h-[320px] bg-secondary/40 flex items-center justify-center p-8">
+              <div className="relative h-[280px] sm:h-[300px] m-2.5 rounded-[1.25rem] overflow-hidden bg-gradient-to-br from-[#f2f0e9] via-[#faf9f5] to-[#e9e6dd] ring-1 ring-inset ring-black/[0.06] flex items-center justify-center p-6">
                 <Image
                   src={m.img}
                   alt={m.nome}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+                  className="object-contain p-6 group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
                 />
-                <Badge className="absolute top-5 left-5 bg-accent text-accent-foreground font-bold text-xs uppercase tracking-wider border-none px-3.5 py-1 pointer-events-none">
+                <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground font-bold text-xs uppercase tracking-wider border-none px-3.5 py-1 pointer-events-none">
                   {m.tag}
                 </Badge>
               </div>
-              <div className="p-8 flex flex-col flex-grow bg-card">
+              <div className="p-5 sm:p-7 flex flex-col flex-grow bg-card">
                 <span className="text-xs font-bold text-primary uppercase tracking-widest mb-1">
                   {m.cat}
                 </span>

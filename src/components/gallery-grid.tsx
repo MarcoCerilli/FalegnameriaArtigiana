@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Maximize2 } from "lucide-react";
-import Image from "next/image";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
@@ -16,8 +15,21 @@ import {
   GALLERY_CATEGORIES,
   type GalleryCategory,
   type GalleryPhoto,
+  type PhotoOrientation,
 } from "@/lib/gallery";
 import { cn } from "@/lib/utils";
+import {
+  ArtisanPhotoFrame,
+  type PhotoAspectClass,
+} from "@/components/artisan-photo-frame";
+
+function getAspectForOrientation(
+  orientation: PhotoOrientation,
+): PhotoAspectClass {
+  if (orientation === "wide") return "aspect-[16/10]";
+  if (orientation === "landscape") return "aspect-[4/3]";
+  return "aspect-[3/4]";
+}
 
 export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -40,7 +52,7 @@ export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
     <>
       {/* Filtri per categoria */}
       <div
-        className="flex flex-wrap items-center justify-center gap-2.5 mb-12"
+        className="flex flex-wrap items-center justify-center gap-2.5 mb-8"
         role="group"
         aria-label="Filtra lavori per categoria"
       >
@@ -68,50 +80,37 @@ export function GalleryGrid({ photos }: { photos: GalleryPhoto[] }) {
         })}
       </div>
 
-      <p className="text-center text-sm text-muted-foreground mb-8">
+      <p className="text-center text-sm text-muted-foreground mb-10">
         {filteredPhotos.length}{" "}
         {filteredPhotos.length === 1
           ? "realizzazione selezionata"
           : "realizzazioni selezionate"}
       </p>
 
-      {/* Griglia foto */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+      {/* Griglia Masonry Editoriale */}
+      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 space-y-5">
         {filteredPhotos.map((photo, i) => (
           <button
             key={photo.id}
             type="button"
             aria-label={`Ingrandisci: ${photo.desc}`}
             onClick={() => setIndex(i)}
-            className="group relative h-[380px] md:h-[420px] w-full text-left overflow-hidden rounded-[2rem] bg-gradient-to-br from-stone-200 via-stone-100 to-secondary/40 border border-border shadow-md hover:shadow-xl transition-all cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="break-inside-avoid block w-full text-left rounded-[1.5rem] cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <div className="relative h-full w-full p-4 flex items-center justify-center">
-              <div className="relative h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
-                <Image
-                  src={photo.src}
-                  alt={photo.desc}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-contain drop-shadow-md"
-                />
-              </div>
-            </div>
-
-            <div
-              className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-zinc-950/90 via-zinc-950/60 to-transparent p-6 pt-16 
-              opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100
-              transition-all duration-300 md:translate-y-2 md:group-hover:translate-y-0"
-            >
-              <span className="inline-block text-xs font-bold uppercase tracking-widest text-accent mb-1">
-                {photo.category}
-              </span>
-              <p className="text-white text-lg font-headline leading-tight mb-2">
-                {photo.desc}
-              </p>
-              <div className="flex items-center text-accent text-xs font-bold uppercase tracking-widest">
-                Ingrandisci <Maximize2 size={14} className="ml-2" aria-hidden="true" />
-              </div>
-            </div>
+            <ArtisanPhotoFrame
+              src={photo.src}
+              alt={photo.desc}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              aspectClass={getAspectForOrientation(photo.orientation)}
+              mode="cover"
+              subcaption={photo.category}
+              caption={photo.desc}
+              topRightAction={
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/90 text-foreground shadow-sm border border-border/60 opacity-90 md:opacity-0 md:group-hover/frame:opacity-100 md:group-focus-visible:opacity-100 transition-opacity">
+                  <Maximize2 size={14} aria-hidden="true" />
+                </span>
+              }
+            />
           </button>
         ))}
       </div>

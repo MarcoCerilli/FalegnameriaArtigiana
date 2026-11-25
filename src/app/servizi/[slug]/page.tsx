@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { ArtisanPhotoFrame } from "@/components/artisan-photo-frame";
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -131,48 +132,50 @@ export default async function ServiceDetailPage({
         }}
       />
 
-      {/* HERO SERVIZIO */}
-      <section className="relative py-20 md:py-28 flex items-center justify-center text-center overflow-hidden bg-[#242c24] text-white">
-        {serviceImage && (
-          <Image
-            src={serviceImage.imageUrl}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-25"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#242c24]/75 via-[#242c24]/65 to-[#242c24]/90" />
+      {/* HERO SERVIZIO BOXED */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-2 w-full">
+        <section className="relative py-16 md:py-22 flex items-center justify-center text-center overflow-hidden bg-[#242c24] text-white rounded-[2rem] md:rounded-[2.5rem] shadow-xl">
+          {serviceImage && (
+            <Image
+              src={serviceImage.imageUrl}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1152px) 100vw, 1152px"
+              className="object-cover opacity-25"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#242c24]/75 via-[#242c24]/65 to-[#242c24]/90" />
 
-        <div className="relative z-10 px-6 max-w-4xl mx-auto">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-white/75 mb-6"
-          >
-            <Link href="/" className="hover:text-accent transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
-            <Link
-              href="/servizi"
-              className="hover:text-accent transition-colors"
+          <div className="relative z-10 px-6 max-w-4xl mx-auto">
+            <nav
+              aria-label="Breadcrumb"
+              className="flex flex-wrap items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-white/75 mb-6"
             >
-              Servizi
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
-            <span className="text-accent">{service.title}</span>
-          </nav>
+              <Link href="/" className="hover:text-accent transition-colors">
+                Home
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+              <Link
+                href="/servizi"
+                className="hover:text-accent transition-colors"
+              >
+                Servizi
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+              <span className="text-accent">{service.title}</span>
+            </nav>
 
-          <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl text-white leading-tight">
-            {service.title}
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl text-accent italic font-light">
-            {service.tagline}
-          </p>
-          <div className="h-1.5 w-24 bg-accent mx-auto mt-6 rounded-full" />
-        </div>
-      </section>
+            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl text-white leading-tight">
+              {service.title}
+            </h1>
+            <p className="mt-4 text-lg md:text-2xl text-accent italic font-light">
+              {service.tagline}
+            </p>
+            <div className="h-1.5 w-24 bg-accent mx-auto mt-6 rounded-full" />
+          </div>
+        </section>
+      </div>
 
       {/* DETTAGLIO SERVIZIO */}
       <section className="py-16 md:py-24 bg-background">
@@ -223,7 +226,7 @@ export default async function ServiceDetailPage({
                 <Button
                   asChild
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 text-base font-bold shadow-lg"
+                  className="w-full sm:w-auto whitespace-normal text-center h-auto bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 text-base font-bold shadow-lg"
                 >
                   <Link href={`/contatti?servizio=${service.slug}`}>
                     Richiedi un preventivo gratuito
@@ -235,11 +238,11 @@ export default async function ServiceDetailPage({
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-8 py-6 text-base font-bold border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    className="w-full sm:w-auto whitespace-normal text-center h-auto rounded-full px-6 sm:px-8 py-4 text-base font-bold border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                   >
                     <Link href={service.catalogHref}>
                       Esplora il Catalogo Schüco
-                      <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                      <ArrowRight className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </Button>
                 )}
@@ -247,14 +250,21 @@ export default async function ServiceDetailPage({
             </div>
 
             <div className="lg:col-span-5 order-1 lg:order-2">
-              <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-card">
+              <div className="max-w-md mx-auto">
                 {serviceImage && (
-                  <Image
+                  <ArtisanPhotoFrame
                     src={serviceImage.imageUrl}
                     alt={serviceImage.description}
-                    fill
                     sizes="(max-width: 1024px) 100vw, 448px"
-                    className="object-cover"
+                    aspectClass={
+                      service.imageOrientation === "landscape"
+                        ? "aspect-[4/3]"
+                        : "aspect-[3/4]"
+                    }
+                    mode="cover"
+                    subcaption={service.title}
+                    caption={serviceImage.description}
+                    className="shadow-xl"
                   />
                 )}
               </div>
@@ -263,10 +273,10 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      {/* REALIZZAZIONI CORRELATE */}
+      {/* REALIZZAZIONI CORRELATE BOXED */}
       {relatedPhotos.length > 0 && (
-        <section className="py-16 bg-secondary/25 border-t border-border">
-          <div className="container mx-auto px-4 max-w-6xl">
+        <section className="max-w-6xl mx-auto px-3 sm:px-5 w-full">
+          <div className="rounded-[2rem] md:rounded-[2.5rem] bg-secondary/35 border border-border/80 px-6 py-12 md:px-10">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
               <div>
                 <h2 className="font-headline text-3xl text-primary">
@@ -287,23 +297,21 @@ export default async function ServiceDetailPage({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPhotos.map((photo) => (
-                <div
+                <Link
                   key={photo.id}
-                  className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm"
+                  href="/galleria"
+                  className="block rounded-[1.5rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  <div className="relative h-64 bg-stone-100">
-                    <Image
-                      src={photo.src}
-                      alt={photo.desc}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-contain p-3"
-                    />
-                  </div>
-                  <p className="p-4 text-sm font-medium text-foreground text-center">
-                    {photo.desc}
-                  </p>
-                </div>
+                  <ArtisanPhotoFrame
+                    src={photo.src}
+                    alt={photo.desc}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    aspectClass="aspect-[4/3]"
+                    mode={photo.orientation === "portrait" ? "mat" : "cover"}
+                    subcaption={photo.category}
+                    caption={photo.desc}
+                  />
+                </Link>
               ))}
             </div>
           </div>
@@ -311,7 +319,7 @@ export default async function ServiceDetailPage({
       )}
 
       {/* FAQ SERVIZIO */}
-      <section className="py-16 md:py-20 bg-background border-t border-border">
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="font-headline text-3xl md:text-4xl text-primary text-center mb-10">
             Domande Frequenti

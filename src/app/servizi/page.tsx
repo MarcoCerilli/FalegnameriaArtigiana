@@ -79,39 +79,41 @@ export default function ServiziPage() {
 
   return (
     <>
-      <section className="relative h-[55vh] min-h-[380px] max-h-[560px] flex items-center justify-center text-center overflow-hidden bg-zinc-900">
-        <ResponsiveHeroImage
-          desktopSrc={heroDesktop}
-          mobileSrc={heroMobile}
-          alt="I servizi artigianali di Mave Arredamenti a Terracina"
-          className="object-cover object-center"
-        />
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-2">
+        <section className="relative h-[46vh] min-h-[340px] max-h-[460px] flex items-center justify-center text-center overflow-hidden bg-zinc-900 rounded-[2rem] md:rounded-[2.5rem] shadow-xl">
+          <ResponsiveHeroImage
+            desktopSrc={heroDesktop}
+            mobileSrc={heroMobile}
+            alt="I servizi artigianali di Mave Arredamenti a Terracina"
+            className="object-cover object-center"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
 
-        <div className="relative z-10 px-6 max-w-4xl mx-auto">
-          <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-xl">
-            I Nostri{" "}
-            <span className="text-accent italic font-light tracking-tight">
-              Servizi
-            </span>
-          </h1>
+          <div className="relative z-10 px-6 max-w-4xl mx-auto">
+            <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-xl">
+              I Nostri{" "}
+              <span className="text-accent italic font-light tracking-tight">
+                Servizi
+              </span>
+            </h1>
 
-          <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full" />
+            <div className="h-1.5 w-20 bg-accent mx-auto mt-5 rounded-full" />
 
-          <p className="mt-6 text-lg md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed font-light">
-            Dalla precisione della{" "}
-            <span className="font-semibold underline decoration-accent underline-offset-4">
-              falegnameria
-            </span>{" "}
-            alla sicurezza dei{" "}
-            <span className="font-semibold underline decoration-accent underline-offset-4">
-              portoni blindati
-            </span>
-            , offriamo soluzioni su misura con la massima qualità artigianale.
-          </p>
-        </div>
-      </section>
+            <p className="mt-5 text-lg md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed font-light">
+              Dalla precisione della{" "}
+              <span className="font-semibold underline decoration-accent underline-offset-4">
+                falegnameria
+              </span>{" "}
+              alla sicurezza dei{" "}
+              <span className="font-semibold underline decoration-accent underline-offset-4">
+                portoni blindati
+              </span>
+              , offriamo soluzioni su misura con la massima qualità artigianale.
+            </p>
+          </div>
+        </section>
+      </div>
 
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl">

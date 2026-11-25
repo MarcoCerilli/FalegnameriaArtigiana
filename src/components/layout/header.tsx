@@ -24,8 +24,8 @@ export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const leftLinks = NAV_LINKS.slice(0, 3);
-  const rightLinks = NAV_LINKS.slice(3, 5);
+  const pillLinks = NAV_LINKS.filter((link) => link.href !== "/contatti");
+  const isContactActive = pathname === "/contatti";
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -43,14 +43,25 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#242c24]/95 backdrop-blur shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-2.5 flex items-center justify-between relative">
-        {/* NAV DESKTOP (Sinistra) */}
+    <header className="sticky top-0 z-50 w-full px-3 sm:px-5 pt-2.5 pb-1.5 pointer-events-none">
+      <div className="pointer-events-auto max-w-6xl mx-auto rounded-full bg-[#242c24]/95 border border-white/15 backdrop-blur-md shadow-xl px-2.5 sm:px-4 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3">
+        {/* LOGO */}
+        <div className="flex items-center z-10 shrink-0 pl-0.5">
+          <Link
+            href="/"
+            aria-label="Mave Arredamenti - Torna alla Home"
+            className="flex items-center hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-full"
+          >
+            <Logo compact />
+          </Link>
+        </div>
+
+        {/* NAVPILL DESKTOP CENTRALE */}
         <nav
-          aria-label="Navigazione principale sinistra"
-          className="hidden lg:flex flex-1 justify-end items-center gap-8 pr-10"
+          aria-label="Navigazione principale"
+          className="hidden lg:flex items-center gap-1 rounded-full bg-white/[0.06] border border-white/10 p-1"
         >
-          {leftLinks.map((link) => {
+          {pillLinks.map((link) => {
             const isActive = isLinkActive(pathname, link.href);
             return (
               <Link
@@ -58,94 +69,78 @@ export default function Header() {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative text-[13px] font-bold uppercase tracking-[0.15em] transition-colors py-2",
+                  "rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.13em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                   isActive
-                    ? "text-accent"
-                    : "text-white/80 hover:text-white hover:scale-105 transition-transform",
+                    ? "bg-accent text-[#1a231a] shadow-sm"
+                    : "text-white/85 hover:text-white hover:bg-white/10",
                 )}
               >
                 {link.label}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-accent rounded-full" />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* LOGO */}
-        <div className="flex justify-start lg:justify-center items-center z-10 shrink-0">
-          <Link
-            href="/"
-            aria-label="Mave Arredamenti - Torna alla Home"
-            className="flex items-center hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-xl"
+        {/* CTA CONTATTI DESKTOP */}
+        <div className="hidden lg:flex items-center shrink-0">
+          <Button
+            asChild
+            className={cn(
+              "rounded-full px-5 h-9 font-bold text-xs uppercase tracking-[0.13em] transition-all duration-200",
+              isContactActive
+                ? "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-[#1a231a]"
+                : "bg-accent text-[#1a231a] hover:bg-accent/90 shadow-md hover:shadow-accent/20",
+            )}
           >
-            <Logo />
-          </Link>
+            <Link
+              href="/contatti"
+              aria-current={isContactActive ? "page" : undefined}
+            >
+              Contattaci
+            </Link>
+          </Button>
         </div>
 
-        {/* MOBILE TOGGLE */}
-        <div className="flex lg:hidden flex-1 justify-end items-center">
+        {/* AZIONI MOBILE NAVPILL */}
+        <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+          <Link
+            href="/contatti"
+            aria-current={isContactActive ? "page" : undefined}
+            className={cn(
+              "rounded-full px-3 sm:px-3.5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition-all",
+              isContactActive
+                ? "border border-accent text-accent bg-accent/10"
+                : "bg-accent text-[#1a231a] shadow-sm",
+            )}
+          >
+            Preventivo
+          </Link>
           <button
             type="button"
             aria-label={isMobileMenuOpen ? "Chiudi menu" : "Apri menu"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"
-            className="text-accent hover:bg-accent/10 active:bg-accent/20 rounded-full transition-colors h-12 w-12 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="text-accent bg-white/10 hover:bg-white/15 rounded-full transition-colors h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
             {isMobileMenuOpen ? (
-              <X className="h-8 w-8" aria-hidden="true" />
+              <X className="h-5 w-5" aria-hidden="true" />
             ) : (
-              <Menu className="h-8 w-8" aria-hidden="true" />
+              <Menu className="h-5 w-5" aria-hidden="true" />
             )}
           </button>
         </div>
-
-        {/* NAV DESKTOP E BOTTONE (Destra) */}
-        <nav
-          aria-label="Navigazione principale destra"
-          className="hidden lg:flex flex-1 justify-start items-center gap-8 pl-10"
-        >
-          {rightLinks.map((link) => {
-            const isActive = isLinkActive(pathname, link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "relative text-[13px] font-bold uppercase tracking-[0.15em] transition-colors py-2",
-                  isActive
-                    ? "text-accent"
-                    : "text-white/80 hover:text-white hover:scale-105 transition-transform",
-                )}
-              >
-                {link.label}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-accent rounded-full" />
-                )}
-              </Link>
-            );
-          })}
-          <Button
-            asChild
-            className="bg-accent text-[#1a231a] hover:bg-accent/90 font-bold rounded-full px-7 shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5 transition-all duration-300"
-          >
-            <Link href="/contatti">Contattaci</Link>
-          </Button>
-        </nav>
       </div>
 
-      {/* MENU MOBILE */}
+      {/* MENU MOBILE PILL CARD */}
       {isMobileMenuOpen && (
         <div
           id="mobile-navigation"
-          className="lg:hidden border-t border-white/10 bg-[#1a231a] shadow-2xl animate-in slide-in-from-top-2 duration-200"
+          className="pointer-events-auto lg:hidden mt-2 rounded-3xl border border-white/15 bg-[#1a231a]/95 backdrop-blur-md shadow-2xl animate-in slide-in-from-top-2 duration-200"
         >
           <nav
             aria-label="Navigazione mobile"
-            className="container flex flex-col p-6 gap-3"
+            className="flex flex-col p-4 gap-2"
           >
             {NAV_LINKS.map((link) => {
               const isActive = isLinkActive(pathname, link.href);
@@ -156,16 +151,29 @@ export default function Header() {
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "text-lg font-headline transition-all p-3 rounded-xl",
+                    "rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-all text-center",
                     isActive
-                      ? "bg-accent/15 text-accent border-l-4 border-accent"
-                      : "text-white/85 hover:bg-accent/10 hover:text-accent hover:pl-4",
+                      ? "bg-accent text-[#1a231a] shadow-sm"
+                      : "bg-white/5 text-white/85 hover:bg-white/10 hover:text-white",
                   )}
                 >
                   {link.label}
                 </Link>
               );
             })}
+            <Link
+              href="/privacy"
+              aria-current={pathname === "/privacy" ? "page" : undefined}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                "rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-widest transition-all text-center",
+                pathname === "/privacy"
+                  ? "bg-accent text-[#1a231a] shadow-sm"
+                  : "bg-white/5 text-white/75 hover:bg-white/10 hover:text-white",
+              )}
+            >
+              Privacy
+            </Link>
           </nav>
         </div>
       )}

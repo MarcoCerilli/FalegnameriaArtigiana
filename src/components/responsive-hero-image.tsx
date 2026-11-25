@@ -22,7 +22,7 @@ export function ResponsiveHeroImage({
   const common = {
     alt,
     fill: true,
-    sizes: "100vw",
+    sizes: "(max-width: 1152px) 100vw, 1152px",
     priority,
     className,
   };
@@ -35,7 +35,11 @@ export function ResponsiveHeroImage({
 
   return (
     <picture className="block absolute inset-0 w-full h-full">
-      <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+      <source
+        media="(min-width: 768px)"
+        srcSet={desktopSrcSet}
+        sizes="(max-width: 1152px) 100vw, 1152px"
+      />
       <img {...mobileProps} alt={alt} />
     </picture>
   );

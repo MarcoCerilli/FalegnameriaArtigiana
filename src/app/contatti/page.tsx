@@ -39,35 +39,37 @@ export default function ContattiPage() {
 
   return (
     <div className="bg-background min-h-screen">
-      {/* HERO CONTATTI */}
-      <section className="relative w-full h-[360px] md:h-[420px] flex items-center justify-center overflow-hidden bg-zinc-900">
-        <ResponsiveHeroImage
-          desktopSrc={heroDesktop}
-          mobileSrc={heroMobile}
-          alt="Contatta Mave Arredamenti a Terracina per un preventivo gratuito"
-          className="object-cover object-center"
-        />
+      {/* HERO CONTATTI BOXED */}
+      <div className="max-w-6xl mx-auto px-3 sm:px-5 pt-2">
+        <section className="relative w-full h-[320px] md:h-[380px] flex items-center justify-center overflow-hidden bg-zinc-900 rounded-[2rem] md:rounded-[2.5rem] shadow-xl">
+          <ResponsiveHeroImage
+            desktopSrc={heroDesktop}
+            mobileSrc={heroMobile}
+            alt="Contatta Mave Arredamenti a Terracina per un preventivo gratuito"
+            className="object-cover object-center"
+          />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
 
-        <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto">
-          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
-            Parliamo del tuo{" "}
-            <span className="text-accent not-italic font-light tracking-tight">
-              Progetto
-            </span>
-          </h1>
-          <div className="h-1.5 w-24 bg-accent mt-5 rounded-full shadow-lg" />
-          <p className="mt-6 text-lg md:text-2xl text-white/95 italic max-w-2xl mx-auto drop-shadow-md font-light">
-            Ogni grande lavoro inizia con una chiacchierata e un sopralluogo
-            senza impegno.
-          </p>
-        </div>
-      </section>
+          <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto">
+            <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
+              Parliamo del tuo{" "}
+              <span className="text-accent not-italic font-light tracking-tight">
+                Progetto
+              </span>
+            </h1>
+            <div className="h-1.5 w-24 bg-accent mt-5 rounded-full shadow-lg" />
+            <p className="mt-5 text-lg md:text-2xl text-white/95 italic max-w-2xl mx-auto drop-shadow-md font-light">
+              Ogni grande lavoro inizia con una chiacchierata e un sopralluogo
+              senza impegno.
+            </p>
+          </div>
+        </section>
+      </div>
 
       {/* SEZIONE CONTATTO */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid lg:grid-cols-3 gap-10 lg:gap-12 max-w-6xl mx-auto">
+      <section className="max-w-6xl mx-auto px-3 sm:px-5 py-14 md:py-20">
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-10">
           <aside className="lg:col-span-1 space-y-8">
             <div className="bg-card p-8 rounded-3xl border border-border shadow-xl space-y-7">
               <h2 className="font-headline text-3xl text-primary text-center lg:text-left">

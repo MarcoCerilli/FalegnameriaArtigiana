@@ -27,8 +27,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-background min-h-screen py-16 md:py-24">
-      <div className="container mx-auto px-4 max-w-3xl">
+    <div className="bg-background min-h-screen py-12 md:py-16">
+      <div className="max-w-4xl mx-auto px-3 sm:px-5">
+        <div className="rounded-[2rem] bg-card border border-border shadow-sm p-6 sm:p-10 md:p-12">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest mb-8 hover:opacity-75 transition-opacity"
@@ -147,6 +148,7 @@ export default function PrivacyPage() {
               all&apos;Autorità Garante per la Protezione dei Dati Personali.
             </p>
           </section>
+        </div>
         </div>
       </div>
     </div>

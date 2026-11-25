@@ -18,6 +18,7 @@ export type Service = {
   seoTitle: string;
   seoDescription: string;
   imageId: string;
+  imageOrientation: "landscape" | "portrait";
   icon: LucideIcon;
   relatedGalleryIds: number[];
   catalogHref?: string;
@@ -60,6 +61,7 @@ export const services: Service[] = [
     seoDescription:
       "Falegnameria artigianale a Terracina: cucine, armadi, scale e arredi in legno su misura per casa e imbarcazioni. Richiedi un sopralluogo gratuito.",
     imageId: "service-falegnameria",
+    imageOrientation: "landscape",
     icon: Hammer,
     relatedGalleryIds: [1, 3, 7, 17, 20, 23],
   },
@@ -99,6 +101,7 @@ export const services: Service[] = [
     seoDescription:
       "Tappezzeria nautica artigianale a Terracina: cuscinerie per barche, tendalini, cappottine e rivestimenti resistenti a salsedine e raggi UV.",
     imageId: "service-tappezzeria",
+    imageOrientation: "portrait",
     icon: Sailboat,
     relatedGalleryIds: [2, 4, 13, 16],
   },
@@ -138,6 +141,7 @@ export const services: Service[] = [
     seoDescription:
       "Installazione infissi Schüco in alluminio, PVC e legno a Terracina. Massimo isolamento termico e acustico, catalogo modelli e sopralluogo gratuito.",
     imageId: "service-infissi",
+    imageOrientation: "portrait",
     icon: DoorOpen,
     relatedGalleryIds: [14, 15, 19, 21],
     catalogHref: "/servizi/infissi/catalogo",
@@ -178,6 +182,7 @@ export const services: Service[] = [
     seoDescription:
       "Installazione zanzariere su misura a Terracina per finestre e portefinestre: modelli plissettati, a rullo e a battente con telai coordinati.",
     imageId: "service-zanzariere",
+    imageOrientation: "portrait",
     icon: Wind,
     relatedGalleryIds: [15, 18, 19],
   },
@@ -217,6 +222,7 @@ export const services: Service[] = [
     seoDescription:
       "Fornitura e installazione portoni blindati certificati a Terracina con pannelli in legno personalizzabili per ville e condomini.",
     imageId: "service-portoni",
+    imageOrientation: "portrait",
     icon: ShieldCheck,
     relatedGalleryIds: [5, 14, 18, 21],
   },
