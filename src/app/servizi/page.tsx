@@ -6,10 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { services, type Service } from "@/lib/services";
 import Link from "next/link";
-import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ResponsiveHeroImage } from "@/components/responsive-hero-image";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Servizi",
@@ -18,32 +20,48 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/servizi",
   },
+  openGraph: {
+    title: "Servizi Artigianali | Mave Arredamenti Terracina",
+    description:
+      "Falegnameria su misura, tappezzeria nautica, infissi Schüco, zanzariere e portoni blindati a Terracina.",
+    url: "/servizi",
+    images: ["/opengraph-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Servizi Artigianali | Mave Arredamenti",
+    description:
+      "Tutti i servizi su misura per casa e imbarcazioni a Terracina.",
+    images: ["/opengraph-image.jpg"],
+  },
 };
 
 function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
   return (
-    <Link href={`/servizi/${service.slug}`} className="block group h-full">
-      <Card className="h-full bg-card transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 border-2 border-border hover:border-primary group">
-        <CardHeader>
-          <div className="mb-4">
-            {/* L'icona ora brilla con il giallo lime (accent) al passaggio del mouse */}
-            <Icon className="h-12 w-12 text-primary group-hover:text-accent transition-colors duration-300" />
+    <Link
+      href={`/servizi/${service.slug}`}
+      className="block group h-full rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      <Card className="h-full bg-card transition-all duration-300 hover:shadow-2xl hover:-translate-y-1.5 border border-border hover:border-primary flex flex-col">
+        <CardHeader className="flex-grow">
+          <div className="mb-4 inline-flex p-3.5 rounded-2xl bg-secondary group-hover:bg-accent transition-colors duration-300 w-fit">
+            <Icon
+              className="h-9 w-9 text-primary group-hover:text-accent-foreground transition-colors"
+              aria-hidden="true"
+            />
           </div>
           <CardTitle className="font-headline text-2xl text-foreground group-hover:text-primary transition-colors">
             {service.title}
           </CardTitle>
-          <CardDescription className="pt-2 text-muted-foreground">
+          <CardDescription className="pt-2 text-muted-foreground text-base leading-relaxed">
             {service.shortDescription}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Il link "Scopri di più" diventa più evidente */}
-          <p className="text-sm font-bold text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+          <p className="text-sm font-bold text-primary flex items-center gap-2 group-hover:gap-3 transition-all">
             Scopri di più
-            <span className="text-accent group-hover:translate-x-1 transition-transform">
-              &rarr;
-            </span>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </p>
         </CardContent>
       </Card>
@@ -52,101 +70,82 @@ function ServiceCard({ service }: { service: Service }) {
 }
 
 export default function ServiziPage() {
-  const heroGeneral = PlaceHolderImages.find((p) => p.id === "hero-servizi");
-
-  // Supponendo che tu abbia aggiunto queste ID nel file placeholder-images
   const heroDesktop =
-    PlaceHolderImages.find((p) => p.id === "hero-servizi-desktop") ||
-    heroGeneral; // fallback all'immagine generale se non trovi quella specifica
+    PlaceHolderImages.find((p) => p.id === "hero-servizi-desktop")?.imageUrl ||
+    "/images/hero-servizi-desktop.jpg";
   const heroMobile =
-    PlaceHolderImages.find((p) => p.id === "hero-servizi-mobile") ||
-    heroGeneral; // fallback all'immagine generale se non trovi quella specifica
+    PlaceHolderImages.find((p) => p.id === "hero-servizi-mobile")?.imageUrl ||
+    "/images/hero-servizi-mobile.jpg";
 
   return (
     <>
-      <section className="relative h-[75vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden">
-        {/* IMMAGINE DESKTOP */}
-        {heroDesktop && (
-          <div className="hidden md:block absolute inset-0 bg-stone-900">
-            <Image
-              src={heroDesktop.imageUrl}
-              alt={heroDesktop.description}
-              fill
-              sizes="100vw"
-              // 1. Schiarito a 1.15
-              // 2. scale-105: ridotto leggermente lo zoom rispetto a prima per "allontanare"
-              // 3. object-cover: mantiene il riempimento ma con una scala più dolce
-              className="object-cover object-center brightness-[1.5] contrast-[1.05] scale-100 transition-transform duration-700"
-              priority
-            />
+      <section className="relative h-[55vh] min-h-[380px] max-h-[560px] flex items-center justify-center text-center overflow-hidden bg-zinc-900">
+        <ResponsiveHeroImage
+          desktopSrc={heroDesktop}
+          mobileSrc={heroMobile}
+          alt="I servizi artigianali di Mave Arredamenti a Terracina"
+          className="object-cover object-center"
+        />
 
-            {/* TEXTURE NOISE: quasi invisibile (0.03) ma utile per la grana */}
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              }}
-            />
-
-            {/* OVERLAY: Ridotto al minimo (5%) solo per dare un filo di contrasto al testo bianco */}
-            <div className="absolute inset-0 bg-black/5" />
-
-            {/* Gradiente extra solo sul fondo per staccare il testo se necessario */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-          </div>
-        )}
-
-        {/* IMMAGINE MOBILE (visibile sotto md) */}
-        {heroMobile && (
-          <div className="block md:hidden absolute inset-0">
-            <Image
-              src={heroMobile.imageUrl}
-              alt={heroMobile.description}
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Overlay scuro per leggibilità testo */}
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
 
         <div className="relative z-10 px-6 max-w-4xl mx-auto">
-          {/* Titolo Bicolore */}
-          <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight">
-            I Miei{" "}
+          <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-xl">
+            I Nostri{" "}
             <span className="text-accent italic font-light tracking-tight">
               Servizi
             </span>
           </h1>
 
-          {/* Linea decorativa centrata */}
-          <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(var(--accent),0.5)]" />
+          <div className="h-1.5 w-20 bg-accent mx-auto mt-6 rounded-full" />
 
-          <p className="mt-8 text-lg md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed italic font-medium">
+          <p className="mt-6 text-lg md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed font-light">
             Dalla precisione della{" "}
-            <span className="text-white font-bold underline decoration-accent/50 underline-offset-4">
+            <span className="font-semibold underline decoration-accent underline-offset-4">
               falegnameria
             </span>{" "}
-            alla robustezza dei{" "}
-            <span className="text-white font-bold underline decoration-accent/50 underline-offset-4">
+            alla sicurezza dei{" "}
+            <span className="font-semibold underline decoration-accent underline-offset-4">
               portoni blindati
             </span>
-            , offro soluzioni su misura garantendo sempre la massima qualità
-            artigianale.
+            , offriamo soluzioni su misura con la massima qualità artigianale.
           </p>
         </div>
       </section>
 
-      {/* Griglia Servizi */}
       <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}
+          </div>
+
+          {/* Highlight Catalogo Infissi Schüco */}
+          <div className="mt-16 rounded-3xl bg-[#242c24] text-white p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xl">
+            <div className="space-y-3 max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                Catalogo Tecnico
+              </p>
+              <h2 className="font-headline text-3xl md:text-4xl text-white">
+                Cerchi infissi in alluminio Schüco?
+              </h2>
+              <p className="text-white/85 leading-relaxed">
+                Consulta le schede dei modelli ad anta a vista, anta a
+                scomparsa e panoramiche ad alto isolamento disponibili per la
+                posa a Terracina e provincia.
+              </p>
+            </div>
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 font-bold shrink-0"
+            >
+              <Link href="/servizi/infissi/catalogo">
+                Sfoglia il Catalogo
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

@@ -1,10 +1,10 @@
-
-
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import ContactForm from "@/components/contact-form";
-import { Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ResponsiveHeroImage } from "@/components/responsive-hero-image";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Contatti e Preventivi",
@@ -13,148 +13,160 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contatti",
   },
+  openGraph: {
+    title: "Contatti e Preventivi | Mave Arredamenti Terracina",
+    description:
+      "Richiedi un preventivo gratuito o un sopralluogo a Terracina e in provincia di Latina.",
+    url: "/contatti",
+    images: ["/opengraph-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contatti e Preventivi | Mave Arredamenti",
+    description:
+      "Parla con Mave Arredamenti per progetti su misura casa e nautica a Terracina.",
+    images: ["/opengraph-image.jpg"],
+  },
 };
 
 export default function ContattiPage() {
-  const heroImage = PlaceHolderImages.find(
-    (p) => p.id === "hero-contatti-desktop",
-  );
-  const heroMobile = PlaceHolderImages.find(
-    (p) => p.id === "hero-contatti-mobile",
-  );
+  const heroDesktop =
+    PlaceHolderImages.find((p) => p.id === "hero-contatti-desktop")?.imageUrl ||
+    "/images/hero-contatti.jpg";
+  const heroMobile =
+    PlaceHolderImages.find((p) => p.id === "hero-contatti-mobile")?.imageUrl ||
+    "/images/hero-contatti-mobile.jpg";
 
   return (
     <div className="bg-background min-h-screen">
-      {/* SEZIONE HERO OTTIMIZZATA PER DESKTOP E MOBILE */}
-      <section className="relative w-full overflow-hidden bg-zinc-900">
-        <div className="relative w-full aspect-[21/9] md:aspect-[25/9] min-h-[400px]">
-          {/* IMMAGINE MOBILE - Viene mostrata solo sotto i 768px (md) */}
-          {heroMobile && (
-            <div className="md:hidden absolute inset-0">
-              <Image
-                src={heroMobile.imageUrl}
-                alt={heroMobile.description}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover brightness-[0.7]"
-              />
-            </div>
-          )}
+      {/* HERO CONTATTI */}
+      <section className="relative w-full h-[360px] md:h-[420px] flex items-center justify-center overflow-hidden bg-zinc-900">
+        <ResponsiveHeroImage
+          desktopSrc={heroDesktop}
+          mobileSrc={heroMobile}
+          alt="Contatta Mave Arredamenti a Terracina per un preventivo gratuito"
+          className="object-cover object-center"
+        />
 
-          {/* IMMAGINE DESKTOP - Viene mostrata solo da 768px in su */}
-          {heroImage && (
-            <div className="hidden md:block absolute inset-0">
-              <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center"
-              />
-            </div>
-          )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
 
-          {/* Overlay per leggibilità testo */}
-          <div className="absolute inset-0 bg-black/40 md:bg-black/30 z-[5]" />
-
-          {/* Testo */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-6 text-center">
-            <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
-              Parliamo del tuo{" "}
-              <span className="text-accent not-italic font-light tracking-tight">
-                Progetto
-              </span>
-            </h1>
-            <div className="h-1.5 w-24 bg-accent mt-6 rounded-full shadow-lg" />
-
-            <p className="mt-8 text-lg md:text-2xl text-white/90 italic max-w-2xl mx-auto drop-shadow-md font-light">
-              Ogni grande lavoro inizia con una chiacchierata.
-            </p>
-          </div>
+        <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto">
+          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
+            Parliamo del tuo{" "}
+            <span className="text-accent not-italic font-light tracking-tight">
+              Progetto
+            </span>
+          </h1>
+          <div className="h-1.5 w-24 bg-accent mt-5 rounded-full shadow-lg" />
+          <p className="mt-6 text-lg md:text-2xl text-white/95 italic max-w-2xl mx-auto drop-shadow-md font-light">
+            Ogni grande lavoro inizia con una chiacchierata e un sopralluogo
+            senza impegno.
+          </p>
         </div>
       </section>
 
       {/* SEZIONE CONTATTO */}
       <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {/* Colonna Info */}
+        <div className="grid lg:grid-cols-3 gap-10 lg:gap-12 max-w-6xl mx-auto">
           <aside className="lg:col-span-1 space-y-8">
-            <div className="bg-card p-8 rounded-3xl border-2 border-primary/10 shadow-xl relative overflow-hidden group">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-all" />
-              <h3 className="font-headline text-2xl text-primary mb-6 text-center lg:text-left">
+            <div className="bg-card p-8 rounded-3xl border border-border shadow-xl space-y-7">
+              <h2 className="font-headline text-3xl text-primary text-center lg:text-left">
                 Informazioni
-              </h3>
+              </h2>
 
-              <div className="space-y-8">
-                {/* SEDE */}
+              <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
-                    <MapPin size={20} />
+                    <MapPin size={20} aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-primary uppercase tracking-widest">
-                      Sede
+                      Sede Laboratorio
                     </p>
-                    <p className="text-lg text-muted-foreground italic leading-tight">
+                    <a
+                      href="https://maps.google.com/?q=Via+Giorgione+04019+Terracina+LT"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base text-foreground hover:text-primary underline underline-offset-4 decoration-border leading-snug inline-block mt-1"
+                    >
                       Via Giorgione SNC,
-                      <br /> 04019 Terracina (LT)
-                    </p>
+                      <br />
+                      04019 Terracina (LT)
+                    </a>
                   </div>
                 </div>
 
-                {/* CONTATTI TELEFONICI */}
                 <div className="flex items-start gap-4">
                   <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
-                    <Phone size={20} />
+                    <Phone size={20} aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-primary uppercase tracking-widest">
-                      Contatti
+                      Telefono
                     </p>
-                    <div className="text-lg text-muted-foreground space-y-1">
-                      <p>
-                        <span className="font-semibold text-primary/70">
-                          Massimo:
-                        </span>{" "}
-                        347 9417554
-                      </p>
-                    </div>
+                    <a
+                      href="tel:+393479417554"
+                      className="text-base font-semibold text-foreground hover:text-primary underline underline-offset-4 decoration-border inline-block mt-1"
+                    >
+                      Massimo: +39 347 9417554
+                    </a>
                   </div>
                 </div>
 
-                {/* SCRIVICI (EMAIL) */}
                 <div className="flex items-start gap-4">
                   <div className="bg-accent p-3 rounded-xl text-accent-foreground shrink-0">
-                    <Mail size={20} />
+                    <Mail size={20} aria-hidden="true" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs font-bold text-primary uppercase tracking-widest">
-                      Scrivici
+                      Email
                     </p>
-                    <div className="text-sm md:text-base text-muted-foreground break-all">
-                      <p>mavearredamenti@gmail.com</p>
-                    </div>
+                    <a
+                      href="mailto:mavearredamenti@gmail.com"
+                      className="text-base text-foreground hover:text-primary underline underline-offset-4 decoration-border break-all inline-block mt-1"
+                    >
+                      mavearredamenti@gmail.com
+                    </a>
                   </div>
                 </div>
               </div>
+
+              <div className="pt-2 border-t border-border">
+                <Button
+                  asChild
+                  className="w-full rounded-full bg-[#1f8a4c] hover:bg-[#166d3b] text-white font-bold"
+                >
+                  <a
+                    href="https://wa.me/393479417554?text=Ciao%2C%20vorrei%20richiedere%20informazioni%20per%20un%20progetto."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+                    Scrivici su WhatsApp
+                  </a>
+                </Button>
+              </div>
             </div>
 
-            <div className="p-6 rounded-2xl border border-dashed border-primary/30 text-center">
+            <div className="p-6 rounded-2xl border border-dashed border-primary/40 bg-card/50 text-center">
               <p className="text-sm text-muted-foreground italic leading-relaxed">
-                "Preferisco il rumore della pialla a quello del telefono, ma
-                rispondo sempre entro 24 ore."
+                &ldquo;Preferisco il rumore della pialla a quello del telefono,
+                ma rispondo sempre entro 24 ore.&rdquo;
               </p>
             </div>
           </aside>
 
-          {/* Colonna Form */}
-          <div className="lg:col-span-2 bg-card p-8 md:p-12 rounded-3xl border border-border shadow-sm">
-            <h3 className="font-headline text-3xl text-primary mb-8">
+          <div className="lg:col-span-2 bg-card p-6 md:p-10 rounded-3xl border border-border shadow-sm">
+            <h2 className="font-headline text-3xl text-primary mb-6">
               Invia una richiesta
-            </h3>
-            <ContactForm />
+            </h2>
+            <Suspense
+              fallback={
+                <div className="h-96 rounded-2xl bg-secondary/30 animate-pulse" />
+              }
+            >
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </section>

@@ -5,11 +5,11 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
-import { CraftPopup } from "@/components/craft-popup";
+import { services } from "@/lib/services";
 
 const alegreya = Alegreya({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-alegreya",
   display: "swap",
@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#4a3c2c",
+  themeColor: "#242c24",
 };
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Mave Arredamenti",
   },
   description:
-    "Eccellenza artigiana di Simonelli Massimo a Terracina. Arredi su misura, tappezzeria nautica di lusso, infissi e portoni blindati. Trasforma la tua casa e la tua barca.",
+    "Eccellenza artigiana di Massimo Simonelli a Terracina. Arredi su misura, tappezzeria nautica, infissi Schüco, zanzariere e portoni blindati per casa e barca.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon-180x180.png",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     "restauro barche Terracina",
     "infissi in legno Terracina",
     "infissi Schüco Terracina",
-    "Simonelli Massimo Terracina",
+    "Massimo Simonelli Terracina",
     "zanzariere Terracina",
     "portoni blindati Terracina",
   ],
@@ -89,12 +89,17 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
+  "@id": "https://www.mavearredamenti.it/#business",
   name: "Mave Arredamenti",
   description:
     "Falegnameria artigianale, tappezzeria nautica, installazione infissi Schüco, zanzariere e portoni blindati su misura a Terracina.",
   url: "https://www.mavearredamenti.it",
+  image: "https://www.mavearredamenti.it/opengraph-image.jpg",
+  logo: "https://www.mavearredamenti.it/logo.jpg",
   telephone: "+393479417554",
   email: "mavearredamenti@gmail.com",
+  vatID: "IT03215480595",
+  priceRange: "€€",
   founder: {
     "@type": "Person",
     name: "Massimo Simonelli",
@@ -107,8 +112,33 @@ const jsonLd = {
     postalCode: "04019",
     addressCountry: "IT",
   },
-  areaServed: ["Terracina", "Latina", "San Felice Circeo", "Fondi", "Sabaudia"],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.2904,
+    longitude: 13.2442,
+  },
+  areaServed: [
+    "Terracina",
+    "Latina",
+    "San Felice Circeo",
+    "Fondi",
+    "Sabaudia",
+    "Sperlonga",
+    "Gaeta",
+  ],
   sameAs: ["https://www.instagram.com/mave_arredamenti/"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servizi Artigianali Mave Arredamenti",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        url: `https://www.mavearredamenti.it/servizi/${service.slug}`,
+      },
+    })),
+  },
 };
 
 export default function RootLayout({
@@ -122,16 +152,25 @@ export default function RootLayout({
       className={`${alegreya.variable} ${belleza.variable} scroll-smooth`}
     >
       <body className="font-body antialiased flex flex-col min-h-screen selection:bg-accent/30 selection:text-primary">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-accent focus:text-[#1a231a] focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold focus:shadow-lg"
+        >
+          Salta al contenuto principale
+        </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main id="main-content" className="flex-grow">
+          {children}
+        </main>
         <Footer />
         <WhatsAppButton />
         <Toaster />
-        <CraftPopup />
       </body>
     </html>
   );

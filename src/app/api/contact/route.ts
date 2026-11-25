@@ -2,13 +2,61 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 
+const MAX_BODY_BYTES = 20 * 1024;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+
+const ALLOWED_ORIGINS = new Set([
+  "www.mavearredamenti.it",
+  "mavearredamenti.it",
+  "localhost",
+  "127.0.0.1",
+]);
+
+// TODO(security): back rate limiting with shared Redis/Upstash or Cloudflare Turnstile when scaling horizontally
+const rateLimitStore = new Map<string, number[]>();
+
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(200),
-  phone: z.string().trim().max(40).optional().default(""),
-  subject: z.string().trim().min(1).max(200).optional().default("Richiesta generica"),
+  phone: z
+    .string()
+    .trim()
+    .max(30)
+    .optional()
+    .default("")
+    .refine((val) => val === "" || /^[+\d\s().-]{6,30}$/.test(val), {
+      message: "Numero di telefono non valido",
+    }),
+  subject: z
+    .string()
+    .trim()
+    .min(1)
+    .max(200)
+    .optional()
+    .default("Richiesta generica"),
   message: z.string().trim().min(10).max(5000),
+  privacyAccepted: z.literal(true, {
+    errorMap: () => ({
+      message: "È necessario accettare l'informativa sulla privacy.",
+    }),
+  }),
+  website: z.string().max(200).optional().default(""),
 });
+
+function jsonNoStore(
+  body: Record<string, unknown>,
+  status: number,
+  extraHeaders?: Record<string, string>,
+) {
+  return NextResponse.json(body, {
+    status,
+    headers: {
+      "Cache-Control": "no-store",
+      ...extraHeaders,
+    },
+  });
+}
 
 function escapeHtml(value: string): string {
   return value
@@ -23,25 +71,127 @@ function stripCrLf(value: string): string {
   return value.replaceAll(/[\r\n]+/g, " ").trim();
 }
 
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    const firstIp = forwardedFor.split(",")[0]?.trim();
+    if (firstIp) return firstIp;
+  }
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+  return "unknown";
+}
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfterSec: number } {
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW_MS;
+
+  for (const [key, timestamps] of rateLimitStore.entries()) {
+    const active = timestamps.filter((ts) => ts > windowStart);
+    if (active.length === 0) {
+      rateLimitStore.delete(key);
+    } else if (active.length !== timestamps.length) {
+      rateLimitStore.set(key, active);
+    }
+  }
+
+  const recent = (rateLimitStore.get(ip) ?? []).filter((ts) => ts > windowStart);
+  if (recent.length >= RATE_LIMIT_MAX_REQUESTS) {
+    const oldestInWindow = recent[0] ?? now;
+    const retryAfterSec = Math.max(
+      1,
+      Math.ceil((oldestInWindow + RATE_LIMIT_WINDOW_MS - now) / 1000),
+    );
+    return { allowed: false, retryAfterSec };
+  }
+
+  recent.push(now);
+  rateLimitStore.set(ip, recent);
+  return { allowed: true, retryAfterSec: 0 };
+}
+
+function isOriginAllowed(request: Request): boolean {
+  const originHeader = request.headers.get("origin");
+  if (!originHeader) return true;
+
+  try {
+    const originUrl = new URL(originHeader);
+    const originHostname = originUrl.hostname.toLowerCase();
+    if (ALLOWED_ORIGINS.has(originHostname)) return true;
+
+    const hostHeader =
+      request.headers.get("x-forwarded-host") || request.headers.get("host");
+    if (hostHeader) {
+      const requestHostname = hostHeader.split(":")[0]?.trim().toLowerCase();
+      if (requestHostname && originHostname === requestHostname) return true;
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   try {
-    const rawBody = await request.json();
-    const parsed = contactSchema.safeParse(rawBody);
+    if (!isOriginAllowed(request)) {
+      return jsonNoStore({ error: "Origine non autorizzata" }, 403);
+    }
 
+    const contentType = request.headers.get("content-type") ?? "";
+    if (!contentType.toLowerCase().includes("application/json")) {
+      return jsonNoStore({ error: "Formato richiesta non supportato" }, 415);
+    }
+
+    const contentLengthHeader = request.headers.get("content-length");
+    if (contentLengthHeader) {
+      const declaredSize = Number(contentLengthHeader);
+      if (Number.isFinite(declaredSize) && declaredSize > MAX_BODY_BYTES) {
+        return jsonNoStore({ error: "Richiesta troppo grande" }, 413);
+      }
+    }
+
+    const rawText = await request.text();
+    if (Buffer.byteLength(rawText, "utf8") > MAX_BODY_BYTES) {
+      return jsonNoStore({ error: "Richiesta troppo grande" }, 413);
+    }
+
+    let rawBody: unknown;
+    try {
+      rawBody = JSON.parse(rawText);
+    } catch {
+      return jsonNoStore({ error: "JSON non valido" }, 400);
+    }
+
+    const parsed = contactSchema.safeParse(rawBody);
     if (!parsed.success) {
-      return NextResponse.json(
+      return jsonNoStore(
         { error: "Dati non validi", details: parsed.error.flatten().fieldErrors },
-        { status: 400 },
+        400,
       );
     }
 
-    const { name, email, phone, subject, message } = parsed.data;
+    const { name, email, phone, subject, message, website } = parsed.data;
+
+    // Honeypot triggered: silently succeed without touching SMTP or leaking signals
+    if (website.trim().length > 0) {
+      return jsonNoStore({ message: "Inviato con successo" }, 200);
+    }
+
+    const clientIp = getClientIp(request);
+    const rateLimit = checkRateLimit(clientIp);
+    if (!rateLimit.allowed) {
+      return jsonNoStore(
+        {
+          error:
+            "Hai inviato troppe richieste. Riprova tra qualche minuto o contattaci su WhatsApp.",
+        },
+        429,
+        { "Retry-After": String(rateLimit.retryAfterSec) },
+      );
+    }
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      return NextResponse.json(
-        { error: "Servizio email non configurato" },
-        { status: 500 },
-      );
+      return jsonNoStore({ error: "Servizio email non disponibile" }, 500);
     }
 
     const safeName = escapeHtml(name);
@@ -61,7 +211,6 @@ export async function POST(request: Request) {
     });
 
     const adminText = `Nuovo messaggio da ${name} (${email}, tel: ${phone || "Non fornito"}):\n\nOggetto: ${subject}\n\nMessaggio:\n${message}`;
-    const clientText = `Ciao ${name}, abbiamo ricevuto la tua richiesta per "${subject}". Ti ricontatteremo al più presto. Grazie da Mave Arredamenti.`;
 
     const adminMail = {
       from: `"Sito Web Mave" <${process.env.EMAIL_USER}>`,
@@ -90,39 +239,17 @@ export async function POST(request: Request) {
       `,
     };
 
-    const clientMail = {
-      from: `"Mave Arredamenti" <${process.env.EMAIL_USER}>`,
-      to: stripCrLf(email),
-      subject: `Grazie per averci contattato - Mave Arredamenti`,
-      text: clientText,
-      html: `
-        <div style="background-color: #f4f5f4; padding: 40px 20px; font-family: sans-serif;">
-          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; text-align: center;">
-            <div style="background-color: #4a5d4d; padding: 30px;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Mave Arredamenti</h1>
-            </div>
-            <div style="padding: 40px; color: #444;">
-              <p style="font-size: 18px;">Grazie <strong>${safeName}</strong>,</p>
-              <p>Abbiamo ricevuto la tua richiesta per <strong>"${safeSubject}"</strong>.</p>
-              <p>Il nostro team artigiano analizzerà i dettagli e ti ricontatterà al più presto.</p>
-              <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-              <p style="font-size: 12px; color: #888;">Mave Arredamenti - Falegnameria Artigiana &amp; Nautica</p>
-            </div>
-          </div>
-        </div>
-      `,
-    };
-
     await transporter.sendMail(adminMail);
-    await transporter.sendMail(clientMail);
 
-    return NextResponse.json({ message: "Inviato con successo" }, { status: 200 });
+    return jsonNoStore({ message: "Inviato con successo" }, 200);
   } catch (error: unknown) {
-    const details = error instanceof Error ? error.message : "Errore sconosciuto";
-    console.error("❌ ERRORE GMAIL:", error);
-    return NextResponse.json(
-      { error: "Errore invio", details },
-      { status: 500 },
+    console.error("❌ ERRORE INVIO CONTATTO:", error);
+    return jsonNoStore(
+      {
+        error:
+          "Si è verificato un errore durante l'invio della richiesta. Riprova più tardi.",
+      },
+      500,
     );
   }
 }

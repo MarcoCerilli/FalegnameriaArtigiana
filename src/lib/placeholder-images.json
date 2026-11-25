@@ -1,141 +1,106 @@
 [
   {
     "id": "hero-main-desktop",
-    "description": "Mave Artigianato - Vista Desktop",
+    "description": "Mave Arredamenti - Laboratorio artigianale e lavorazione su misura",
     "imageUrl": "/images/hero-main.jpg",
     "imageHint": "artisan carpentry desktop"
   },
   {
     "id": "hero-main-mobile",
-    "description": "Mave Artigianato - Vista Mobile",
+    "description": "Mave Arredamenti - Dettaglio falegnameria e tappezzeria su misura",
     "imageUrl": "/images/hero-mobile.jpg",
     "imageHint": "artisan carpentry mobile"
   },
   {
     "id": "hero-chi-siamo-desktop",
-    "description": "Atmosfera del laboratorio artigiano",
+    "description": "Atmosfera del laboratorio artigiano Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-chi-siamo.jpg",
     "imageHint": "artisan workshop"
   },
   {
     "id": "hero-chi-siamo-mobile",
-    "description": "Dettaglio laboratorio per smartphone",
+    "description": "Dettaglio del laboratorio artigiano Mave Arredamenti",
     "imageUrl": "/images/hero-chi-siamo-mobile.jpg",
     "imageHint": "artisan workshop mobile"
   },
   {
-    "id": "hero-falegnameria-desktop",
-    "description": "Lavorazione legno su misura",
-    "imageUrl": "/images/hero-falegnameria.jpg"
-  },
-  {
-    "id": "hero-falegnameria-mobile",
-    "description": "Dettaglio falegnameria mobile",
-    "imageUrl": "/images/hero-falegnameria-mobile.jpg"
-  },
-  {
-    "id": "hero-tappezzeria-nautica-desktop",
-    "description": "Cuscineria nautica premium",
-    "imageUrl": "/images/arredo_mave.36.jpg"
-  },
-  {
-    "id": "hero-tappezzeria-nautica-mobile",
-    "description": "Dettaglio tappezzeria mobile",
-    "imageUrl": "/images/arredo_mave.36-mobile.jpg"
-  },
-  {
     "id": "hero-galleria-desktop",
-    "description": "Panoramica dei lavori completati - Mave Artigianato",
+    "description": "Panoramica dei lavori completati da Mave Arredamenti",
     "imageUrl": "/images/hero-galleria-desktop.jpg"
   },
   {
     "id": "hero-galleria-mobile",
-    "description": "Dettaglio lavorazioni artigianali mobile",
+    "description": "Dettaglio lavorazioni artigianali Mave Arredamenti",
     "imageUrl": "/images/hero-galleria-mobile.jpg"
   },
   {
-    "id": "hero-infissi-desktop",
-    "description": "Infissi moderni in legno",
-    "imageUrl": "https://images.unsplash.com/photo-1618221195710-dd6b41fa2247?q=80&w=1080"
-  },
-  {
-    "id": "hero-zanzariere-desktop",
-    "description": "Protezione e design zanzariere",
-    "imageUrl": "https://images.unsplash.com/photo-1599139535822-2144d715a442?q=80&w=1080"
-  },
-  {
-    "id": "hero-portoni-desktop",
-    "description": "Portoni blindati artigianali",
-    "imageUrl": "/images/portone.jpg"
-  },
-  {
     "id": "hero-servizi-desktop",
-    "description": "Panoramica dei servizi artigianali Mave",
+    "description": "Panoramica dei servizi artigianali Mave Arredamenti",
     "imageUrl": "/images/hero-servizi-desktop.jpg"
   },
   {
     "id": "hero-servizi-mobile",
-    "description": "I nostri servizi su misura",
+    "description": "I servizi su misura di Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-servizi-mobile.jpg"
   },
   {
     "id": "hero-servizi-slug-desktop",
-    "description": "Eccellenza artigiana Terracina",
+    "description": "Eccellenza artigiana Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-servizi-slug-desktop.jpg"
   },
   {
     "id": "hero-servizi-slug-mobile",
-    "description": "Eccellenza artigiana Terracina",
+    "description": "Eccellenza artigiana Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-servizi-slug-mobile.jpg"
   },
   {
     "id": "service-falegnameria",
-    "description": "Armadio su misura",
+    "description": "Armadio su misura in legno realizzato artigianalmente",
     "imageUrl": "/images/armadio2.jpeg"
   },
   {
     "id": "service-tappezzeria",
-    "description": "Dettaglio cuciture nautiche",
+    "description": "Dettaglio cuciture per tappezzeria nautica",
     "imageUrl": "/images/cuciture_nautiche.jpg"
   },
   {
     "id": "service-infissi",
-    "description": "Dettaglio telaio infisso",
+    "description": "Dettaglio telaio e profilo infisso ad alte prestazioni",
     "imageUrl": "/images/infisso.jpg"
   },
   {
     "id": "service-zanzariere",
-    "description": "Zanzariera a scomparsa",
+    "description": "Zanzariera a scomparsa su misura per finestra",
     "imageUrl": "/images/zanzariera.jpg"
   },
   {
     "id": "service-portoni",
-    "description": "Legno massello per portoni",
+    "description": "Portone blindato con rivestimento in legno massello",
     "imageUrl": "/images/portone.jpg"
   },
   {
     "id": "about-massimo",
-    "description": "Massimo nel suo laboratorio a Terracina",
+    "description": "Arredo soggiorno su misura realizzato a Terracina",
     "imageUrl": "/images/soggiorno.jpg"
   },
   {
     "id": "home-filosofia",
-    "description": "Dettaglio del laboratorio artigiano",
+    "description": "Dettaglio delle essenze in legno nel laboratorio Mave",
     "imageUrl": "/images/wood.jpeg"
   },
   {
     "id": "about-me",
-    "description": "L'artigiano all'opera nel laboratorio Mave",
+    "description": "Scala interna in legno artigianale Mave Arredamenti",
     "imageUrl": "/images/scala.jpeg"
   },
   {
     "id": "hero-contatti-desktop",
-    "description": "Contatta Mave Arredamenti",
+    "description": "Contatta Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-contatti.jpg"
   },
   {
     "id": "hero-contatti-mobile",
-    "description": "Contatta Mave Arredamenti",
+    "description": "Contatta Mave Arredamenti a Terracina",
     "imageUrl": "/images/hero-contatti-mobile.jpg"
   }
 ]

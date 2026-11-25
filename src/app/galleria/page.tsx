@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { GALLERY_PHOTOS } from "@/lib/gallery";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { GalleryGrid, type GalleryPhoto } from "@/components/gallery-grid";
+import { GalleryGrid } from "@/components/gallery-grid";
+import { ResponsiveHeroImage } from "@/components/responsive-hero-image";
 
 export const metadata: Metadata = {
   title: "Galleria Progetti",
@@ -13,110 +14,76 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/galleria",
   },
+  openGraph: {
+    title: "Galleria Progetti | Mave Arredamenti Terracina",
+    description:
+      "Cucine in massello, lavorazioni nautiche, scale e arredi su misura realizzati da Mave Arredamenti.",
+    url: "/galleria",
+    images: ["/opengraph-image.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Galleria Progetti | Mave Arredamenti",
+    description:
+      "Realizzazioni su misura in legno e tappezzeria nautica a Terracina.",
+    images: ["/opengraph-image.jpg"],
+  },
 };
-
-const galleryPhotos: GalleryPhoto[] = [
-  { id: 1, src: "/gallery/arredo_mave.1.jpg", desc: "Cucina artigianale in massello" },
-  { id: 2, src: "/gallery/arredo_mave.2.jpg", desc: "Rivestimento pozzetto in Teak" },
-  { id: 3, src: "/gallery/arredo_mave.3.jpg", desc: "Armadio a muro su misura" },
-  { id: 4, src: "/gallery/arredo_mave.4.jpg", desc: "Dettaglio mobili per interni yacht" },
-  { id: 5, src: "/gallery/arredo_mave.5.jpg", desc: "Portone blindato con pannello in legno" },
-  { id: 7, src: "/gallery/arredo_mave.7.jpg", desc: "Tavolo da pranzo in rovere naturale" },
-  { id: 8, src: "/gallery/arredo_mave.8.jpg", desc: "Restauro mobili d'epoca" },
-  { id: 9, src: "/gallery/arredo_mave.9.jpg", desc: "Separè per soggiorno" },
-  { id: 11, src: "/gallery/arredo_mave.11.jpg", desc: "Scale interne in legno pregiato" },
-  { id: 12, src: "/gallery/arredo_mave.12.jpg", desc: "Arredo bagno personalizzato" },
-  { id: 13, src: "/gallery/arredo_mave.13.jpg", desc: "Lavorazione artigianale sottocoperta" },
-  { id: 14, src: "/gallery/arredo_mave.14.jpg", desc: "Porte interne di design" },
-  { id: 15, src: "/gallery/arredo_mave.15.jpg", desc: "Dettagli tecnici di falegnameria" },
-  { id: 16, src: "/gallery/arredo_mave.16.jpg", desc: "Complementi d'arredo per il mare" },
-  { id: 17, src: "/gallery/arredo_mave.17.jpg", desc: "Libreria su misura" },
-  { id: 18, src: "/gallery/arredo_mave.18.jpg", desc: "Finiture artigianali di pregio" },
-  { id: 19, src: "/gallery/arredo_mave.19.jpg", desc: "Strutture in legno per esterni" },
-  { id: 20, src: "/gallery/arredo_mave.20.jpg", desc: "Progetto Letto sospeso con testiera e led integrati in rovere massello" },
-  { id: 21, src: "/gallery/arredo_mave.21.jpg", desc: "Porta scorrevole design" },
-  { id: 22, src: "/gallery/arredo_mave.22.jpg", desc: "Cantinetta vino refrigerata" },
-  { id: 23, src: "/gallery/arredo_mave.23.jpg", desc: "Armadio laminato con mensola cassetto laccato" },
-];
 
 export default function GalleriaPage() {
   const heroDesktop =
     PlaceHolderImages.find((p) => p.id === "hero-galleria-desktop")?.imageUrl ||
-    "/images/hero-main.jpg";
+    "/images/hero-galleria-desktop.jpg";
   const heroMobile =
     PlaceHolderImages.find((p) => p.id === "hero-galleria-mobile")?.imageUrl ||
-    heroDesktop;
+    "/images/hero-galleria-mobile.jpg";
 
   return (
     <>
-      {/* SEZIONE HERO CON EFFETTO ALLEGGERITO */}
-      <section className="relative h-[55vh] md:h-[60vh] flex items-center justify-center text-center overflow-hidden bg-zinc-950">
-        {/* Immagine Mobile */}
-        <div className="md:hidden absolute inset-0">
-          <Image
-            src={heroMobile}
-            alt="MAVE"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover brightness-[0.55] contrast-[1.05]"
-          />
-        </div>
-        {/* Immagine Desktop */}
-        <div className="hidden md:block absolute inset-0">
-          <Image
-            src={heroDesktop}
-            alt="MAVE Progetti"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover brightness-[0.75] contrast-[1.05]"
-          />
-        </div>
-
-        {/* Effetto Noise e Gradienti (Light) */}
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
+      <section className="relative h-[45vh] min-h-[340px] md:h-[52vh] flex items-center justify-center text-center overflow-hidden bg-zinc-950">
+        <ResponsiveHeroImage
+          desktopSrc={heroDesktop}
+          mobileSrc={heroMobile}
+          alt="Galleria realizzazioni artigianali di Mave Arredamenti a Terracina"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_rgba(0,0,0,0.4)_100%)]" />
 
-        <div className="relative z-10 p-4 max-w-4xl mx-auto">
-          <h1 className="font-headline text-5xl md:text-8xl text-white leading-tight drop-shadow-2xl">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
+
+        <div className="relative z-10 px-6 max-w-4xl mx-auto">
+          <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
             Galleria{" "}
             <span className="text-accent italic font-light tracking-tight">
               Progetti
             </span>
           </h1>
-          <p className="text-white/80 mt-4 font-headline text-lg md:text-xl drop-shadow-md">
-            MAVE Arredamenti di Massimo Simonelli
+          <p className="text-white/90 mt-4 font-headline text-lg md:text-2xl drop-shadow-md">
+            Mave Arredamenti di Massimo Simonelli
           </p>
           <div className="h-1.5 w-24 bg-accent mx-auto mt-6 rounded-full" />
         </div>
       </section>
 
-      {/* GRIGLIA PROGETTI */}
-      <section className="py-12 md:py-24 bg-zinc-50">
-        <div className="container mx-auto px-4">
-          <GalleryGrid photos={galleryPhotos} />
+      <section className="py-12 md:py-20 bg-zinc-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <GalleryGrid photos={GALLERY_PHOTOS} />
         </div>
       </section>
 
-      {/* CTA FINALE */}
-      <section className="pb-24 pt-12 bg-background text-center">
+      <section className="pb-20 pt-12 bg-background text-center">
         <div className="container mx-auto px-4 max-w-2xl">
           <p className="text-muted-foreground font-headline italic text-xl md:text-2xl mb-8">
-            Ogni dettaglio è personalizzabile secondo le tue esigenze.
+            Ogni dettaglio è personalizzabile secondo le tue esigenze di spazio,
+            stile e materiali.
           </p>
           <Button
             asChild
             size="lg"
-            className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 py-6 h-auto text-lg shadow-xl"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-6 h-auto text-lg shadow-xl"
           >
-            <Link href="/contatti" className="flex items-center gap-2">
-              Inizia il tuo progetto <ArrowRight size={20} />
+            <Link href="/contatti" className="inline-flex items-center gap-2">
+              Inizia il tuo progetto{" "}
+              <ArrowRight size={20} aria-hidden="true" />
             </Link>
           </Button>
         </div>

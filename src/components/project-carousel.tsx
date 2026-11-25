@@ -6,20 +6,51 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
+import { cn } from "@/lib/utils";
 
 interface ProjectCarouselProps {
   images: { imageUrl: string; description: string }[];
 }
 
 export function ProjectCarousel({ images }: ProjectCarouselProps) {
-  const [plugins] = React.useState(() => [
-    Autoplay({ delay: 3000, stopOnInteraction: false }),
-  ]);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [reduceMotion, setReduceMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    setReduceMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    );
+  }, []);
+
+  const plugins = React.useMemo(
+    () =>
+      reduceMotion
+        ? []
+        : [Autoplay({ delay: 3500, stopOnInteraction: true })],
+    [reduceMotion],
+  );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "center" },
     plugins,
   );
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
 
   const scrollPrev = React.useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
@@ -29,94 +60,102 @@ export function ProjectCarousel({ images }: ProjectCarouselProps) {
     () => emblaApi && emblaApi.scrollNext(),
     [emblaApi],
   );
+  const scrollTo = React.useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi],
+  );
 
   return (
-    // CONTENITORE PRINCIPALE (Relative per posizionare le frecce)
-    <div className="relative group max-w-7xl mx-auto px-4 py-12">
-      {/* Glow di sfondo */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/5 blur-[120px] rounded-full -z-10" />
-
+    <div
+      className="relative group max-w-7xl mx-auto px-4 py-8"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Lavori artigianali in evidenza"
+    >
       {/* VIEWPORT EMBLA */}
       <div
         className="overflow-hidden cursor-grab active:cursor-grabbing"
         ref={emblaRef}
       >
         <div className="flex -ml-6">
-          {images.map((image, index) => (
+          {images.map((image) => (
             <div
-              key={index}
+              key={image.imageUrl}
               className="flex-[0_0_85%] md:flex-[0_0_55%] lg:flex-[0_0_45%] min-w-0 pl-6"
             >
-              {/* CARD ESTERNA */}
-              <div className="relative h-[400px] md:h-[500px] w-full rounded-[2rem] overflow-hidden border-4 border-white shadow-xl bg-stone-50 group/card transition-all duration-500 hover:shadow-accent/20">
-                {/* 1. LIVELLO SFONDO: Invece del nero, usiamo un mix di bianco sporco e sfocatura estrema */}
-                <Image
-                  src={image.imageUrl}
-                  alt=""
-                  fill
-                  quality={30}
-                  sizes="(max-width: 768px) 85vw, (max-width: 1024px) 55vw, 45vw"
-                  className="object-cover blur-3xl opacity-20 scale-125"
-                />
-
-                {/* Overlay per dare l'effetto "carta o legno chiaro" */}
-                <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
-
-                {/* 2. LIVELLO PRIMO PIANO: L'immagine reale */}
-                <div className="relative h-full w-full p-4 md:p-8">
+              <div className="relative h-[380px] md:h-[460px] w-full rounded-[2rem] overflow-hidden border border-border shadow-xl bg-gradient-to-br from-stone-100 via-stone-50 to-secondary/50 group/card transition-all duration-500">
+                <div className="relative h-full w-full p-4 md:p-6">
                   <Image
                     src={image.imageUrl}
                     alt={image.description}
                     fill
                     sizes="(max-width: 768px) 85vw, (max-width: 1024px) 55vw, 45vw"
-                    className="object-contain drop-shadow-2xl transition-transform duration-700 group-hover/card:scale-[1.03]"
+                    className="object-contain drop-shadow-xl transition-transform duration-700 group-hover/card:scale-[1.03]"
                   />
                 </div>
 
-                {/* 3. DIDASCALIA: Testo scuro (Primary) su fondo chiaro sfumato */}
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-white via-white/80 to-transparent">
-                  <div className="h-1 w-10 bg-accent mb-3 rounded-full shadow-sm" />
-                  <p className="font-headline italic text-xl md:text-2xl leading-tight text-primary">
+                {/* Didascalia */}
+                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-white via-white/90 to-transparent">
+                  <div className="h-1 w-10 bg-primary mb-2.5 rounded-full" />
+                  <p className="font-headline text-xl md:text-2xl leading-tight text-foreground">
                     {image.description}
                   </p>
                 </div>
-
-                {/* Rifinitura: bordo interno leggero */}
-                <div className="absolute inset-0 rounded-[1.8rem] ring-1 ring-inset ring-black/5 pointer-events-none" />
               </div>
-              {/* Fine Card */}
             </div>
           ))}
         </div>
       </div>
 
-      {/* PULSANTI DI NAVIGAZIONE (Ora dentro il relativo principale) */}
+      {/* PULSANTI DI NAVIGAZIONE */}
       <Button
+        type="button"
         variant="outline"
         size="icon"
         aria-label="Progetto precedente"
-        className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white/90 shadow-lg border-none hover:bg-accent hover:text-white transition-all -translate-x-1/2 hidden md:flex z-20"
+        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/95 text-foreground shadow-lg border border-border hover:bg-accent hover:text-[#1a231a] transition-all hidden md:flex z-20"
         onClick={scrollPrev}
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="h-6 w-6" aria-hidden="true" />
       </Button>
 
       <Button
+        type="button"
         variant="outline"
         size="icon"
         aria-label="Progetto successivo"
-        className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white/90 shadow-lg border-none hover:bg-accent hover:text-white transition-all translate-x-1/2 hidden md:flex z-20"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/95 text-foreground shadow-lg border border-border hover:bg-accent hover:text-[#1a231a] transition-all hidden md:flex z-20"
         onClick={scrollNext}
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="h-6 w-6" aria-hidden="true" />
       </Button>
 
-      {/* INDICATORI (Dots) */}
-      <div className="flex justify-center gap-2 mt-8">
-        {images.slice(0, 5).map((_, i) => (
-          <div key={i} className="h-1.5 w-1.5 rounded-full bg-primary/20" />
-        ))}
+      {/* INDICATORI INTERATTIVI */}
+      <div
+        className="flex justify-center items-center gap-2.5 mt-8"
+        role="tablist"
+        aria-label="Seleziona progetto in evidenza"
+      >
+        {images.map((image, i) => {
+          const active = i === selectedIndex;
+          return (
+            <button
+              key={image.imageUrl}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              aria-label={`Mostra progetto ${i + 1}: ${image.description}`}
+              onClick={() => scrollTo(i)}
+              className={cn(
+                "h-2.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                active
+                  ? "w-8 bg-primary"
+                  : "w-2.5 bg-primary/30 hover:bg-primary/60",
+              )}
+            />
+          );
+        })}
       </div>
-    </div> // FINE CONTENITORE PRINCIPALE
+    </div>
   );
 }
