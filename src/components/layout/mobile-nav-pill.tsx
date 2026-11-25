@@ -30,9 +30,9 @@ export function MobileNavPill() {
   return (
     <nav
       aria-label="Barra di navigazione rapida mobile"
-      className="lg:hidden fixed bottom-0 inset-x-0 z-50 border-t border-white/15 bg-[#242c24]/95 backdrop-blur-md shadow-[0_-8px_24px_rgba(0,0,0,0.24)] rounded-t-2xl md:rounded-t-3xl pt-1.5 px-2 pb-[max(0.4rem,env(safe-area-inset-bottom))]"
+      className="lg:hidden fixed inset-x-3 bottom-[max(0.5rem,env(safe-area-inset-bottom))] z-50 pointer-events-none"
     >
-      <ul className="grid grid-cols-5 gap-1 max-w-lg mx-auto">
+      <ul className="pointer-events-auto grid grid-cols-5 gap-1 max-w-md mx-auto rounded-full bg-[#242c24]/95 border border-white/15 shadow-2xl backdrop-blur-md px-1.5 py-1">
         {MOBILE_PILL_ITEMS.map((item) => {
           const active = isMobilePillActive(pathname, item.href);
           const Icon = item.icon;
@@ -48,7 +48,7 @@ export function MobileNavPill() {
                     : "text-white/75 hover:text-white hover:bg-white/10",
                 )}
               >
-                <Icon className="h-[17px] w-[17px] shrink-0" aria-hidden="true" />
+                <Icon className="h-[16px] w-[16px] shrink-0" aria-hidden="true" />
                 <span className="truncate max-w-full leading-none">{item.label}</span>
               </Link>
             </li>

@@ -67,7 +67,8 @@ export default function ChiSiamoPage() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/35" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.28)_0%,transparent_75%)]" />
 
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-2xl">

@@ -145,10 +145,11 @@ export default function Home() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/30 to-black/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_72%,transparent_100%)]" />
 
           <div className="relative z-10 flex flex-col items-center px-6 text-center text-white max-w-4xl mx-auto">
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-accent mb-3">
+            <p className="inline-flex items-center rounded-full bg-[#1a231a]/65 backdrop-blur-sm border border-white/15 px-4 py-1 text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-accent mb-4 shadow-sm">
               Terracina &bull; Falegnameria e Nautica
             </p>
 

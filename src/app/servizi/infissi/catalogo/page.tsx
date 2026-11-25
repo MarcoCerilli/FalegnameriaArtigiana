@@ -91,9 +91,9 @@ export default function CatalogoSchucoPage() {
             fill
             priority
             sizes="(max-width: 1152px) 100vw, 1152px"
-            className="object-cover object-center opacity-45"
+            className="object-cover object-center opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f6f7f4]/95 via-[#f6f7f4]/80 to-[#f6f7f4]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f6f7f4]/90 via-[#f6f7f4]/72 to-[#f6f7f4]/25" />
 
           <div className="px-6 md:px-10 relative z-10">
             <Link
