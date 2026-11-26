@@ -146,7 +146,7 @@ export default function Home() {
           />
 
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/26 to-black/38" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_72%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_68%_at_50%_52%,rgba(15,20,15,0.44)_0%,rgba(15,20,15,0.12)_72%,transparent_100%)] md:bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_72%,transparent_100%)]" />
 
           <div className="relative z-10 flex flex-col items-center px-5 sm:px-6 text-center text-white max-w-4xl mx-auto">
             <p className="inline-flex items-center rounded-full bg-[#1a231a]/65 backdrop-blur-sm border border-white/15 px-3.5 sm:px-4 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.22em] text-accent mb-3 sm:mb-4 shadow-sm whitespace-nowrap">
@@ -160,7 +160,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-3 sm:mt-5 text-[15px] sm:text-lg md:text-xl max-w-xl mx-auto text-white/95 font-light leading-snug drop-shadow-md">
+            <p className="mt-3 sm:mt-5 text-[15px] sm:text-lg md:text-xl max-w-xl mx-auto text-white font-normal leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
               Soluzioni artigianali su misura per la tua casa e la tua
               imbarcazione.
             </p>
