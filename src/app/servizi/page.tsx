@@ -88,8 +88,8 @@ export default function ServiziPage() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/45" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_75%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/48 to-black/45 md:from-black/25 md:via-black/35 md:to-black/45" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_92%_70%_at_50%_48%,rgba(15,20,15,0.44)_0%,rgba(15,20,15,0.12)_75%,transparent_100%)] md:bg-[radial-gradient(ellipse_80%_70%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_75%,transparent_100%)]" />
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto">
             <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-xl">

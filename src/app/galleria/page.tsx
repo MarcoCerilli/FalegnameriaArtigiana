@@ -49,8 +49,8 @@ export default function GalleriaPage() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/45" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_75%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/22 via-black/35 to-black/42 md:from-black/25 md:via-black/35 md:to-black/45" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_70%_at_50%_50%,rgba(15,20,15,0.42)_0%,rgba(15,20,15,0.10)_75%,transparent_100%)]" />
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto">
             <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-2xl">

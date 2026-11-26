@@ -142,10 +142,10 @@ export default async function ServiceDetailPage({
               fill
               priority
               sizes="(max-width: 1152px) 100vw, 1152px"
-              className="object-cover opacity-55"
+              className="object-cover opacity-65"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1e261e]/45 via-[#1e261e]/50 to-[#1e261e]/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1e261e]/35 via-[#1e261e]/40 to-[#1e261e]/55" />
 
           <div className="relative z-10 px-6 max-w-4xl mx-auto">
             <nav

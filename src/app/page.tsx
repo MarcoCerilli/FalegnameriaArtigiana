@@ -52,9 +52,9 @@ export default function Home() {
 
   const featuredProjects: FeaturedProjectSlide[] = [
     {
-      imageUrl: "/images/cucina.jpg",
-      description: "Arredi su Misura",
-      fitMode: "mat",
+      imageUrl: "/gallery/arredo_mave.7.jpg",
+      description: "Tavolo in Rovere su Misura",
+      fitMode: "cover",
     },
     {
       imageUrl: "/images/bagno.jpeg",
@@ -77,9 +77,9 @@ export default function Home() {
       fitMode: "cover",
     },
     {
-      imageUrl: "/images/recenti.jpg",
-      description: "Mobile Angolare Design",
-      fitMode: "mat",
+      imageUrl: "/gallery/arredo_mave.13.jpg",
+      description: "Interni Nautici su Misura",
+      fitMode: "cover",
     },
   ];
 
@@ -137,7 +137,7 @@ export default function Home() {
     <div className="flex flex-col">
       {/* HERO SECTION BOXED */}
       <div className="max-w-6xl mx-auto w-full px-3 sm:px-5 pt-2">
-        <section className="relative w-full h-[54vh] sm:h-[58vh] md:h-[60vh] min-h-[410px] max-h-[540px] overflow-hidden bg-zinc-950 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl flex items-center justify-center">
+        <section className="relative w-full h-[52vh] sm:h-[58vh] md:h-[60vh] min-h-[390px] max-h-[540px] overflow-hidden bg-zinc-950 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl flex items-center justify-center py-8 sm:py-0">
           <ResponsiveHeroImage
             desktopSrc={heroDesktop}
             mobileSrc={heroMobile}
@@ -145,31 +145,31 @@ export default function Home() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/30 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/26 to-black/38" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.34)_0%,rgba(15,20,15,0.06)_72%,transparent_100%)]" />
 
-          <div className="relative z-10 flex flex-col items-center px-6 text-center text-white max-w-4xl mx-auto">
-            <p className="inline-flex items-center rounded-full bg-[#1a231a]/65 backdrop-blur-sm border border-white/15 px-4 py-1 text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-accent mb-4 shadow-sm">
+          <div className="relative z-10 flex flex-col items-center px-5 sm:px-6 text-center text-white max-w-4xl mx-auto">
+            <p className="inline-flex items-center rounded-full bg-[#1a231a]/65 backdrop-blur-sm border border-white/15 px-3.5 sm:px-4 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.22em] text-accent mb-3 sm:mb-4 shadow-sm whitespace-nowrap">
               Terracina &bull; Falegnameria e Nautica
             </p>
 
-            <h1 className="font-headline text-3xl sm:text-5xl md:text-6xl leading-[1.1] drop-shadow-2xl">
-              Mave: Passione <br className="sm:hidden" /> e Maestria, <br />
+            <h1 className="font-headline text-[2rem] sm:text-5xl md:text-6xl leading-[1.08] drop-shadow-2xl">
+              Mave: Passione e Maestria, <br />
               <span className="text-accent italic font-light">
                 dal Legno al Mare.
               </span>
             </h1>
 
-            <p className="mt-4 md:mt-5 text-base sm:text-lg md:text-xl max-w-xl mx-auto text-white/95 font-light drop-shadow-md">
+            <p className="mt-3 sm:mt-5 text-[15px] sm:text-lg md:text-xl max-w-xl mx-auto text-white/95 font-light leading-snug drop-shadow-md">
               Soluzioni artigianali su misura per la tua casa e la tua
               imbarcazione.
             </p>
 
-            <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3.5 justify-center items-center w-full sm:w-auto">
+            <div className="mt-5 sm:mt-8 flex flex-wrap gap-2.5 sm:gap-3.5 justify-center items-center w-full sm:w-auto">
               <Button
                 asChild
                 size="lg"
-                className="w-full max-w-[260px] sm:w-auto bg-accent text-[#1a231a] hover:bg-accent/90 font-bold py-5 px-7 text-base rounded-full transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
+                className="bg-accent text-[#1a231a] hover:bg-accent/90 font-bold py-3 sm:py-5 h-auto px-5 sm:px-7 text-sm sm:text-base rounded-full transition-all duration-300 shadow-xl hover:scale-105 active:scale-95"
               >
                 <Link href="/contatti">Preventivo Gratuito</Link>
               </Button>
@@ -178,7 +178,7 @@ export default function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="w-full max-w-[260px] sm:w-auto bg-black/35 backdrop-blur-md border-2 border-white/60 text-white font-semibold py-5 px-7 text-base rounded-full transition-all duration-300 shadow-lg hover:bg-white hover:text-zinc-950 hover:border-white"
+                className="bg-black/35 backdrop-blur-md border-2 border-white/60 text-white font-semibold py-3 sm:py-5 h-auto px-5 sm:px-7 text-sm sm:text-base rounded-full transition-all duration-300 shadow-lg hover:bg-white hover:text-zinc-950 hover:border-white"
               >
                 <Link href="#servizi">I nostri servizi</Link>
               </Button>

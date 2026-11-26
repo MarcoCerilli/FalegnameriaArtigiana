@@ -67,8 +67,8 @@ export default function ChiSiamoPage() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/35" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,rgba(15,20,15,0.28)_0%,transparent_75%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/38 to-black/80 md:from-black/18 md:via-black/35 md:to-black/72" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_92%_70%_at_50%_62%,rgba(15,20,15,0.58)_0%,rgba(15,20,15,0.18)_72%,transparent_100%)]" />
 
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight drop-shadow-2xl">
@@ -78,10 +78,10 @@ export default function ChiSiamoPage() {
 
             <div className="h-1.5 w-24 bg-accent mx-auto mt-5 rounded-full shadow-lg" />
 
-            <p className="mt-5 text-xl md:text-3xl text-white font-medium italic drop-shadow-md">
+            <p className="mt-5 text-xl md:text-3xl text-white font-medium italic drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
               &ldquo;Il mio lavoro è la mia passione.&rdquo;
             </p>
-            <p className="mt-2.5 text-base md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="mt-2.5 text-base md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
               Ogni creazione di Mave Arredamenti porta con sé il valore del
               tempo, della ricerca dei materiali e della cura manuale.
             </p>

@@ -49,7 +49,7 @@ export default function WhatsAppButton() {
   }
 
   return (
-    <div className="fixed bottom-[calc(4.25rem+env(safe-area-inset-bottom))] right-3.5 lg:bottom-5 lg:right-5 z-50 flex flex-col items-end">
+    <div className="fixed bottom-[calc(4.65rem+env(safe-area-inset-bottom))] right-3.5 lg:bottom-5 lg:right-5 z-50 flex flex-col items-end">
       {isOpen && (
         <div
           role="dialog"

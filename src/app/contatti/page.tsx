@@ -49,8 +49,8 @@ export default function ContattiPage() {
             className="object-cover object-center"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/28 via-black/38 to-black/48" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_75%_at_50%_50%,rgba(15,20,15,0.48)_0%,rgba(15,20,15,0.14)_75%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/38 to-black/45 md:from-black/28 md:via-black/38 md:to-black/48" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_88%_78%_at_50%_50%,rgba(15,20,15,0.44)_0%,rgba(15,20,15,0.12)_75%,transparent_100%)] md:bg-[radial-gradient(ellipse_80%_75%_at_50%_50%,rgba(15,20,15,0.48)_0%,rgba(15,20,15,0.14)_75%,transparent_100%)]" />
 
           <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto">
             <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl text-white leading-tight italic drop-shadow-2xl">
